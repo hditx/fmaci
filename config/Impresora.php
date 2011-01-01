@@ -60,6 +60,9 @@ class Impresora {
             fprintf ($impresora, $ESC."a".chr(0) ); // Cancel centered printing
             fprintf ($impresora, $ESC."E".chr(0)); // Not Bold
             fprintf ($impresora, $ESC."d".chr(1)); // Blank line
+            fprintf ($impresora, $ESC."d".chr(1)); // Blank line
+            fprintf ($impresora, $ESC."d".chr(1)); // Blank line
+            fprintf ($impresora, $ESC."d".chr(1)); // Blank line
 
             //echo "Receipt for whatever\n"; // Print text
             //echo ESC."d".chr(4); // 4 Blank lines
@@ -71,7 +74,9 @@ class Impresora {
             echo ESC."d".chr(1); // Blank line
             echo "987654321\n"; // Print number
             */
-            //echo GS."V\x41".chr(3); // Cut
+            fprintf ($impresora, $GS."V\x30"); 
+            fprintf ($impresora, $GS."V\x30"); 
+//            echo $GS."V\x30"; // Cut
             //exit(0);
             fclose($impresora);
 	}
