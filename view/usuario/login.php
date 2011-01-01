@@ -7,6 +7,7 @@
     <div>
          <img class="userbox"  src="view/images/lock.ico" height="17px" width="17px" > <input class="inputText" name="pass" class="user" type="password" placeholder="Contraseña">
     </div>
+	<input type="submit" value "Entrar">
     <div class="userbox">
         <img src="view/images/login.ico" height="25px" width="30px" onclick="login.submit()">
     </div>
