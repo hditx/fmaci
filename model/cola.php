@@ -1,80 +1,68 @@
 <?php 
-require_once 'config/abre_conexion.php';
+require_once 'config/DataBase.php';
 class Cola{
     //reformular clase
     private $idCola;
     private $nombreCola;
-    private $tipoAtencionCliente;
-    private $tipoCola; //jerarquia
-    private $tipoObraSocial;
+    private $idEmpleado;
+    private $jerarquia; 
     
-    public function __construct($idCola, $nombre = "", $tipoAtencionCliente = "", $tipoCola = "", $tipoObraSocial = ""){
+    public function __construct($idCola, $nombre = "", $idEmpleado = "", $jerarquia = ""){
             $this->setIdCola($idCola);
             $this->setNombreCola($nombre);
-            $this->setTipoAtencionCliente($tipoAtencionCliente);
-            $this->setTipoCola($tipoCola);
-            $this->setTipoObraSocial($tipoObraSocial);
+            $this->setIdEmpleado($idEmpleado);
+            $this->setJerarquia($jerarquia);
     }
     
-    function getIdCola() {
+    public function getIdCola() {
         return $this->idCola;
     }
 
-    function setIdCola($idCola) {
+    public function setIdCola($idCola) {
         $this->idCola = $idCola;
     }
 
-        public function getNombreCola() {
+    public function getNombreCola() {
         return $this->nombreCola;
-    }
-
-    public function getTipoAtencionCliente() {
-        return $this->tipoAtencionCliente;
-    }
-
-    public function getTipoCola() {
-        return $this->tipoCola;
-    }
-
-    public function getTipoObraSocial() {
-        return $this->tipoObraSocial;
     }
 
     public function setNombreCola($nombreCola) {
         $this->nombreCola = $nombreCola;
     }
 
-    public function setTipoAtencionCliente($tipoAtencionCliente) {
-        $this->tipoAtencionCliente = $tipoAtencionCliente;
+    function getIdEmpleado() {
+        return $this->idEmpleado;
     }
 
-    public function setTipoCola($tipoCola) {
-        $this->tipoCola = $tipoCola;
+    function getJerarquia() {
+        return $this->jerarquia;
     }
 
-    public function setTipoObraSocial($tipoObraSocial) {
-        $this->tipoObraSocial = $tipoObraSocial;
+    function setIdEmpleado($idEmpleado) {
+        $this->idEmpleado = $idEmpleado;
     }
+
+    function setJerarquia($jerarquia) {
+        $this->jerarquia = $jerarquia;
+    }
+
     public function save(){
         try {
             $mdb =  DataBase::getDb();
             if($this->getIdCola() != null){
             $sql = "UPDATE Cola SET nombreCola           = '".$this->getNombreCola()."', "
-                                 . "tipoCola             = '".$this->getTipoCola()."', "
-                                 . "tipoObraSocial       = '".$this->getTipoObraSocial()."',"
-                                 . "tipoAtencionCliente  = '".$this->getTipoAtencionCliente()."' "
+                                 . "idEmpleado             = '".$this->getIdEmpleado()."', "
+                                 . "jerarquia       = '".$this->getJerarquia()."'"
                  . " WHERE idCola = ".$this->getIdCola();
             }else{
-                $sql = "INSERT INTO Cola(nombreCola, tipoCola, tipoObraSocial, tipoAtencionCliente) VALUES ("
+                $sql = "INSERT INTO Cola(nombreCola, idEmpleado, jerarquia) VALUES ("
                         . "'".$this->getNombreCola()."', "
-                        . "'".$this->getTipoCola()."', "
-                        . "'".$this->getTipoObraSocial()."', "
-                        . "'".$this->getTipoAtencionCliente()."' "
+                        . "'".$this->getIdEmpleado()."', "
+                        . "'".$this->getJerarquia()."' "
                         . ")";
             }
             echo $sql;
             $temp = $mdb->prepare($sql);
-            echo "asdsa";
             $temp->execute();
             $mdb = null;
         } catch (PDOException $e) {
@@ -90,7 +78,7 @@ class Cola{
             $temp->execute();
             $resultado = $temp->fetchAll(); 
             foreach($resultado as $fila) {
-                $data[] = new Cola($fila['idCola'], $fila['nombreCola'], $fila['tipoAtencionCliente'], $fila['tipoCola'], $fila['tipoObraSocial']);
+                $data[] = new Cola($fila['idCola'], $fila['nombreCola'], $fila['idEmpleado'], $fila['jerarquia']);
             }
             $mbd = null;
         } catch (PDOException $e) {
@@ -119,7 +107,7 @@ class Cola{
             $temp->execute();
             $resultado = $temp->fetchAll();
             $data = new Cola($resultado[0]['idCola'], $resultado[0]['nombreCola'], 
-                    $resultado[0]['tipoAtencionCliente'], $resultado[0]['tipoCola'], $resultado[0]['tipoObraSocial']);
+                    $resultado[0]['idEmpleado'], $resultado[0]['jerarquia']);
             $mbd = null;
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
@@ -127,13 +115,21 @@ class Cola{
         }
         return $data;        
     }
+    
+    public static function getC($n){
+        try {
+            $mdb =  DataBase::getDb();
+            $temp = $mdb->prepare("SELECT * FROM Cola WHERE nombreCola = $n");
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            $data = new Cola($resultado[0]['idCola'], $resultado[0]['nombreCola'], 
+                    $resultado[0]['idEmpleado'], $resultado[0]['jerarquia']);
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
 }
-//$nombre = $_POST["nombre"];
-//$tipoAtencionCliente = $_POST["apellido"];
-//$tipoCola = $_POST["direccion"];
-//$cola1 = new Cola($nombre, $tipoAtencionCliente, $tipoCola);
-//echo "  
-//<p>Volver.</p> 
-//<p><a href='javascript:history.go(-1)'>ATRÁS</a></p>  
-//";  
 ?>   

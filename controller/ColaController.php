@@ -24,9 +24,8 @@ class ColaController{
          $temp = new Cola(null);
       }
       $temp->setNombreCola($_REQUEST['nombreCola']);
-      $temp->setTipoAtencionCliente($_REQUEST['tipoAtencion']);
-      $temp->setTipoCola($_REQUEST['tipoCola']);
-      $temp->setTipoObraSocial($_REQUEST['tipoObraSocial']);
+      $temp->setIdEmpleado($_REQUEST['idEmpleado']);
+      $temp->setJerarquia($_REQUEST['jerarquia']);
       $temp->save();
       echo "Estoy guardando la cola " . $temp->getNombreCola();
       header("Location: index.php?c=cola");
