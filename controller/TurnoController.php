@@ -11,15 +11,10 @@ class TurnoController{
         require_once 'view/footer.php';
         
     }
-    
-//    public function crear(){
-//        require_once 'view/header.php';
-//        require_once 'view/turno/seleccion.php';
-//        require_once 'view/footer.php';
-//    }
 
     public function sacarTurno(){
         $t= $_REQUEST['dni'];
+        $colas = Cola::getList();
         $temp= new Cliente($t, 1);
         require_once 'view/header.php';
         require_once 'view/turno/seleccion.php';

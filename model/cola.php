@@ -1,16 +1,19 @@
 <?php 
+require_once 'config/abre_conexion.php';
 class Cola{
+    //reformular clase
     private $idCola;
     private $nombreCola;
     private $tipoAtencionCliente;
-    private $tipoCola;
+    private $tipoCola; //jerarquia
     private $tipoObraSocial;
-
-    public function __construct($nombre, $idCola, $tipoAtencionCliente = "", $tipoCola = ""){
-            $this->nombreCola = $nombre;
+    
+    public function __construct($idCola, $nombre = "", $tipoAtencionCliente = "", $tipoCola = "", $tipoObraSocial = ""){
             $this->setIdCola($idCola);
-            $this->tipoAtencionCliente = $tipoAtencionCliente;
-            $this->tipoCola = $tipoCola;
+            $this->setNombreCola($nombre);
+            $this->setTipoAtencionCliente($tipoAtencionCliente);
+            $this->setTipoCola($tipoCola);
+            $this->setTipoObraSocial($tipoObraSocial);
     }
     
     function getIdCola() {
@@ -52,16 +55,77 @@ class Cola{
     public function setTipoObraSocial($tipoObraSocial) {
         $this->tipoObraSocial = $tipoObraSocial;
     }
-    
+    public function save(){
+        try {
+            $mdb =  DataBase::getDb();
+            if($this->getIdCola() != null){
+            $sql = "UPDATE Cola SET nombreCola           = '".$this->getNombreCola()."', "
+                                 . "tipoCola             = '".$this->getTipoCola()."', "
+                                 . "tipoObraSocial       = '".$this->getTipoObraSocial()."',"
+                                 . "tipoAtencionCliente  = '".$this->getTipoAtencionCliente()."' "
+                 . " WHERE idCola = ".$this->getIdCola();
+            }else{
+                $sql = "INSERT INTO Cola(nombreCola, tipoCola, tipoObraSocial, tipoAtencionCliente) VALUES ("
+                        . "'".$this->getNombreCola()."', "
+                        . "'".$this->getTipoCola()."', "
+                        . "'".$this->getTipoObraSocial()."', "
+                        . "'".$this->getTipoAtencionCliente()."' "
+                        . ")";
+            }
+            echo $sql;
+            $temp = $mdb->prepare($sql);
+            echo "asdsa";
+            $temp->execute();
+            $mdb = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+
     public static function getList(){
-        $data = [];
-        $data[] = new Cola("Perfumeria", 1);
-        $data[] = new Cola("Particular", 2);
-        $data[] = new Cola("Obra social", 3);
+        try {
+            $mdb =  DataBase::getDb();
+            $temp = $mdb->prepare('SELECT * FROM Cola');
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            foreach($resultado as $fila) {
+                $data[] = new Cola($fila['idCola'], $fila['nombreCola'], $fila['tipoAtencionCliente'], $fila['tipoCola'], $fila['tipoObraSocial']);
+            }
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
         return $data;
     }
     public static function delete($id){
-        
+        try {
+            $mdb =  DataBase::getDb();
+            echo "llegue";
+            $temp = $mdb->prepare("DELETE FROM Cola WHERE idCola = $id");
+            $temp->execute();
+            $mdb = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+    
+    public static function get($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $temp = $mdb->prepare("SELECT * FROM Cola WHERE idCola = $id");
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            $data = new Cola($resultado[0]['idCola'], $resultado[0]['nombreCola'], 
+                    $resultado[0]['tipoAtencionCliente'], $resultado[0]['tipoCola'], $resultado[0]['tipoObraSocial']);
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;        
     }
 }
 //$nombre = $_POST["nombre"];

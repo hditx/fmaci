@@ -9,7 +9,7 @@
     <th>Eliminar</th>
     <?php foreach($data as $c){ ?>
     <tr>
-        <td><?php echo $c->getNombreCola()?></td>
+        <td><a href="index.php?c=cola&a=modificar&id=<?php echo $c->getIdCola()?>"><?php echo $c->getNombreCola()?></a></td>
         <td><?php echo $c->getTipoAtencionCliente()?></td>
         <td><?php echo $c->getTipoCola()?></td>
         <td><?php echo $c->getTipoObraSocial()?></td>
