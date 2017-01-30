@@ -15,20 +15,27 @@ class TurnoController{
         $temp = new Cliente(null);
         $temp->setDni($_REQUEST['dni']);
         $temp->save();
-        $colas = Cola::getList();
+        if(isset($_REQUEST['id'])){
+            $t = Cola::get($_REQUEST['id']);
+            if ($t->getSiguiente() == null){
+                $colas = Cola::getList3($t->getIdCola());
+            }else {
+                header("Location: index.php?c=turno&a=imprimir&id=".$t->getIdCola());
+            }
+        }else{
+            $colas = Cola::getList2();
+        }
         require_once 'view/header.php';
-        require_once 'view/turno/seleccion.php';
+        if($colas != null){
+            require_once 'view/turno/seleccion.php';
+        }else{
+            echo "Imprimiendo turno";
+        }
         require_once 'view/footer.php';
     }
     
-    public function imprimir($n){
-        $temp = Cola::getC(n);
-        if($temp->getJerarquia() != 0){
-            echo "En proceso";
-            //colas = Cola::getListRestante();
-        }else{
-            echo "Imprimiendo turno";
-            header("Location: index.php?c=turno&a=index");
-        }
+    public function imprimir(){
+        Cola::incrementar($_REQUEST['id']);
+        header("Location: index.php?c=turno&a=index");
     }
 }

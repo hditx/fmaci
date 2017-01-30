@@ -1,17 +1,21 @@
 <?php 
 require_once 'config/DataBase.php';
 class Cola{
-    //reformular clase
+    
     private $idCola;
     private $nombreCola;
     private $idEmpleado;
-    private $jerarquia; 
+    private $hijoDe;
+    private $siguiente;
+    private $letra;
     
-    public function __construct($idCola, $nombre = "", $idEmpleado = "", $jerarquia = ""){
+    public function __construct($idCola, $nombre = "", $idEmpleado = "", $hijoDe = "", $siguiente = "", $letra = ""){
             $this->setIdCola($idCola);
             $this->setNombreCola($nombre);
             $this->setIdEmpleado($idEmpleado);
-            $this->setJerarquia($jerarquia);
+            $this->setHijoDe($hijoDe);
+            $this->setSiguiente($siguiente);
+            $this->setLetra($letra);
     }
     
     public function getIdCola() {
@@ -34,16 +38,37 @@ class Cola{
         return $this->idEmpleado;
     }
 
-    function getJerarquia() {
-        return $this->jerarquia;
-    }
-
     function setIdEmpleado($idEmpleado) {
         $this->idEmpleado = $idEmpleado;
     }
 
-    function setJerarquia($jerarquia) {
-        $this->jerarquia = $jerarquia;
+    function getHijoDe() {
+        return $this->hijode == null ? "null" : $this->hijoDe;
+    }
+    
+    function getSiguiente() {
+        return $this->siguiente;
+    }
+
+    function getLetra() {
+        return $this->letra;
+    }
+
+    function setSiguiente($siguiente) {
+        $this->siguiente = $siguiente;
+    }
+
+    function setLetra($letra) {
+        $this->letra = $letra;
+    }
+
+    
+    function getHijoDeObjeto() {
+        return Cola::get($this->hijoDe);
+    }
+
+    function setHijoDe($hijoDe) {
+        $this->hijoDe = $hijoDe < 0 ? NULL : $hijoDe;
     }
 
     public function save(){
@@ -52,14 +77,20 @@ class Cola{
             if($this->getIdCola() != null){
             $sql = "UPDATE Cola SET nombreCola           = '".$this->getNombreCola()."', "
                                  . "idEmpleado             = '".$this->getIdEmpleado()."', "
-                                 . "jerarquia       = '".$this->getJerarquia()."'"
+                                 . "hijoDe       = ".$this->getHijoDe().","
+                                 . "siguiente   = " .$this->getSiguiente(). ","
+                                 . "letra       ='".$this->getLetra()."' "
                  . " WHERE idCola = ".$this->getIdCola();
             }else{
-                $sql = "INSERT INTO Cola(nombreCola, idEmpleado, jerarquia) VALUES ("
+                $sql = "INSERT INTO Cola(nombreCola, idEmpleado, hijoDe) VALUES ("
                         . "'".$this->getNombreCola()."', "
                         . "'".$this->getIdEmpleado()."', "
-                        . "'".$this->getJerarquia()."' "
+                        . $this->getHijoDe().","
+                        . $this->getSiguiente(). ","
+                        . "'".$this->getLetra()."' "
                         . ")";
+                
+                
             }
             echo $sql;
             $temp = $mdb->prepare($sql);
@@ -74,11 +105,12 @@ class Cola{
     public static function getList(){
         try {
             $mdb =  DataBase::getDb();
-            $temp = $mdb->prepare('SELECT * FROM Cola');
+            $temp = $mdb->prepare('SELECT * FROM Cola ORDER BY nombreCola');
             $temp->execute();
             $resultado = $temp->fetchAll(); 
             foreach($resultado as $fila) {
-                $data[] = new Cola($fila['idCola'], $fila['nombreCola'], $fila['idEmpleado'], $fila['jerarquia']);
+                $data[] = new Cola($fila['idCola'], $fila['nombreCola'], $fila['idEmpleado'], $fila['hijoDe'], 
+                        $fila['siguiente'], $fila['letra']);
             }
             $mbd = null;
         } catch (PDOException $e) {
@@ -87,6 +119,42 @@ class Cola{
         }
         return $data;
     }
+    public static function getList2(){
+        try {
+            $mdb =  DataBase::getDb();
+            $temp = $mdb->prepare('SELECT * FROM Cola WHERE hijoDe IS NULL');
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            foreach($resultado as $fila) {
+                $data[] = new Cola($fila['idCola'], $fila['nombreCola'], $fila['idEmpleado'], $fila['hijoDe'], 
+                        $fila['siguiente'], $fila['letra']);
+            }
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
+    public static function getList3($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT * FROM Cola WHERE hijoDe = ".$id;
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            foreach($resultado as $fila) {
+                $data[] = new Cola($fila['idCola'], $fila['nombreCola'], $fila['idEmpleado'], $fila['hijoDe'], 
+                        $fila['siguiente'], $fila['letra']);
+            }
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
+    
     public static function delete($id){
         try {
             $mdb =  DataBase::getDb();
@@ -107,7 +175,8 @@ class Cola{
             $temp->execute();
             $resultado = $temp->fetchAll();
             $data = new Cola($resultado[0]['idCola'], $resultado[0]['nombreCola'], 
-                    $resultado[0]['idEmpleado'], $resultado[0]['jerarquia']);
+                    $resultado[0]['idEmpleado'], $resultado[0]['hijoDe'], $resultado[0]['siguiente'],
+                    $resultado[0]['letra']);
             $mbd = null;
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
@@ -123,13 +192,29 @@ class Cola{
             $temp->execute();
             $resultado = $temp->fetchAll();
             $data = new Cola($resultado[0]['idCola'], $resultado[0]['nombreCola'], 
-                    $resultado[0]['idEmpleado'], $resultado[0]['jerarquia']);
+                    $resultado[0]['idEmpleado'], $resultado[0]['hijoDe'], $resultado[0]['siguiente'],
+                    $resultado[0]['letra']);
             $mbd = null;
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
             die();
         }
         return $data;
+    }
+    
+    public static function incrementar($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $temp = Cola::get($id);
+            $sql = "UPDATE Cola SET siguiente           = ".($temp->getSiguiente() + 1) 
+                 . " WHERE idCola = ". $id;
+            echo $sql;
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }        
     }
 }
 ?>   

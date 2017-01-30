@@ -8,7 +8,13 @@
         <input type="hidden" name="idCola" value="<?= $tmp->getIdCola() ?>">
         <?php }?>
         <p>Nombre cola <input type="text" name="nombreCola" size="20" value="<?= $tmp->getNombreCola() ?>"></p>
+        <p>Hijo de...
+            <select name="idPadre">
+                <option value = "-1">Ninguno</option>
+                <?php foreach ($padres as $padre){
+                   echo " <option value=" . $padre->getIdCola() . "> ".$padre->getNombreCola()."</option>"; 
+                }?>
+            </select>
         <p>Id Empleado <input type="text" name="idEmpleado" size="20" value="<?= $tmp->getIdEmpleado() ?>"></p>
-        <p>Jerarquia <input type="text" name="jerarquia" size="20" value="<?= $tmp->getJerarquia() ?>"></p>
         <p><input type="submit" value="Guardar datos" name="B1"></p>  
 </form>

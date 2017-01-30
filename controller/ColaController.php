@@ -11,6 +11,7 @@ class ColaController{
   
   public function crear(){
       $tmp = new Cola(null);
+      $padres = Cola::getList();
       require_once "view/header.php";
       require_once "view/cola/colaEdit.php";
       require_once "view/footer.php";
@@ -20,12 +21,13 @@ class ColaController{
           $temp = Cola::get($_REQUEST['idCola']);
       }
       else{
-     //   $t=$_REQUEST['nombre'];
          $temp = new Cola(null);
       }
       $temp->setNombreCola($_REQUEST['nombreCola']);
       $temp->setIdEmpleado($_REQUEST['idEmpleado']);
-      $temp->setJerarquia($_REQUEST['jerarquia']);
+      $temp->setHijode($_REQUEST['idPadre']);
+      $temp->setSiguiente($_REQUEST['siguiente']);
+      $temp->letra($_REQUEST['letra']);
       $temp->save();
       echo "Estoy guardando la cola " . $temp->getNombreCola();
       header("Location: index.php?c=cola");
@@ -38,6 +40,7 @@ class ColaController{
   }
   public function modificar(){
       $tmp = Cola::get($_REQUEST['id']);
+      $padres = Cola::getList();
       require_once "view/header.php";
       require_once "view/cola/colaEdit.php";
       require_once "view/footer.php";
