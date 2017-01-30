@@ -20,7 +20,7 @@ class TurnoController{
             if ($t->getSiguiente() == null){
                 $colas = Cola::getList3($t->getIdCola());
             }else {
-                header("Location: index.php?c=turno&a=imprimir&id=".$t->getIdCola());
+                header("Location: index.php?c=turno&a=imprimir&id=".$t->getIdCola()."&cliente=".$temp->getDni());
             }
         }else{
             $colas = Cola::getList2();
@@ -36,6 +36,11 @@ class TurnoController{
     
     public function imprimir(){
         Cola::incrementar($_REQUEST['id']);
-        header("Location: index.php?c=turno&a=index");
+//        $turn = new Turno(null);
+//        $turn->setIdCola($_REQUEST['id']);
+//        $turn->setIdCliente(Cliente::getDniObjeto($_REQUEST['cliente']));
+//        $turn->setPosicion($_REQUEST['id']);
+//        $turn->save();
+        //header("Location: index.php?c=turno&a=index");
     }
 }

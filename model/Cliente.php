@@ -70,14 +70,10 @@ Class Cliente{
     public function save(){
         try {
             $mdb =  DataBase::getDb();
-            if($this->getIdCliente() != null){
-            $sql = "UPDATE Cliente SET nombreApellido  = '".$this->getNombreApellido()."', "
-                                    . "dni             = '".$this->getDni()."', "
-                                    . "direccion       = '".$this->getDireccion()."',"
-                                    . "telefono        = '".$this->getTelefono()."', "
-                                    . "obraSocial      = '".$this->getObraSocial()."'"
-                 . " WHERE idCliente = ".$this->getIdCliente();
-            }else{
+            $sql = "SELECT dni FROM Cliente WHERE dni = ".$this->getDni();
+            $resultado = mysql_query($sql);
+            if(!$resultado){
+                echo "entre en el if";
                 $sql = "INSERT INTO Cliente(nombreApellido, dni, direccion, telefono, obraSocial) VALUES ("
                         . "'".$this->getNombreApellido()."', "
                         . "'".$this->getDni()."', "
@@ -85,15 +81,31 @@ Class Cliente{
                         . "'".$this->getTelefono()."', "
                         . "'".$this->getObraSocial()."' "
                         . ")";
+                $temp = $mdb->prepare($sql);
+                $temp->execute();
+                $mdb = null;
+                echo " termine el if";
             }
-            //echo $sql;
-            $temp = $mdb->prepare($sql);
-            $temp->execute();
-            $mdb = null;
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
             die();
         }
+    }
+    
+    public static function getDniObjeto($dni){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT idCliente FROM Cliente WHERE dni = ".$dni;
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            $mdb = null;
+            return $resultado[0]['idCliente'];
+            
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }        
     }
 }
 ?>
