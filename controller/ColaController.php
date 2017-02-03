@@ -24,10 +24,10 @@ class ColaController{
          $temp = new Cola(null);
       }
       $temp->setNombreCola($_REQUEST['nombreCola']);
-      $temp->setIdEmpleado($_REQUEST['idEmpleado']);
       $temp->setHijode($_REQUEST['idPadre']);
+      $temp->setIdEmpleado($_REQUEST['idEmpleado']);
       $temp->setSiguiente($_REQUEST['siguiente']);
-      $temp->letra($_REQUEST['letra']);
+      $temp->setLetra($_REQUEST['letra']);
       $temp->save();
       echo "Estoy guardando la cola " . $temp->getNombreCola();
       header("Location: index.php?c=cola");
