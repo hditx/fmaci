@@ -43,7 +43,7 @@ class Cola{
     }
 
     function getHijoDe() {
-        return $this->hijode == null ? "null" : $this->hijoDe;
+        return $this->hijoDe == null ? "null" : $this->hijoDe;
     }
     
     function getSiguiente() {
@@ -82,7 +82,7 @@ class Cola{
                                  . "letra       ='".$this->getLetra()."' "
                  . " WHERE idCola = ".$this->getIdCola();
             }else{
-                $sql = "INSERT INTO Cola(nombreCola, idEmpleado, hijoDe) VALUES ("
+                $sql = "INSERT INTO Cola(nombreCola, idEmpleado, hijoDe, siguiente, letra) VALUES ("
                         . "'".$this->getNombreCola()."', "
                         . "'".$this->getIdEmpleado()."', "
                         . $this->getHijoDe().","
@@ -119,6 +119,7 @@ class Cola{
         }
         return $data;
     }
+    
     public static function getList2(){
         try {
             $mdb =  DataBase::getDb();
@@ -211,6 +212,21 @@ class Cola{
             echo $sql;
             $temp = $mdb->prepare($sql);
             $temp->execute();
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }        
+    }
+    
+    public static function getNumeroSiguiente($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT siguiente FROM Cola WHERE idCola = ". $id;
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            return $resultado[0]['siguiente'];
+            
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
             die();

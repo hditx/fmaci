@@ -48,12 +48,8 @@ class Turno{
     public function save(){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "INSERT INTO Turno(idCola, idCliente, posicion) VALUES ("
-                    .$this->getIdCola().","
-                    .$this->getIdCliente().","
-                    .$this->getPosicion().
-                    ")";
-           // echo $sql;
+            $sql = "INSERT INTO Turno(idCola, idCliente, posicion) VALUES (".$this->getIdCola().",".$this->getIdCliente().",".$this->getPosicion().")";
+            echo $sql;
             echo "Estoy guardando turno";
             $temp = $mdb->prepare($sql);
             $temp->execute();

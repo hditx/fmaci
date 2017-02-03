@@ -12,15 +12,17 @@ class TurnoController{
     }
 
     public function sacarTurno(){
-        $temp = new Cliente(null);
-        $temp->setDni($_REQUEST['dni']);
-        $temp->save();
+//        if(isset($_REQUEST['dni'])){
+//            $temp = new Cliente(null);
+//            $temp->setDni($_REQUEST['dni']);
+//            $temp->save();
+//        }
         if(isset($_REQUEST['id'])){
             $t = Cola::get($_REQUEST['id']);
             if ($t->getSiguiente() == null){
                 $colas = Cola::getList3($t->getIdCola());
             }else {
-                header("Location: index.php?c=turno&a=imprimir&id=".$t->getIdCola()."&cliente=".$temp->getDni());
+                header("Location: index.php?c=turno&a=imprimir&id=".$t->getIdCola());
             }
         }else{
             $colas = Cola::getList2();
@@ -36,11 +38,13 @@ class TurnoController{
     
     public function imprimir(){
         Cola::incrementar($_REQUEST['id']);
-//        $turn = new Turno(null);
-//        $turn->setIdCola($_REQUEST['id']);
-//        $turn->setIdCliente(Cliente::getDniObjeto($_REQUEST['cliente']));
-//        $turn->setPosicion($_REQUEST['id']);
-//        $turn->save();
+        $turn = new Turno(null);
+        $turn->setIdCola($_REQUEST['id']);
+        //$turn->setIdCliente(Cliente::getDniObjeto($_REQUEST['cliente']));
+        $turn->setPosicion(Cola::getNumeroSiguiente($_REQUEST['id']));
+        echo "<br>". $turn->getIdCola() . "<br>";
+        echo $turn->getPosicion();
+        $turn->save();
         //header("Location: index.php?c=turno&a=index");
     }
 }
