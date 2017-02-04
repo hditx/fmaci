@@ -6,7 +6,7 @@
     <tr>
     <?php foreach ($turnos as $t){?>
         <td><?php echo $t->getPosicion() . " " . Turno::getLetra($t->getIdCola()); ?></td>
-        <td><?php echo $t->getIdTurno(). "hola"?></td>
+        
     <?php }?> 
     </tr>
 </table>
