@@ -1,16 +1,18 @@
 <?php
 require_once 'config/DataBase.php';
+require_once 'model/cola.php';
 
 class Turno{
     private $idTurno;
     private $idCola;
-    private $idCliente;
     private $posicion;
-    function __construct($idTurno, $idCola = "", $idCliente = "", $posicion) {
+    private $atendido;
+    
+    function __construct($idTurno, $idCola = "", $posicion = "", $atendido = "") {
         $this->setIdTurno($idTurno);
         $this->setIdCola($idCola);
-        $this->setIdCliente($idCliente);
         $this->setPosicion($posicion);
+        $this->setAtendido($atendido);
     }
 
     function getIdTurno() {
@@ -29,6 +31,14 @@ class Turno{
         return $this->posicion;
     }
 
+    function getAtendido() {
+        return $this->atendido;
+    }
+
+    function setAtendido($atendido) {
+        $this->atendido = $atendido;
+    }
+    
     function setIdTurno($idTurno) {
         $this->idTurno = $idTurno;
     }
@@ -48,16 +58,62 @@ class Turno{
     public function save(){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "INSERT INTO Turno(idCola, idCliente, posicion) VALUES (".$this->getIdCola().",".$this->getIdCliente().",".$this->getPosicion().")";
-            echo $sql;
-            echo "Estoy guardando turno";
+            $sql = "INSERT Turno(idCola, posicion, atendido) VALUES (".$this->getIdCola().",".$this->getPosicion().",".'".$this->getAtendido()."'.")";
             $temp = $mdb->prepare($sql);
             $temp->execute();
-            $mdb = null;
+            $mdb = null;            
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
             die();
         }
     }
+    
+    public static function getTurno(){
+        try {
+            $mdb =  DataBase::getDb();
+            $temp = $mdb->prepare('SELECT idTurno, idCola, posicion FROM Turno WHERE atendido = 0 GROUP BY idCola ORDER BY idCola, posicion');
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            foreach($resultado as $fila) {
+                $data[] = new Turno($fila['idTurno'], $fila['idCola'], $fila['posicion']);
+            }
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
+
+    public static function getNombre($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $temp = $mdb->prepare("SELECT nombreCola FROM Cola WHERE idCola =".$id);
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            $data = $resultado[0]['nombreCola'];
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
+
+    public static function getLetra($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $temp = $mdb->prepare("SELECT letra FROM Cola WHERE idCola =".$id);
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            $data = $resultado[0]['letra'];
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
+
 
 }

@@ -11,6 +11,13 @@ class TurnoController{
         require_once 'view/footer.php';
     }
 
+    public function monitor(){
+        $turnos = Turno::getTurno();
+        require_once 'view/header.php';
+        require_once 'view/turno/monitor.php';
+        require_once 'view/footer.php';
+    }
+    
     public function sacarTurno(){
 //        if(isset($_REQUEST['dni'])){
 //            $temp = new Cliente(null);
@@ -40,11 +47,11 @@ class TurnoController{
         Cola::incrementar($_REQUEST['id']);
         $turn = new Turno(null);
         $turn->setIdCola($_REQUEST['id']);
-        //$turn->setIdCliente(Cliente::getDniObjeto($_REQUEST['cliente']));
         $turn->setPosicion(Cola::getNumeroSiguiente($_REQUEST['id']));
+        //$turno->setAtendido(1);
         echo "<br>". $turn->getIdCola() . "<br>";
         echo $turn->getPosicion();
         $turn->save();
-        //header("Location: index.php?c=turno&a=index");
+        header("Location: index.php?c=turno&a=index");
     }
 }

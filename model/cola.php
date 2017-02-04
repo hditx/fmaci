@@ -92,7 +92,7 @@ class Cola{
                 
                 
             }
-            echo $sql;
+            //echo $sql;
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $mdb = null;
@@ -225,7 +225,7 @@ class Cola{
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll();
-            return $resultado[0]['siguiente'];
+            return $resultado[0]['siguiente'] - 1;
             
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
