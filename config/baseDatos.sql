@@ -55,7 +55,7 @@ CREATE TABLE `Cola` (
 
 LOCK TABLES `Cola` WRITE;
 
-insert  into `Cola`(`idCola`,`nombreCola`,`idEmpleado`,`hijoDe`,`siguiente`,`letra`) values (9,'Obra social',0,NULL,NULL,NULL),(11,'Osde',3,9,11,'A'),(13,'Otros',1,NULL,54,'G'),(16,'nuevo',1,NULL,18,'T'),(17,'nuevo1',1,16,20,'R');
+insert  into `Cola`(`idCola`,`nombreCola`,`idEmpleado`,`hijoDe`,`siguiente`,`letra`) values (9,'Obra social',0,NULL,NULL,NULL),(11,'Osde',3,9,11,'A'),(13,'Otros',1,NULL,54,'G'),(16,'Red',3,9,18,'T'),(17,'nuevo1',1,NULL,20,'R');
 
 UNLOCK TABLES;
 
