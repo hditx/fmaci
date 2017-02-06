@@ -1,4 +1,6 @@
 <?php
+require_once 'config/DataBase.php';
+require_once 'model/Turno.php';
 
 class Empleado{
     private $idEmpleado;
@@ -25,14 +27,19 @@ class Empleado{
         $this->nombreApellido = $nombreApellido;
     }
 
-    public static function actualizarTurno($id){
+    public static function actualizar($id){
+        echo "comenzando";
         try {
         $mdb =  DataBase::getDb();
-        
+        echo "entre";
         $sql = "UPDATE Turno SET atendido = 1 WHERE idTurno = ". $id;
+        echo "entre1";
         $temp = $mdb->prepare($sql);
+        echo "entre2";
         $temp->execute();
+        echo "entre3";
         $mdb = null;
+        echo "entre4";
     } catch (PDOException $e) {
         print "¡Error!: " . $e->getMessage() . "<br/>";
         die();

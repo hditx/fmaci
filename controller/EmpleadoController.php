@@ -2,6 +2,7 @@
 require_once 'model/cola.php';
 require_once 'model/Turno.php';
 require_once 'config/DataBase.php';
+require_once 'model/Empleado.php';
 
 class EmpleadoController{
     public function index(){
@@ -11,7 +12,9 @@ class EmpleadoController{
     }
     
     public function actualizarTurno(){
-        Empleado::actualizarTurno($id);
+        echo "Actualizar";
+        Empleado::actualizar($_REQUEST['id']);
+        echo "Sali";
         header("Location: index.php?c=empleado&a=index");
     }
     public function listTurno(){
