@@ -6,9 +6,10 @@ require_once 'config/DataBase.php';
 
 class TurnoController{
     public function index(){
-        require_once 'view/header.php';
-        require_once 'view/turno/Turno.php';
-        require_once 'view/footer.php';
+//        require_once 'view/header.php';
+//        require_once 'view/turno/Turno.php';
+//        require_once 'view/footer.php';
+        header("Location: index.php?c=turno&a=sacarTurno");
     }
 
     public function monitor(){
