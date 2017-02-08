@@ -71,7 +71,12 @@ class Turno{
     public static function getTurno(){
         try {
             $mdb =  DataBase::getDb();
-            $temp = $mdb->prepare('SELECT idTurno, idCola, posicion FROM Turno WHERE atendido = 0 GROUP BY idCola ORDER BY idCola, posicion');
+            $sql = "SELECT ANY_VALUE(idTurno), idCola, MIN(posicion) as posicion "
+                    . "FROM Turno WHERE atendido = 0 "
+                    . "group by idCola "
+                    . "ORDER BY idCola, posicion";
+
+            $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
             foreach($resultado as $fila) {
