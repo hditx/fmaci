@@ -1,0 +1,113 @@
+body {
+    background-image: url("images/fondo.png");
+    font-family: "Arial", sans-serif;
+    color: white;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.queueSelection{
+    color: white;
+    text-align:center;
+    padding: .5em 2em .55em;
+    display: inline-block;
+    min-width:250px;
+    font-weight: bold;
+}
+.queueTitle{
+    background: #ff6600;
+    border:solid 3px #ffffff;
+    width: 100%;
+    font-size: 2em;
+    -webkit-border-top-left-radius: 20px;
+    -webkit-border-top-right-radius: 20px;
+    -moz-border-radius-topleft: 20px;
+    -moz-border-radius-topright: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;    
+}
+
+.queueInformation{
+    background: #9bc928;
+    border:solid 3px #ffffff;
+    width: 100%;
+    min-height: 2em;
+    font-size: 1em;
+    -webkit-border-bottom-right-radius: 20px;
+    -webkit-border-bottom-left-radius: 20px;
+    -moz-border-radius-bottomright: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;    
+}
+
+.center {
+    width: 100%; 
+    text-align: center;
+}
+
+#foot {
+    width: 100%; 
+    text-align: center;
+}
+
+#left{
+    display:inline;
+    background: #ff6600;
+    border:solid 3px #ffffff;
+    width:150px;
+    font-size: 2em;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    float: left;
+}
+
+#right {
+    display:inline;
+    background: #ff6600;
+    border:solid 3px #ffffff;
+    width:150px;
+    font-size: 2em;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+   float: right;
+}
+
+.izq {
+    width: 50%;
+    float: left;
+    min-height: 2em;
+    font-size: .75em;
+}
+
+.der {
+    width: 50%;
+    float: left;
+    min-height: 2em;
+    font-size: 1.5em;
+    vertical-align: middle;
+}
+
+#logo {
+    width: 200px;
+}    
+
+#menuPrincipal a{
+    font-size: 2em;
+    display: inline-block;
+    width: 250px;
+    text-align: center;
+
+    background: #ff6600;
+    border:solid 3px #ffffff;
+    font-size: 2em;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+
+}

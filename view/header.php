@@ -1,8 +1,9 @@
 <html>
-    <header>
+    <head>
+        <link rel="stylesheet" type="text/css" href="view/stylesheet.css">
         <title>
             Farmacentro
         </title>
-    </header>
+    </head>
     <body>
  
