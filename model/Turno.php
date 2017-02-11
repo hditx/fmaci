@@ -68,19 +68,14 @@ class Turno{
         }
     }
     
-    public static function getTurno(){
+    public static function getTurno($id){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT ANY_VALUE(idTurno), idCola, MIN(posicion) as posicion "
-                    . "FROM Turno WHERE atendido = 0 "
-                    . "group by idCola "
-                    . "ORDER BY idCola, posicion";
-
-            $temp = $mdb->prepare($sql);
+            $temp = $mdb->prepare("SELECT idTurno, posicion FROM Turno WHERE atendido = 0 AND idCola = ".$id."ORDER BY idCola, posicion");
             $temp->execute();
             $resultado = $temp->fetchAll(); 
             foreach($resultado as $fila) {
-                $data[] = new Turno($fila['idTurno'], $fila['idCola'], $fila['posicion']);
+                $data[] = new Turno($fila['idTurno'],"", $fila['posicion']);
             }
             $mbd = null;
         } catch (PDOException $e) {

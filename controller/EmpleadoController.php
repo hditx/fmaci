@@ -18,7 +18,12 @@ class EmpleadoController{
         header("Location: index.php?c=empleado&a=index");
     }
     public function listTurno(){
-        $turnos = Turno::getTurno();
+        $colas = Cola::getListId();
+        $i = 0;
+        foreach($colas as $c){
+            $turnos[] = array($c, Turno::getTurno($c->getIdCola()));
+        }
+        
         require_once 'view/header.php';
         require_once 'view/empleado/list.php';
         require_once 'view/footer.php';
