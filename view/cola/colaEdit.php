@@ -16,5 +16,7 @@
                 }?>
             </select>
         <p>Id Empleado <input type="text" name="idEmpleado" size="20" value="<?= $tmp->getIdEmpleado() ?>"></p>
+        <p>siguiente <input type="text" name="siguiente" size="20" value="<?= $tmp->getSiguiente() ?>"></p>
+        <p>Id Empleado <input type="text" name="letra" size="20" value="<?= $tmp->getLetra() ?>"></p>
         <p><input type="submit" value="Guardar datos" name="B1"></p>  
 </form>

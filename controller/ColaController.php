@@ -24,7 +24,7 @@ class ColaController{
          $temp = new Cola(null);
       }
       $temp->setNombreCola($_REQUEST['nombreCola']);
-      $temp->setHijode($_REQUEST['idPadre']);
+      $temp->setHijoDe($_REQUEST['idPadre']);
       $temp->setIdEmpleado($_REQUEST['idEmpleado']);
       $temp->setSiguiente($_REQUEST['siguiente']);
       $temp->setLetra($_REQUEST['letra']);

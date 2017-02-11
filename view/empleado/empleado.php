@@ -1,1 +1,1 @@
-<a href="index.php?c=empleado&a=actualizarTurno">Actualizar Turno</a>
+<a href="index.php?c=empleado&a=listTurno">Actualizar Turno</a>

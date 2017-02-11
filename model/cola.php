@@ -43,7 +43,7 @@ class Cola{
     }
 
     function getHijoDe() {
-        return $this->hijode == null ? "null" : $this->hijoDe;
+        return $this->hijoDe == null ? "null" : $this->hijoDe;
     }
     
     function getSiguiente() {
@@ -92,7 +92,7 @@ class Cola{
                 
                 
             }
-            echo $sql;
+            //echo $sql;
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $mdb = null;
@@ -119,6 +119,7 @@ class Cola{
         }
         return $data;
     }
+    
     public static function getList2(){
         try {
             $mdb =  DataBase::getDb();
@@ -155,6 +156,25 @@ class Cola{
         return $data;
     }
     
+    public static function getListId(){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = 'SELECT idCola FROM Cola WHERE letra IS NOT NULL';
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            foreach($resultado as $fila) {
+                $data[] = new Cola($fila['idCola']);
+            }
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
+
+
     public static function delete($id){
         try {
             $mdb =  DataBase::getDb();
@@ -224,12 +244,13 @@ class Cola{
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll();
-            return $resultado[0]['siguiente'];
+            return $resultado[0]['siguiente'] - 1;
             
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
             die();
         }        
     }
+    
 }
 ?>   
