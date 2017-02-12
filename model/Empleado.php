@@ -27,19 +27,13 @@ class Empleado{
         $this->nombreApellido = $nombreApellido;
     }
 
-    public static function actualizar($id){
-        echo "comenzando";
+    public static function actualizar($id, $estado){
         try {
         $mdb =  DataBase::getDb();
-        echo "entre";
-        $sql = "UPDATE Turno SET atendido = 1 WHERE idTurno = ". $id;
-        echo "entre1";
+        $sql = "UPDATE Turno SET atendido =".$estado." WHERE idTurno = ". $id;
         $temp = $mdb->prepare($sql);
-        echo "entre2";
         $temp->execute();
-        echo "entre3";
         $mdb = null;
-        echo "entre4";
     } catch (PDOException $e) {
         print "¡Error!: " . $e->getMessage() . "<br/>";
         die();

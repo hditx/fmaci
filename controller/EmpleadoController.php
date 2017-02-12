@@ -23,8 +23,6 @@ class EmpleadoController{
         foreach($colas as $c){
             $turnos[] = array($c, Turno::getTurno($c->getIdCola()));
         }
-        
-        //print_r($turnos);
         require_once 'view/header.php';
         require_once 'view/empleado/list.php';
         require_once 'view/footer.php';
@@ -34,6 +32,33 @@ class EmpleadoController{
         require_once 'view/header.php';
         require_once 'view/empleado/llamarTurno.php';
         require_once 'view/footer.php';
+    }
+     
+    public function estadoTurno(){
+        switch ($_REQUEST['estado']){
+            case 1:
+            case 4:
+                //ATENDIDO Y ABANDONO
+                Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
+                header("Location: index.php?c=empleado&a=listTurno");
+                break;
+            case 2:
+                //LLAMADO
+                Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
+                $id = $_REQUEST['id'];
+                require_once 'view/header.php';
+                require_once 'view/empleado/llamarTurno.php';
+                require_once 'view/footer.php';
+                break;
+            case 3:
+                //ATENDIENDO
+                Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
+                $id = $_REQUEST['id'];
+                require_once 'view/header.php';
+                require_once 'view/empleado/atendido.php';
+                require_once 'view/footer.php';
+                break;
+        }
     }
 }
 ?>

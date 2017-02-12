@@ -7,7 +7,7 @@
         <?php foreach ($t[1] as $c){?>
         <tr>
             <td align="center">
-                <a href="?c=empleado&a=actualizarTurno&id=<?=$c->getIdTurno()?>">
+                <a href="?c=empleado&a=estadoTurno&id=<?=$c->getIdTurno()?>&estado=2">
                 <?= Turno::getLetra($c->getIdCola()) . "-" . $c->getPosicion() ?>
                 </a>
             </td>
