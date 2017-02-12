@@ -54,27 +54,26 @@ a {
     text-align: center;
 }
 
-#left{
-    display:inline;
+.myButton{
+    display:inline-block;
     background: #ff6600;
     border:solid 3px #ffffff;
-    width:150px;
+    min-width:150px;
     font-size: 2em;
+    text-align: center;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
     float: left;
+    margin: 10px;
+}
+
+
+#left{
+    float: left;
 }
 
 #right {
-    display:inline;
-    background: #ff6600;
-    border:solid 3px #ffffff;
-    width:150px;
-    font-size: 2em;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
    float: right;
 }
 
@@ -98,16 +97,5 @@ a {
 }    
 
 #menuPrincipal a{
-    font-size: 2em;
-    display: inline-block;
     width: 250px;
-    text-align: center;
-
-    background: #ff6600;
-    border:solid 3px #ffffff;
-    font-size: 2em;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-
 }
