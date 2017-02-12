@@ -1,5 +1,5 @@
 <h1>Listado de colas</h1>
-<a href="index.php?c=cola&a=crear">Crear cola</a>
+<a class="myButton" href="index.php?c=cola&a=crear">Crear cola</a>
 <table border="1">
     
     <th>Nombre cola</th>
