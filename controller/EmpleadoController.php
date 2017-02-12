@@ -13,11 +13,10 @@ class EmpleadoController{
     }
     
     public function actualizarTurno(){
-        echo "Actualizar";
         Empleado::actualizar($_REQUEST['id']);
-        echo "Sali";
-        header("Location: index.php?c=empleado&a=index");
+        header("Location: index.php?c=empleado&a=llamarTurno");
     }
+    
     public function listTurno(){
         $colas = Cola::getList();
         $i = 0;
@@ -31,21 +30,9 @@ class EmpleadoController{
         require_once 'view/footer.php';
     }
     
-    public function actualizarTurno(){
-        echo "Actualizar";
-        Empleado::actualizar($_REQUEST['id']);
-        echo "Sali";
-        header("Location: index.php?c=empleado&a=index");
-    }
-    public function listTurno(){
-        $colas = Cola::getListId();
-        $i = 0;
-        foreach($colas as $c){
-            $turnos[] = array($c, Turno::getTurno($c->getIdCola()));
-        }
-        
+    public function llamarTurno(){
         require_once 'view/header.php';
-        require_once 'view/empleado/list.php';
+        require_once 'view/empleado/llamarTurno.php';
         require_once 'view/footer.php';
     }
 }
