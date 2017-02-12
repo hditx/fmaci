@@ -1,7 +1,7 @@
    </body>
-   <div id="foot">
-       <div id="left"><a href="#" onClick="history.go(-1);return true;">Volver</a></div>
+   <div class="center">
+       <a class="myButton" id="left" href="#" onClick="history.go(-1);return true;">Volver</a>
    <img id="logo" src="view/images/logo.png" />
-       <div id="right"><a href=".">Inicio</a></div>
+       <a class="myButton" id="right" href=".">Inicio</a>
    </div>
 </html> 
