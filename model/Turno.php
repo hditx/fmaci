@@ -59,8 +59,26 @@ class Turno{
         try {
             $mdb =  DataBase::getDb();
             $sql = "INSERT Turno(idCola, posicion, atendido) VALUES (".$this->getIdCola().",".$this->getPosicion().",".'".$this->getAtendido()."'.")";
+<<<<<<< HEAD
+=======
             $temp = $mdb->prepare($sql);
             $temp->execute();
+            $mdb = null;            
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+    
+    public static function getTurno($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT idTurno, posicion FROM Turno WHERE atendido = 0 AND idCola = ".$id." ORDER BY idCola, posicion";
+>>>>>>> errores
+            $temp = $mdb->prepare($sql);
+//            echo $sql . "<br>";
+            $temp->execute();
+<<<<<<< HEAD
             $mdb = null;            
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
@@ -93,6 +111,13 @@ class Turno{
             $resultado = $temp->fetchAll(); 
             $data = $resultado[0]['nombreCola'];
             $mbd = null;
+=======
+            $resultado = $temp->fetchAll(); 
+            foreach($resultado as $fila) {
+                $data[] = new Turno($fila['idTurno'],$id, $fila['posicion'], 0);
+            }
+            $mbd = null;
+>>>>>>> errores
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
             die();
@@ -100,6 +125,24 @@ class Turno{
         return $data;
     }
 
+<<<<<<< HEAD
+=======
+    public static function getNombre($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $temp = $mdb->prepare("SELECT nombreCola FROM Cola WHERE idCola =".$id);
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            $data = $resultado[0]['nombreCola'];
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
+
+>>>>>>> errores
     public static function getLetra($id){
         try {
             $mdb =  DataBase::getDb();
