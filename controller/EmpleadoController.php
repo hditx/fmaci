@@ -12,11 +12,6 @@ class EmpleadoController{
         header("Location: index.php?c=empleado&a=listTurno");
     }
     
-    public function actualizarTurno(){
-        Empleado::actualizar($_REQUEST['id']);
-        header("Location: index.php?c=empleado&a=llamarTurno");
-    }
-    
     public function listTurno(){
         $colas = Cola::getList();
         $i = 0;
