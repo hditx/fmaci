@@ -47,6 +47,7 @@ a {
 .center {
     width: 100%; 
     text-align: center;
+    display: inline-block;
 }
 
 .myButton{
@@ -59,8 +60,9 @@ a {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    float: left;
+    /*float: left;*/
     margin: 10px;
+    padding: 5px;
 }
 
 
