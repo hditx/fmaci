@@ -40,5 +40,18 @@ class Empleado{
     }
     }
     
+    public static function saveEstado($id, $estado){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "INSERT HistorialEstado(idTurno, fechaHora, estado) VALUES (".$id.",'SYSTIMESTAMP',".$estado.")";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $mdb = null;            
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+    
     
 }

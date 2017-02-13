@@ -71,7 +71,7 @@ class Turno{
     public static function getTurno($id){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idTurno, posicion FROM Turno WHERE atendido = 0 AND idCola = ".$id." ORDER BY idCola, posicion";
+            $sql = "SELECT idTurno, posicion FROM Turno WHERE atendido IN (0,4) AND idCola = ".$id." ORDER BY idCola, posicion";
             $temp = $mdb->prepare($sql);
 //            echo $sql . "<br>";
             $temp->execute();

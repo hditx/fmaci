@@ -35,11 +35,12 @@ class EmpleadoController{
             case 4:
                 //ATENDIDO Y ABANDONO
                 Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
+                Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado']);
                 header("Location: index.php?c=empleado&a=listTurno");
                 break;
             case 2:
                 //LLAMADO
-                Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
+                Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado']);
                 $id = $_REQUEST['id'];
                 require_once 'view/header.php';
                 require_once 'view/empleado/llamarTurno.php';
@@ -47,7 +48,7 @@ class EmpleadoController{
                 break;
             case 3:
                 //ATENDIENDO
-                Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
+                Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado']);
                 $id = $_REQUEST['id'];
                 require_once 'view/header.php';
                 require_once 'view/empleado/atendido.php';
