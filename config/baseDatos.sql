@@ -49,13 +49,33 @@ CREATE TABLE `Cola` (
   `siguiente` int(10) DEFAULT NULL,
   `letra` char(1) DEFAULT NULL,
   PRIMARY KEY (`idCola`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 /*Data for the table `Cola` */
 
 LOCK TABLES `Cola` WRITE;
 
-insert  into `Cola`(`idCola`,`nombreCola`,`idEmpleado`,`hijoDe`,`siguiente`,`letra`) values (9,'Obra social',0,NULL,NULL,NULL),(11,'Osde',3,9,11,'A'),(13,'Otros',1,NULL,54,'G'),(16,'Red',3,9,18,'T'),(17,'nuevo1',1,NULL,20,'R');
+insert  into `Cola`(`idCola`,`nombreCola`,`idEmpleado`,`hijoDe`,`siguiente`,`letra`) values (9,'Obra social',0,NULL,NULL,NULL),(11,'Osde',3,9,18,'A'),(13,'Otros',1,NULL,60,'G'),(16,'Red',3,9,22,'T'),(18,'ads',12,NULL,4,'a');
+
+UNLOCK TABLES;
+
+/*Table structure for table `HistorialEstado` */
+
+DROP TABLE IF EXISTS `HistorialEstado`;
+
+CREATE TABLE `HistorialEstado` (
+  `idHistorial` int(10) NOT NULL AUTO_INCREMENT,
+  `idTurno` int(10) DEFAULT NULL,
+  `fechaHora` datetime DEFAULT NULL,
+  `estado` int(1) DEFAULT NULL,
+  PRIMARY KEY (`idHistorial`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+/*Data for the table `HistorialEstado` */
+
+LOCK TABLES `HistorialEstado` WRITE;
+
+insert  into `HistorialEstado`(`idHistorial`,`idTurno`,`fechaHora`,`estado`) values (1,NULL,'0000-00-00 00:00:00',NULL),(2,NULL,'0000-00-00 00:00:00',NULL),(3,NULL,'0000-00-00 00:00:00',NULL),(4,NULL,'0000-00-00 00:00:00',NULL),(5,27,'0000-00-00 00:00:00',2),(6,27,'0000-00-00 00:00:00',3),(7,27,'0000-00-00 00:00:00',1),(8,23,'0000-00-00 00:00:00',2),(9,23,'0000-00-00 00:00:00',4),(10,23,'0000-00-00 00:00:00',2),(11,23,'0000-00-00 00:00:00',4);
 
 UNLOCK TABLES;
 
@@ -69,13 +89,13 @@ CREATE TABLE `Turno` (
   `posicion` int(10) DEFAULT NULL,
   `atendido` int(1) DEFAULT NULL,
   PRIMARY KEY (`idTurno`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 /*Data for the table `Turno` */
 
 LOCK TABLES `Turno` WRITE;
 
-insert  into `Turno`(`idTurno`,`idCola`,`posicion`,`atendido`) values (1,16,10,0),(2,16,11,0),(3,13,53,0),(4,16,17,0),(5,11,10,0);
+insert  into `Turno`(`idTurno`,`idCola`,`posicion`,`atendido`) values (18,13,58,3),(19,16,20,0),(20,11,14,3),(21,18,1,0),(22,11,15,0),(23,11,16,4),(24,11,17,2),(25,13,59,0),(26,16,21,0),(27,18,2,1),(28,18,3,1);
 
 UNLOCK TABLES;
 
