@@ -53,5 +53,35 @@ class Empleado{
         }
     }
     
+    public static function letraNumero($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT letra FROM Cola WHERE idCola = (SELECT idCola FROM Turno WHERE idTurno = ".$id.")";
+            $sql1 = "SELECT posicion FROM Turno WHERE idTurno = ".$id;
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $temp1 = $mdb->prepare($sql1);
+            $temp1->execute();
+            $resultado[] = array($temp, $temp1);
+            $mdb = null;            
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }        
+        return $resultado;
+    }
     
+    public static function numero($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT posicion FROM Turno WHERE idTurno = ".$id;
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $mdb = null;            
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }        
+        return $temp;
+    }
 }
