@@ -42,8 +42,8 @@ class EmpleadoController{
                 //LLAMADO
                 Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado']);
                 $id = $_REQUEST['id'];
-                $temp[] = Empleado::letraNumero($_REQUEST['id']);
-                //$temp[] = array(Empleado::letra($_REQUEST['id']), Empleado::numero($_REQUEST['id']));
+                $temp =Turno::getLetra(Turno::getIdColaObjeto($_REQUEST['id']));
+                $temp1 = Turno::getPosicionObjeto($_REQUEST['id']);                
                 require_once 'view/header.php';
                 require_once 'view/empleado/llamarTurno.php';
                 require_once 'view/footer.php';
@@ -52,7 +52,8 @@ class EmpleadoController{
                 //ATENDIENDO
                 Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado']);
                 $id = $_REQUEST['id'];
-                $temp[] = array(Empleado::letra($_REQUEST['id']), Empleado::numero($_REQUEST['id']));
+                $temp =Turno::getLetra(Turno::getIdColaObjeto($_REQUEST['id']));
+                $temp1 = Turno::getPosicionObjeto($_REQUEST['id']);                
                 require_once 'view/header.php';
                 require_once 'view/empleado/atendido.php';
                 require_once 'view/footer.php';

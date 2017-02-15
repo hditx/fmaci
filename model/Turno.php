@@ -116,6 +116,35 @@ class Turno{
         }
         return $data;
     }
-
+    
+    public static function getIdColaObjeto($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $temp = $mdb->prepare("SELECT idCola FROM Turno WHERE idTurno =".$id);
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            $data = $resultado[0]['idCola'];
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
+    
+    public static function getPosicionObjeto($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $temp = $mdb->prepare("SELECT posicion FROM Turno WHERE idTurno =".$id);
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            $data = $resultado[0]['posicion'];
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
 
 }

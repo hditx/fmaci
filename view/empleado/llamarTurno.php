@@ -1,6 +1,6 @@
 <h1>Llamada al cliente</h1>
 <div class="center">
-<p>Turno <?= $temp[0]." - ". $temp[1]?></p>
+<p>Turno <?= $temp." - ". $temp1?></p>
 <p>Primer llamado</p>
 <p>Segundo llamado</p>
 <p>
