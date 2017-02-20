@@ -178,7 +178,6 @@ class Cola{
     public static function delete($id){
         try {
             $mdb =  DataBase::getDb();
-            echo "llegue";
             $temp = $mdb->prepare("DELETE FROM Cola WHERE idCola = $id");
             $temp->execute();
             $mdb = null;
