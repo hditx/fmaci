@@ -1,5 +1,6 @@
 <?php
 require_once "model/cola.php";
+require_once 'model/Empleado.php';
 
 class ColaController{
   public function index(){
@@ -12,6 +13,7 @@ class ColaController{
   public function crear(){
       $tmp = new Cola(null);
       $padres = Cola::getList();
+      $empleados = Empleado::getEmpleado();
       require_once "view/header.php";
       require_once "view/cola/colaEdit.php";
       require_once "view/footer.php";
@@ -41,6 +43,7 @@ class ColaController{
   public function modificar(){
       $tmp = Cola::get($_REQUEST['id']);
       $padres = Cola::getList();
+      $empleados = Empleado::getEmpleado();
       require_once "view/header.php";
       require_once "view/cola/colaEdit.php";
       require_once "view/footer.php";

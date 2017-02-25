@@ -43,7 +43,8 @@ class AdministradorController{
         }else{
             $tmp = new Empleado(null);
         }
-        $tmp->setNombreApellido($_REQUEST['apellidoNombre']);
+        $tmp->setNombre($_REQUEST['nombre']);
+        $tmp->setApellido($_REQUEST['apellido']);
         $tmp->save();
         header("Location: index.php?c=administrador&a=abmEmpleado");
     }

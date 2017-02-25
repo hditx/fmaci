@@ -15,8 +15,14 @@
                    echo " <option value=" . $padre->getIdCola() . "> ".$padre->getNombreCola()."</option>"; 
                 }?>
             </select>
-        <p>Id Empleado <input type="text" name="idEmpleado" size="20" value="<?= $tmp->getIdEmpleado() ?>"></p>
+        <p>Empleado
+            <select name="idEmpleado">
+                <option value="-1">Ninguno</option>
+                <?php foreach ($empleados as $empleado){
+                    echo "<option value=".$empleado->getIdEmpleado().">".$empleado->getNombre()."</option>";
+                }?>
+            </select>
         <p>siguiente <input type="text" name="siguiente" size="20" value="<?= $tmp->getSiguiente() ?>"></p>
-        <p>Id Empleado <input type="text" name="letra" size="20" value="<?= $tmp->getLetra() ?>"></p>
+        <p>Letra <input type="text" name="letra" size="20" value="<?= $tmp->getLetra() ?>"></p>
         <p><input class="myButton" type="submit" value="Guardar datos" name="B1"></p>  
 </form>

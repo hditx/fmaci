@@ -5,36 +5,46 @@ require_once 'model/Turno.php';
 class Empleado{
     
     private $idEmpleado;
-    private $nombreApellido;
+    private $nombre;
+    private $apellido;
     
-    public function __construct($idEmpleado, $nombreApellido = "") {
+    public function __construct($idEmpleado, $nombre = "", $apellido = "") {
         $this->setIdEmpleado($idEmpleado);
-        $this->setNombreApellido($nombreApellido);
+        $this->setNombre($nombre);
+        $this->setApellido($apellido);
     }
 
     public function getIdEmpleado() {
         return $this->idEmpleado;
     }
 
-    public function getNombreApellido() {
-        return $this->nombreApellido;
+    public function getNombre() {
+        return $this->nombre;
+    }
+
+    function getApellido() {
+        return $this->apellido;
+    }
+
+    function setApellido($apellido) {
+        $this->apellido = $apellido;
     }
 
     public function setIdEmpleado($idEmpleado) {
         $this->idEmpleado = $idEmpleado;
     }
 
-    public function setNombreApellido($nombreApellido) {
-        $this->nombreApellido = $nombreApellido;
+    public function setNombre($nombre) {
+        $this->nombre = $nombre;
     }
     
     public function save(){
         try {
             $mdb =  DataBase::getDb();
             if($this->getIdEmpleado() != null){
-                $sql = "UPDATE Empleado SET apellidoNombre = '".$this->getNombreApellido()."' WHERE idEmpleado =".$this->getIdEmpleado();
+                $sql = "UPDATE Empleado SET nombre = '".$this->getNombre()."', apellido = '".$this->getApellido()."' WHERE idEmpleado =".$this->getIdEmpleado();
             }else{
-                $sql = "INSERT Empleado(apellidoNombre) VALUES ('".$this->getNombreApellido()."')";
+                $sql = "INSERT Empleado(nombre, apellido) VALUES ('".$this->getNombre()."', '".$this->getApellido()."')";
             }
             $temp = $mdb->prepare($sql);
             $temp->execute();
@@ -65,7 +75,7 @@ class Empleado{
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll();
-            $data = new Empleado($resultado[0]['idEmpleado'], $resultado[0]['apellidoNombre']);
+            $data = new Empleado($resultado[0]['idEmpleado'], $resultado[0]['nombre'], $resultado[0]['apellido']);
             $mdb = null;
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
@@ -73,16 +83,32 @@ class Empleado{
         }
         return $data;
     }
+    
+    public static function getNombreObjeto($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT nombre FROM Empleado WHERE idEmpleado =".$id;
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            $data = $resultado[0]['nombre'];
+            $mdb = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;        
+    }
 
     public static function getEmpleado(){
         try {
             $mdb =  DataBase::getDb();
-            $sql = 'SELECT * FROM Empleado ORDER BY apellidoNombre';
+            $sql = 'SELECT * FROM Empleado ORDER BY apellido';
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll();
             foreach ($resultado as $fila){
-                $data[] = new Empleado($fila['idEmpleado'], $fila['apellidoNombre']);
+                $data[] = new Empleado($fila['idEmpleado'], $fila['nombre'], $fila['apellido']);
             }
             $mdb = null;
         } catch (PDOException $e) {
