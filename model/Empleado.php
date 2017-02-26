@@ -130,10 +130,10 @@ class Empleado{
         }
     }
     
-    public static function saveEstado($id, $estado){
+    public static function saveEstado($id, $estado, $idEmpleado){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "INSERT HistorialEstado(idTurno, fechaHora, estado) VALUES (".$id.",now(),".$estado.")";
+            $sql = "INSERT HistorialEstado(idTurno, fechaHora, estado, idEmpleado) VALUES (".$id.",now(),".$estado.", '".$idEmpleado."')";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $mdb = null;            

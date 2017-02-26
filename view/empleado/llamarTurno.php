@@ -4,7 +4,7 @@
 <p>Primer llamado</p>
 <p>Segundo llamado</p>
 <p>
-    <a class="myButton" href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=4">No se presento</a>
-    <a class="myButton" href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=3">Atender</a>
+    <a class="myButton" href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=4&idEmpleado=<?=$idEmpleado?>">No se presento</a>
+    <a class="myButton" href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=3&idEmpleado=<?=$idEmpleado?>">Atender</a>
 </p>
 </div>

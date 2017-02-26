@@ -6,15 +6,17 @@ require_once 'model/Empleado.php';
 
 class EmpleadoController{
     public function index(){
-//        require_once 'view/header.php';
-//        require_once 'view/empleado/empleado.php';
-//        require_once 'view/footer.php';
-        header("Location: index.php?c=empleado&a=listTurno");
+        $empleados = Empleado::getEmpleado();
+        require_once 'view/header.php';
+        require_once 'view/empleado/logueo.php';
+        require_once 'view/footer.php';
+    //    header("Location: index.php?c=empleado&a=listTurno");
     }
     
     public function listTurno(){
         $colas = Cola::getList();
         $i = 0;
+        $idEmpleado = $_REQUEST['idEmpleado'];
         foreach($colas as $c){
             $turnos[] = array($c, Turno::getTurno($c->getIdCola()));
         }
@@ -35,13 +37,15 @@ class EmpleadoController{
             case 4:
                 //ATENDIDO Y ABANDONO
                 Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
-                Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado']);
-                header("Location: index.php?c=empleado&a=listTurno");
+                Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
+                $idEmpleado = $_REQUEST['idEmpleado'];
+                header("Location: index.php?c=empleado&a=listTurno&idEmpleado=$idEmpleado");
                 break;
             case 2:
                 //LLAMADO
-                Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado']);
+                Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
                 $id = $_REQUEST['id'];
+                $idEmpleado = $_REQUEST['idEmpleado'];
                 $temp =Turno::getLetra(Turno::getIdColaObjeto($_REQUEST['id']));
                 $temp1 = Turno::getPosicionObjeto($_REQUEST['id']);                
                 require_once 'view/header.php';
@@ -50,8 +54,9 @@ class EmpleadoController{
                 break;
             case 3:
                 //ATENDIENDO
-                Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado']);
+                Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
                 $id = $_REQUEST['id'];
+                $idEmpleado = $_REQUEST['idEmpleado'];
                 $temp =Turno::getLetra(Turno::getIdColaObjeto($_REQUEST['id']));
                 $temp1 = Turno::getPosicionObjeto($_REQUEST['id']);                
                 require_once 'view/header.php';
