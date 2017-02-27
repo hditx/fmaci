@@ -6,9 +6,18 @@ body {
 
 a {
     color: white;
+    font-size:15px;
     text-decoration: none;
 }
-
+table {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:15px;
+    text-align: right;
+    width: 150px;
+}
+th {
+     text-align:center;
+}
 .queueSelection{
     color: white;
     text-align:center;

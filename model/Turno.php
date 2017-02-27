@@ -7,12 +7,14 @@ class Turno{
     private $idCola;
     private $posicion;
     private $atendido;
+    private $hora;
     
-    function __construct($idTurno, $idCola = "", $posicion = "", $atendido = "") {
+    function __construct($idTurno, $idCola = "", $posicion = "", $atendido = "", $hora = "") {
         $this->setIdTurno($idTurno);
         $this->setIdCola($idCola);
         $this->setPosicion($posicion);
         $this->setAtendido($atendido);
+        $this->setHora($hora);
     }
 
     function getIdTurno() {
@@ -34,7 +36,11 @@ class Turno{
     function getAtendido() {
         return $this->atendido;
     }
-
+    
+    function getHora(){
+        return $this->hora;
+    }
+    
     function setAtendido($atendido) {
         $this->atendido = $atendido;
     }
@@ -54,11 +60,15 @@ class Turno{
     function setPosicion($posicion) {
         $this->posicion = $posicion;
     }
+    
+    function setHora($hora){
+        $this->hora = $hora;
+    }
 
     public function save(){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "INSERT Turno(idCola, posicion, atendido) VALUES (".$this->getIdCola().",".$this->getPosicion().",".'".$this->getAtendido()."'.")";
+            $sql = "INSERT Turno(idCola, posicion, atendido, hora) VALUES (".$this->getIdCola().",".$this->getPosicion().",".'".$this->getAtendido()."'.", TIME(NOW()))";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $mdb = null;            
@@ -71,13 +81,13 @@ class Turno{
     public static function getTurno($id){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idTurno, posicion FROM Turno WHERE atendido IN (0,4) AND idCola = ".$id." ORDER BY idCola, posicion";
+            $sql = "SELECT idTurno, posicion, atendido, hora FROM Turno WHERE atendido IN (0,4) AND idCola = ".$id." ORDER BY idCola, posicion";
             $temp = $mdb->prepare($sql);
 //            echo $sql . "<br>";
             $temp->execute();
             $resultado = $temp->fetchAll(); 
             foreach($resultado as $fila) {
-                $data[] = new Turno($fila['idTurno'],$id, $fila['posicion'], 0);
+                $data[] = new Turno($fila['idTurno'],$id, $fila['posicion'], $fila['atendido'], $fila['hora']);
             }
             $mbd = null;
         } catch (PDOException $e) {
