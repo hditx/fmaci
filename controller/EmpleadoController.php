@@ -17,6 +17,8 @@ class EmpleadoController{
         $colas = Cola::getList();
         $i = 0;
         $idEmpleado = $_REQUEST['idEmpleado'];
+        $cola = Cola::getCola($idEmpleado);
+        $first = array($cola, Turno::getFirstTurno($cola->getIdCola()));
         foreach($colas as $c){
             $turnos[] = array($c, Turno::getTurno($c->getIdCola()));
         }

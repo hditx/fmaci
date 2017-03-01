@@ -10,13 +10,43 @@ a {
     text-decoration: none;
 }
 table {
+    border-radius: 10px;
     font-family: Verdana, Helvetica, sans-serif;
     font-size:15px;
     text-align: right;
     width: 150px;
+    border:solid 3px #000000; 
 }
 th {
-     text-align:center;
+    border-radius: 10px;
+    background:  #0017fd;
+    border:solid 3px #000000; 
+    text-align:center;
+}
+.myTd1 {
+    border-radius: 10px;
+    background: #fd0000;
+    border:solid 3px #ffffff; 
+}
+
+.myTd2 {
+    border-radius: 10px;
+    background: #fd6800;
+    border:solid 3px #ffffff; 
+}
+.siguiente{
+    display:inline-block;
+    background: #1ffd00;
+    border:solid 3px #000000;
+    min-width:150px;
+    font-size: 2em;
+    text-align: center;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 5px;
+    color: black;
 }
 .queueSelection{
     color: white;

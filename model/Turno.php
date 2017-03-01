@@ -156,5 +156,20 @@ class Turno{
         }
         return $data;
     }
+    
+    public static function getFirstTurno($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $temp = $mdb->prepare("SELECT * FROM Turno WHERE idCola =".$id." AND posicion = (SELECT MIN(posicion) FROM Turno WHERE atendido = 0)");
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            $data = new Turno($resultado[0]['idTurno'],$id, $resultado[0]['posicion'], $resultado[0]['atendido'], $resultado[0]['hora']);
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;        
+    }
 
 }
