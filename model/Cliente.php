@@ -2,27 +2,31 @@
 require_once 'config/DataBase.php';
 Class Cliente{
     private $idCliente;
-    private $nombreApellido;
+    private $nombre;
+    private $apellido;
     private $dni;
     private $direccion;
     private $telefono;
-    private $obraSocial;
 
-    function __construct($idCliente, $dni = "", $nombreApellido = "", $direccion = "", $telefono = "", $obraSocial = "") {
+    function __construct($idCliente, $nombre = "", $apellido = "", $dni = "", $direccion = "", $telefono = "") {
         $this->setIdCliente($idCliente);
+        $this->setNombre($nombre);
+        $this->setApellido($apellido);
         $this->setDni($dni);
-        $this->setNombreApellido($nombreApellido);
         $this->setDireccion($direccion);
         $this->setTelefono($telefono);
-        $this->setObraSocial($obraSocial);
     }
 
     function getIdCliente() {
         return $this->idCliente;
     }
 
-    function getNombreApellido() {
-        return $this->nombreApellido;
+    function getNombre() {
+        return $this->nombre;
+    }
+
+    function getApellido() {
+        return $this->apellido;
     }
 
     function getDni() {
@@ -36,18 +40,17 @@ Class Cliente{
     function getTelefono() {
         return $this->telefono;
     }
-    
-    function getObraSocial() {
-        return $this->obraSocial;
-    }
 
-    
     function setIdCliente($idCliente) {
         $this->idCliente = $idCliente;
     }
 
-    function setNombreApellido($nombreApellido) {
-        $this->nombreApellido = $nombreApellido;
+    function setNombre($nombre) {
+        $this->nombre = $nombre;
+    }
+
+    function setApellido($apellido) {
+        $this->apellido = $apellido;
     }
 
     function setDni($dni) {
@@ -61,12 +64,7 @@ Class Cliente{
     function setTelefono($telefono) {
         $this->telefono = $telefono;
     }
-
-    function setObraSocial($obraSocial) {
-        $this->obraSocial = $obraSocial;
-    }
-
-        
+            
     public function save(){
         try {
             $mdb =  DataBase::getDb();
@@ -92,6 +90,23 @@ Class Cliente{
         }
     }
     
+    public static function saveCliente($nombre, $apellido, $dni, $telefono){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT * FROM Cliente WHERE dni =".$dni;
+            $tempQ = mysql_query($sql);
+            if(!$tempQ || mysql_num_rows($tempQ) == 0){
+                $sql = "INSERT INTO Cliente(nombre, apellido, dni, telefono) VALUES ('".$nombre."', '".$apellido."', ".$dni.", ".$telefono.")";
+            }
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $mdb = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+
     public static function getDniObjeto($dni){
         try {
             $mdb =  DataBase::getDb();
@@ -106,6 +121,24 @@ Class Cliente{
             print "¡Error!: " . $e->getMessage() . "<br/>";
             die();
         }        
+    }
+    
+    public static function getCliente($dni){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT * FROM Cliente WHERE dni = ".$dni;
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            $mdb = null;
+            $data = new Cliente ($resultado[0]['idCliente'], $resultado[0]['nombre'], 
+                    $resultado[0]['apellido'], $resultado[0][dni], $resultado[0]['direccion'], $resultado[0]['telefono']);
+            
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
     }
 }
 ?>

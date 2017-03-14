@@ -1,4 +1,4 @@
-<img style="float: left; width: 75px;" src="view/images/logo.png"/><h1>Sistema de gestion de turnos</h1>
+<br><img style="float: left ; width: 75px; " src="view/images/logo.png"/><h1 class="fuente">Sistema de géstion de turnos</h1>
 <br />
 <div id="menuPrincipal">
     <a class="myButton" href="index.php?c=administrador&a=index">Administrador</a> &nbsp;

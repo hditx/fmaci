@@ -83,7 +83,6 @@ class Turno{
             $mdb =  DataBase::getDb();
             $sql = "SELECT idTurno, posicion, atendido, hora FROM Turno WHERE atendido IN (0,4) AND idCola = ".$id." ORDER BY idCola, posicion";
             $temp = $mdb->prepare($sql);
-//            echo $sql . "<br>";
             $temp->execute();
             $resultado = $temp->fetchAll(); 
             foreach($resultado as $fila) {

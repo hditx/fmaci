@@ -89,10 +89,7 @@ class Cola{
                         . $this->getSiguiente(). ","
                         . "'".$this->getLetra()."' "
                         . ")";
-                
-                
             }
-            //echo $sql;
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $mdb = null;
