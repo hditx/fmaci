@@ -1,11 +1,9 @@
 <h1>Turnos</h1>
 <table border="2">
+    <th>Numeros</th>
     <?php foreach ($turnos as $t){?>
-        <td> <?php echo Turno::getNombre($t->getIdCola()); ?></td>
-    <?php }?>
     <tr>    
-        <?php foreach ($turnos as $t){?>
-                <td><?php echo $t->getPosicion() . " " . Turno::getLetra($t->getIdCola()); ?></td>
-        <?php }?> 
+        <td><?php echo $t->getPosicion() . " " . Turno::getLetra($t->getIdCola()) ." ". Turno::getNombre($t->getIdCola())."<br>". Empleado::getNombreObjeto(Cola::getIdEmpleadoObjeto($t->getIdCola()))?></td>
     </tr>
+    <?php }?> 
 </table>

@@ -62,6 +62,7 @@ class EmpleadoController{
             case 2:
                 //LLAMADO
                 Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
+                Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
                 $listLlamado = Historial::history($_REQUEST['id']);
                 $d = 1;
                 $id = $_REQUEST['id'];
@@ -81,6 +82,7 @@ class EmpleadoController{
                     $tCliente = new Cliente(null);
                 }
                 Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
+                Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
                 $id = $_REQUEST['id'];
                 $idEmpleado = $_REQUEST['idEmpleado'];
                 $temp =Turno::getLetra(Turno::getIdColaObjeto($_REQUEST['id']));

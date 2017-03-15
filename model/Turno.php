@@ -96,6 +96,24 @@ class Turno{
         return $data;
     }
 
+        public static function getMonitor(){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT * FROM Turno WHERE atendido NOT IN (0,4) ORDER BY hora";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            foreach($resultado as $fila) {
+                $data[] = new Turno($fila['idTurno'], $fila['idCola'], $fila['posicion'], $fila['atendido'], $fila['hora']);
+            }
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
+    
     public static function getNombre($id){
         try {
             $mdb =  DataBase::getDb();

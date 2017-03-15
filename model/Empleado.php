@@ -120,7 +120,7 @@ class Empleado{
     public static function actualizar($id, $estado){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "UPDATE Turno SET atendido =".$estado." WHERE idTurno = ". $id;
+            $sql = "UPDATE Turno SET atendido = ".$estado." WHERE idTurno = ". $id;
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $mdb = null;

@@ -2,6 +2,7 @@
 require_once "model/cola.php";
 require_once 'model/Cliente.php';
 require_once 'model/Turno.php';
+require_once 'model/Empleado.php';
 require_once 'config/DataBase.php';
 
 class TurnoController{
@@ -13,7 +14,7 @@ class TurnoController{
     }
 
     public function monitor(){
-        $turnos = Turno::getTurno();
+        $turnos = Turno::getMonitor();
         require_once 'view/header.php';
         require_once 'view/turno/monitor.php';
         require_once 'view/footer.php';

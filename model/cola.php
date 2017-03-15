@@ -264,5 +264,20 @@ class Cola{
         }        
     }
     
+    public static function getIdEmpleadoObjeto($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT idEmpleado FROM Cola WHERE idCola = ". $id;
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            return $resultado[0]['idEmpleado'];
+            
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+    
 }
 ?>   

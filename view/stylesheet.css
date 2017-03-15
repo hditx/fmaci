@@ -15,11 +15,16 @@ table {
     font-family: Verdana, Helvetica, sans-serif;
     font-size:15px;
     text-align: right;
-    width: 150px;
+    
+    width: 250px;
+    height: 350px;
     border:solid 3px #000000; 
 }
 
-th {
+th, td {
+    align: left;
+    min-width: 300px;
+    min-height: 400px;
     border-radius: 10px;
     background:  #0017fd;
     border:solid 3px #000000; 
