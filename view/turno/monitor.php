@@ -4,14 +4,20 @@
         <source src="Botear usb.mp4" type="video/mp4">
         </video>
     </p>
-    <p class="modif" id="izquierda">
-    <?php foreach ($turnos as $t) {
-        if($t->getAtendido() == 2){
-            echo $t->getPosicion()."".Turno::getLetra($t->getIdCola());?><br>
-        <?php }else{
-            $prub=$t->getPosicion()."".Turno::getLetra($t->getIdCola()); ?>
-        <?='<font class="normal"color="black">'.$prub.'</font><br>'?>
-        <?php } ?>
-    <?php }?>
-    </p>
+    <table id="izquierda">
+        <tr>
+            <th>Llamados</th>
+        </tr>
+        
+            <?php foreach ($turnos as $t) {
+                if($t->getAtendido() == 2){?>
+                    <tr><td class="modif"><?=$t->getPosicion()."".Turno::getLetra($t->getIdCola())?></td></tr>
+                <?php }else{?>
+                    <tr>
+                        <td><?= $t->getPosicion()."".Turno::getLetra($t->getIdCola())?></td>
+                    </tr>
+                <?php } ?>
+            <?php }?>
+        
+    </table>
 </div>
