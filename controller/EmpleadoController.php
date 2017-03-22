@@ -22,7 +22,7 @@ class EmpleadoController{
         $cola = Cola::getCola($idEmpleado);
         $first = array($cola, Turno::getFirstTurno($cola->getIdCola()));
         foreach($colas as $c){
-            $turnos[] = array($c, Turno::getTurno($c->getIdCola()));
+            $turnos[] = array($c, Turno::getTurnoPropio($c->getIdCola()));
         }
         require_once 'view/header.php';
         require_once 'view/empleado/list.php';

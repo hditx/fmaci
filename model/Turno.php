@@ -96,6 +96,24 @@ class Turno{
         return $data;
     }
     
+    public static function getTurnoPropio($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT idTurno, posicion, atendido, hora FROM Turno WHERE atendido IN (0) AND idCola = ".$id." ORDER BY idCola, posicion";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            foreach($resultado as $fila) {
+                $data[] = new Turno($fila['idTurno'],$id, $fila['posicion'], $fila['atendido'], $fila['hora']);
+            }
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
+    
     public static function getTurnoNoEmpleado($id){
         try {
             $mdb =  DataBase::getDb();
