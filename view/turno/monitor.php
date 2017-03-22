@@ -1,9 +1,17 @@
-<h1>Turnos</h1>
-<table border="2">
-    <th>Numeros</th>
-    <?php foreach ($turnos as $t){?>
-    <tr>    
-        <td><?php echo $t->getPosicion() . " " . Turno::getLetra($t->getIdCola()) ." ". Turno::getNombre($t->getIdCola())."<br>". Empleado::getNombreObjeto(Cola::getIdEmpleadoObjeto($t->getIdCola()))?></td>
-    </tr>
-    <?php }?> 
-</table>
+<div class="doscolumnas">
+    <p>
+        <video width="440" height="320" controls>
+        <source src="Botear usb.mp4" type="video/mp4">
+        </video>
+    </p>
+    <p class="modif" id="izquierda">
+    <?php foreach ($turnos as $t) {
+        if($t->getAtendido() == 2){
+            echo $t->getPosicion()."".Turno::getLetra($t->getIdCola());?><br>
+        <?php }else{
+            $prub=$t->getPosicion()."".Turno::getLetra($t->getIdCola()); ?>
+        <?='<font class="normal"color="black">'.$prub.'</font><br>'?>
+        <?php } ?>
+    <?php }?>
+    </p>
+</div>

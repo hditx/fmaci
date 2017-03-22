@@ -5,7 +5,7 @@ body {
 }
 
 a {
-    color: white;
+    color: black;
     font-size:15px;
     text-decoration: none;
 }
@@ -16,15 +16,12 @@ table {
     font-size:15px;
     text-align: right;
     
-    width: 250px;
-    height: 350px;
+    
     border:solid 3px #000000; 
 }
 
 th, td {
     align: left;
-    min-width: 300px;
-    min-height: 400px;
     border-radius: 10px;
     background:  #0017fd;
     border:solid 3px #000000; 
@@ -33,14 +30,27 @@ th, td {
 
 .myTd1 {
     border-radius: 10px;
-    background: #fd0000;
-    border:solid 3px #ffffff; 
+    background: #FFFFFF;
+    border:solid 3px #ffffff;
+    color: black;
 }
 
-.myTd2 {
+.estadoLlamando {
     border-radius: 10px;
-    background: #fd6800;
-    border:solid 3px #ffffff; 
+    background: #F3FF02;
+    border:solid 3px #F3FF02; 
+}
+
+.estadoAtendiendo {
+    border-radius: 10px;
+    background: #FF7402;
+    border:solid 3px #FF7402; 
+}
+
+.estadoNoPresento {
+    border-radius: 10px;
+    background: #FF0F02;
+    border:solid 3px #FF0F02; 
 }
 
 .siguiente{

@@ -1,0 +1,58 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+html {
+	font-size: 62.5%;
+	line-height: 1;
+}
+p{
+	font-size: 15px;
+	font-size: 1.5rem;
+	line-height:1.333333334;
+	margin-bottom: 20px;
+	margin-bottom: 2rem;
+	text-align: justify;
+}
+.doscolumnas{
+	-webkit-column-count: 2;
+	-moz-column-count:2;
+	column-count: 2;
+}
+.modif {
+	color: red;
+	font-style: verdana;
+	font-size: 36px;
+	animation-duration: 2s;
+        animation-name: parpadeo;
+        animation-iteration-count: infinite;
+        animation-timing-function: steps(2, start);
+}
+.normal{
+    font-style: verdana;
+    font-size: 36px;
+}
+@keyframes parpadeo {
+    50% {
+        visibility: hidden;
+    }
+}
+#izquierda {
+	margin: 0px;
+	position:absolute;
+	top: 1%;
+	left: 65%;
+}
+#derecha{
+	position:absolute;
+	top:50px;
+	right:50px;
+}
+h1{
+	position:absolute;
+	top: 1%;
+	left: 65%;
+	font-size: 36px;
+	color: black;
+}
