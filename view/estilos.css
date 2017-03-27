@@ -21,14 +21,23 @@ p{
 	column-count: 2;
 }
 .modif {
+        min-width:250px;
 	color: red;
 	font-style: verdana;
+        font-weight: bolder;
 	font-size: 36px;
 	animation-duration: 2s;
         animation-name: parpadeo;
         animation-iteration-count: infinite;
         animation-timing-function: steps(2, start);
+        
 }
+.letra{
+    min-width:250px;
+    font: 150% sans-serif;
+    font-weight: bolder;
+}
+
 .normal{
     font-style: verdana;
     font-size: 36px;
@@ -42,12 +51,13 @@ p{
 	margin: 0px;
 	position:absolute;
 	top: 1%;
-	left: 65%;
+	left: 1%;
 }
 #derecha{
+	margin: 0px;
 	position:absolute;
-	top:50px;
-	right:50px;
+	top: 1%;
+	right: 1%;
 }
 h1{
 	position:absolute;

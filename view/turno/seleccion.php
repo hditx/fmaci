@@ -7,7 +7,7 @@
         <div class="queueTitle"><?= $c->getNombreCola(); ?> </div>
         <div class="queueInformation">
             <div class="izq">Tiempo de <br/> espera</div>
-            <div class="der"><?= ($c->getLetra() == null)? "Siguiente" : $c->getLetra() . " - " .$c->getSiguiente(); ?></div>
+            <div class="der"><?= ($c->getLetra() == null)? "Siguiente" : $c->getLetra() . "" .$c->getSiguiente(); ?></div>
         </div>
     </div> 
 <?php

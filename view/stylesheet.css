@@ -27,7 +27,11 @@ th, td {
     border:solid 3px #000000; 
     text-align:center;
 }
-
+.letra{
+    min-width:250px;
+    font: 150% sans-serif;
+    font-weight: bolder;
+}
 .myTd1 {
     border-radius: 10px;
     background: #FFFFFF;
@@ -152,7 +156,18 @@ th, td {
 #right {
    float: right;
 }
-
+#izquierda {
+	margin: 0px;
+	position:absolute;
+	top: 1%;
+	left: 1%;
+}
+#derecha{
+	margin: 0px;
+	position:absolute;
+	top: 1%;
+	right: 1%;
+}
 #logo {
     width: 200px;
 }    

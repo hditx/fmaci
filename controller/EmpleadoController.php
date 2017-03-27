@@ -47,7 +47,7 @@ class EmpleadoController{
         $colas = Cola::getList();
         $i = 0;
         $idEmpleado = $_REQUEST['idEmpleado'];
-        $cola = Cola::getCola($idEmpleado);
+        $cola = Cola::getColaTodo();
         $first = array($cola, Turno::getFirstTurno($cola->getIdCola()));
         foreach($colas as $c){
             $turnos[] = array($c, Turno::getTurno($c->getIdCola()));
@@ -96,10 +96,14 @@ class EmpleadoController{
                 $id = $_REQUEST['id'];
                 $idEmpleado = $_REQUEST['idEmpleado'];
                 $temp =Turno::getLetra(Turno::getIdColaObjeto($_REQUEST['id']));
-                $temp1 = Turno::getPosicionObjeto($_REQUEST['id']);               
-                require_once 'view/header.php';
-                require_once 'view/empleado/llamarTurno.php';
-                require_once 'view/footer.php';
+                $temp1 = Turno::getPosicionObjeto($_REQUEST['id']); 
+                if(isset($_REQUEST['espera'])){
+                    header("Location: index.php?c=empleado&a=index");
+                }else{
+                    require_once 'view/header.php';
+                    require_once 'view/empleado/llamarTurno.php';
+                    require_once 'view/footer.php';
+                }
                 break;
             case 3:
                 //ATENDIENDO
@@ -114,10 +118,14 @@ class EmpleadoController{
                 $id = $_REQUEST['id'];
                 $idEmpleado = $_REQUEST['idEmpleado'];
                 $temp =Turno::getLetra(Turno::getIdColaObjeto($_REQUEST['id']));
-                $temp1 = Turno::getPosicionObjeto($_REQUEST['id']);                
-                require_once 'view/header.php';
-                require_once 'view/empleado/atendido.php';
-                require_once 'view/footer.php';
+                $temp1 = Turno::getPosicionObjeto($_REQUEST['id']);
+                if(isset($_REQUEST['espera'])){
+                    header("Location: index.php?c=empleado&a=index");
+                }else{
+                    require_once 'view/header.php';
+                    require_once 'view/empleado/atendido.php';
+                    require_once 'view/footer.php';
+                }
                 break;
         }
     }

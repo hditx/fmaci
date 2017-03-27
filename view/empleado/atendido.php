@@ -1,5 +1,5 @@
 <h1>Atendiendo</h1>
-<p>Turno <?= $temp." - ".$temp1 ?></p>
+<p class="letra">Turno <?= $temp."".$temp1 ?></p>
 <form method="POST" name="seleccion">
     <input type="hidden" name="id" value="<?= $id?>">
     <input type="hidden" name="estado" value="3">
@@ -10,4 +10,7 @@
     <p>Telefono <input type="text" name="telefono" size="20" value="<?= $tCliente->getTelefono()?>"></p>
     
 </form>
+<p>
 <a input class="myButton" href="index.php?c=empleado&a=estadoTurno&id=<?= $id ?>&estado=1&idEmpleado=<?=$idEmpleado?>">Finalizar Atencion</a>
+<a class="myButton" href="index.php?c=empleado&a=estadoTurno&id=<?$id?>&estado=3&idEmpleado=<?=$idEmpleado?>&espera=1">Poner en espera</a>
+</p>

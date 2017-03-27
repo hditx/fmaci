@@ -81,7 +81,7 @@ class Turno{
     public static function getTurno($id){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idTurno, posicion, atendido, hora FROM Turno WHERE atendido IN (2,3,4) AND idCola = ".$id." ORDER BY idCola, posicion";
+            $sql = "SELECT idTurno, posicion, atendido, hora FROM Turno WHERE atendido IN (2,3,4) AND idCola = ".$id." ORDER BY hora";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
@@ -99,7 +99,7 @@ class Turno{
     public static function getTurnoPropio($id){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idTurno, posicion, atendido, hora FROM Turno WHERE atendido IN (0) AND idCola = ".$id." ORDER BY idCola, posicion";
+            $sql = "SELECT idTurno, posicion, atendido, hora FROM Turno WHERE atendido IN (0) AND idCola = ".$id." ORDER BY hora";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
@@ -117,7 +117,7 @@ class Turno{
     public static function getTurnoNoEmpleado($id){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idTurno, posicion, atendido, hora FROM Turno WHERE idCola <> ".$id." ORDER BY idCola, posicion";
+            $sql = "SELECT idTurno, posicion, atendido, hora FROM Turno WHERE idCola <> ".$id." ORDER BY hora";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
@@ -135,7 +135,7 @@ class Turno{
     public static function getMonitor(){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT * FROM Turno WHERE atendido NOT IN (0,1,4) ORDER BY hora";
+            $sql = "SELECT * FROM Turno WHERE atendido NOT IN (0,1,4) ORDER BY atendido, hora ";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 

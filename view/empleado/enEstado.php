@@ -5,7 +5,7 @@
         <?php foreach ($turnos as $t){?>
             <?php if($t[0]->getLetra() != NULL) { ?>
                 <?php foreach ($t[1] as $c){?> 
-                    <?php if($t[0]->getIdEmpleado() == $idEmpleado && $c->getAtendido() != 0 && $c->getAtendido() == 1){ ?>
+                    <?php if($c->getAtendido() != 0 && $c->getAtendido() == 1){ ?>
                         <tr> 
                             <td align="left" class="myTd1">
                                  <a href="?c=empleado&a=estadoTurno&id=<?=$c->getIdTurno()?>&estado=2&idEmpleado=<?=$idEmpleado?>">
@@ -15,7 +15,7 @@
                              </td>
                         </tr>
                     <?php }?>
-                    <?php if($t[0]->getIdEmpleado() == $idEmpleado && $c->getAtendido() != 0 && $c->getAtendido() == 2){ ?>
+                    <?php if($c->getAtendido() != 0 && $c->getAtendido() == 2){ ?>
                         <tr> 
                             <td align="left" class="estadoLlamando">
                                  <a href="?c=empleado&a=estadoTurno&id=<?=$c->getIdTurno()?>&estado=2&idEmpleado=<?=$idEmpleado?>">
@@ -25,7 +25,7 @@
                              </td>
                         </tr>
                     <?php }?>
-                    <?php if($t[0]->getIdEmpleado() == $idEmpleado && $c->getAtendido() != 0 && $c->getAtendido() == 3){ ?>
+                    <?php if($c->getAtendido() != 0 && $c->getAtendido() == 3){ ?>
                         <tr> 
                             <td align="left" class="estadoAtendiendo">
                                  <a href="?c=empleado&a=estadoTurno&id=<?=$c->getIdTurno()?>&estado=2&idEmpleado=<?=$idEmpleado?>">
@@ -35,7 +35,7 @@
                              </td>
                         </tr>
                     <?php }?>
-                    <?php if($t[0]->getIdEmpleado() == $idEmpleado && $c->getAtendido() != 0 && $c->getAtendido() == 4){ ?>
+                    <?php if($c->getAtendido() != 0 && $c->getAtendido() == 4){ ?>
                         <tr> 
                             <td align="left" class="estadoNoPresento">
                                  <a href="?c=empleado&a=estadoTurno&id=<?=$c->getIdTurno()?>&estado=2&idEmpleado=<?=$idEmpleado?>">

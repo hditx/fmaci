@@ -279,5 +279,21 @@ class Cola{
         }
     }
     
+    public static function getColaTodo(){
+        try {
+            $mdb =  DataBase::getDb();
+            $temp = $mdb->prepare("SELECT * FROM Cola");
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            $data = new Cola($resultado[0]['idCola'], $resultado[0]['nombreCola'], $resultado[0]['idEmpleado'], $resultado[0]['hijoDe'], 
+                        $resultado[0]['siguiente'], $resultado[0]['letra']);
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
+    
 }
 ?>   
