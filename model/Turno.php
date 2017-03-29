@@ -78,6 +78,23 @@ class Turno{
         }
     }
     
+    
+    public static function getHoraObjeto($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT MINUTE(TIMEDIFF(TIME(NOW()) , hora)) AS hora  FROM Turno WHERE idTurno =". $id;
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            return $resultado[0]['hora'];
+            
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+
+
     public static function getTurno($id){
         try {
             $mdb =  DataBase::getDb();
@@ -213,7 +230,7 @@ class Turno{
     public static function getFirstTurno($id){
         try {
             $mdb =  DataBase::getDb();
-            $temp = $mdb->prepare("SELECT * FROM Turno WHERE idCola =".$id." AND posicion = (SELECT MIN(posicion) FROM Turno WHERE atendido = 0)");
+            $temp = $mdb->prepare("SELECT * FROM Turno WHERE idCola =".$id." AND posicion = (SELECT MIN(posicion) FROM Turno WHERE atendido = 0 AND idCola=".$id.")");
             $temp->execute();
             $resultado = $temp->fetchAll(); 
             $data = new Turno($resultado[0]['idTurno'],$id, $resultado[0]['posicion'], $resultado[0]['atendido'], $resultado[0]['hora']);

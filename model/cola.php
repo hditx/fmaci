@@ -295,5 +295,20 @@ class Cola{
         return $data;
     }
     
+    public static function getNombreColaObjeto($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT nombreCola FROM Cola WHERE idCola = ". $id;
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            return $resultado[0]['nombreCola'];
+            
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }        
+    }
+    
 }
 ?>   

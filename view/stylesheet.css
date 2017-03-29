@@ -11,21 +11,34 @@ a {
 }
 
 table {
-    border-radius: 10px;
-    font-family: Verdana, Helvetica, sans-serif;
-    font-size:15px;
-    text-align: right;
+    border-radius: 5px;
+    border-color: transparent;
+    font-family: Helvetica;
+    font-size:25px;
+    font-weight: bold;
+    text-align: center;
     
-    
-    border:solid 3px #000000; 
+    min-width: 100px;
+    min-height: 100px;
 }
-
-th, td {
+td, tr, th{
+    background:#FFFFFF;
+    color: black;
+    border-color: transparent;
+    opacity: 1;
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    filter: "alpha(opacity=90)";
+}
+.colorTd{
     align: left;
     border-radius: 10px;
     background:  #0017fd;
     border:solid 3px #000000; 
     text-align:center;
+}
+.radiuss{
+    border-radius: 20px;
 }
 .letra{
     min-width:250px;
@@ -40,19 +53,16 @@ th, td {
 }
 
 .estadoLlamando {
-    border-radius: 10px;
     background: #F3FF02;
     border:solid 3px #F3FF02; 
 }
 
 .estadoAtendiendo {
-    border-radius: 10px;
     background: #FF7402;
     border:solid 3px #FF7402; 
 }
 
 .estadoNoPresento {
-    border-radius: 10px;
     background: #FF0F02;
     border:solid 3px #FF0F02; 
 }
@@ -174,4 +184,14 @@ th, td {
 
 #menuPrincipal a{
     width: 250px;
+}
+
+#hora{
+    font-size: 80%;
+    margin: 0px;
+}
+
+#minutos{
+    font-size: 140%;
+    font-weight: bold;
 }

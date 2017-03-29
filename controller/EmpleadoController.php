@@ -34,7 +34,7 @@ class EmpleadoController{
         $i = 0;
         $idEmpleado = $_REQUEST['idEmpleado'];
         $cola = Cola::getCola($idEmpleado);
-       // $first = array($cola, Turno::getFirstTurno($cola->getIdCola()));
+        $first = array($cola, Turno::getFirstTurno($cola->getIdCola()));
         foreach($colas as $c){
             $turnos[] = array($c, Turno::getTurnoNoEmpleado($c->getIdCola()));
         }
@@ -54,12 +54,6 @@ class EmpleadoController{
         }
         require_once 'view/header.php';
         require_once 'view/empleado/enEstado.php';
-        require_once 'view/footer.php';
-    }
-
-    public function llamarTurno(){
-        require_once 'view/header.php';
-        require_once 'view/empleado/llamarTurno.php';
         require_once 'view/footer.php';
     }
     

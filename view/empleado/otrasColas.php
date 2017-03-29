@@ -9,8 +9,10 @@
                         <tr> 
                             <td align="left" class="myTd1">
                                  <a href="?c=empleado&a=estadoTurno&id=<?=$c->getIdTurno()?>&estado=2&idEmpleado=<?=$idEmpleado?>">
-                                 <?= Turno::getLetra($c->getIdCola()) . "" . $c->getPosicion()?><br>
-                                 <?=($c->getHora())?>
+                                 <?= Turno::getLetra($c->getIdCola()) . "" . $c->getPosicion()." "?>
+                                <?= $c->getHora()?><br>
+                                <?= Cola::getNombreColaObjeto($c->getIdCola())?>
+                                <?= Turno::getHoraObjeto($c->getIdTurno()) ."MIN"?>
                                  </a>
                              </td>
                         </tr>
@@ -21,6 +23,7 @@
     </table>
 </div>
 <div style="float: right;">
+    <img src="view/images/colores.jpg" width="390" height="100"><br>
     <a class="myButton" href="index.php?c=empleado&a=enEstado&idEmpleado=<?=$idEmpleado?>">En estado</a><br>
     <a class="myButton" href="index.php?c=empleado&a=listTurno&idEmpleado=<?=$idEmpleado?>">Asignada</a>
 </div>
