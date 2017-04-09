@@ -116,12 +116,12 @@ class Turno{
     public static function getTurnoPropio($id){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idTurno, posicion, atendido, hora FROM Turno WHERE atendido IN (0) AND idCola = ".$id." ORDER BY hora";
+            $sql = "SELECT idTurno, idCola, posicion, atendido, hora FROM Turno WHERE atendido IN (0) AND idCola = ".$id." ORDER BY hora";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
             foreach($resultado as $fila) {
-                $data[] = new Turno($fila['idTurno'],$id, $fila['posicion'], $fila['atendido'], $fila['hora']);
+                $data[] = new Turno($fila['idTurno'], $fila['idCola'], $fila['posicion'], $fila['atendido'], $fila['hora']);
             }
             $mbd = null;
         } catch (PDOException $e) {
@@ -134,12 +134,12 @@ class Turno{
     public static function getTurnoNoEmpleado($id){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idTurno, posicion, atendido, hora FROM Turno WHERE idCola <> ".$id." ORDER BY hora";
+            $sql = "SELECT idTurno, idCola, posicion, atendido, hora FROM Turno WHERE atendido IN (0) AND idCola <> ".$id." ORDER BY hora";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
             foreach($resultado as $fila) {
-                $data[] = new Turno($fila['idTurno'],$id, $fila['posicion'], $fila['atendido'], $fila['hora']);
+                $data[] = new Turno($fila['idTurno'],$fila['idCola'], $fila['posicion'], $fila['atendido'], $fila['hora']);
             }
             $mbd = null;
         } catch (PDOException $e) {
@@ -241,5 +241,19 @@ class Turno{
         }
         return $data;        
     }
-
+            
+    public static function getFirstTurnoNoE($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $temp = $mdb->prepare("SELECT * FROM Turno WHERE idCola <>".$id." AND posicion = (SELECT MIN(posicion) FROM Turno WHERE atendido = 0 AND idCola<>".$id.")");
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            $data = new Turno($resultado[0]['idTurno'],$id, $resultado[0]['posicion'], $resultado[0]['atendido'], $resultado[0]['hora']);
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
 }

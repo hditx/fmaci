@@ -1,7 +1,7 @@
 <h1>Turnos en espera</h1>
 <div style="display: inline-block">
-    <table border="2" style="float: left; min-width: 150px">
-        <th>En estado</th>
+    <table border="5" style="float: left; min-width: 150px">
+        <th class="myTd1">En estado</th>
         <?php foreach ($turnos as $t){?>
             <?php if($t[0]->getLetra() != NULL) { ?>
                 <?php foreach ($t[1] as $c){?> 

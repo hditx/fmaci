@@ -1,24 +1,18 @@
 <h1>Turnos en espera</h1>
 <div style="display: inline-block">
-    <table border="2" style="float: left; min-width: 150px">
-        <th>Otros</th>
+    <table border="2">
+        <th class="myTd1"><a href="?c=empleado&a=estadoTurno&id=<?=$first[1]->getIdTurno()?>&estado=2&idEmpleado=<?=$idEmpleado?>" id="text">Otros</a></th>
         <?php foreach ($turnos as $t){?>
-            <?php if($t[0]->getLetra() != NULL) { ?>
-                <?php foreach ($t[1] as $c){?> 
-                    <?php if($t[0]->getIdEmpleado() != $idEmpleado){ ?>
-                        <tr> 
-                            <td align="left" class="myTd1">
-                                 <a href="?c=empleado&a=estadoTurno&id=<?=$c->getIdTurno()?>&estado=2&idEmpleado=<?=$idEmpleado?>">
-                                 <?= Turno::getLetra($c->getIdCola()) . "" . $c->getPosicion()." "?>
-                                <?= $c->getHora()?><br>
-                                <?= Cola::getNombreColaObjeto($c->getIdCola())?>
-                                <?= Turno::getHoraObjeto($c->getIdTurno()) ."MIN"?>
-                                 </a>
-                             </td>
-                        </tr>
-                    <?php }?>
-                <?php }?>
-            <?php }?>
+            <tr> 
+                <td align="left" class="myTd1">
+                     <a href="?c=empleado&a=estadoTurno&id=<?=$t->getIdTurno()?>&estado=2&idEmpleado=<?=$idEmpleado?>">
+                     <?= Turno::getLetra($t->getIdCola()) . "" . $t->getPosicion()." "?>
+                    <?= $t->getHora()?><br>
+                    <?= Cola::getNombreColaObjeto($t->getIdCola())?>
+                    <?= Turno::getHoraObjeto($t->getIdTurno()) ."MIN"?>
+                     </a>
+                 </td>
+            </tr>
         <?php }?>
     </table>
 </div>

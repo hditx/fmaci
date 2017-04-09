@@ -1,10 +1,14 @@
-<div class="doscolumnas">
-    <div style="izquierda">
-        <video width="440" height="320" controls>
-        <source src="Botear usb.mp4" type="video/mp4">
-        </video>
-    </div>
-    <table id="derecha">
+<html lang="es">
+    <head>
+        <title>Farmacentro</title>
+        <meta charset="utf-8">
+        <meta http-equiv="refresh" content="1;url=index.php?c=turno&a=monitor"/>
+        <meta name="viwport" content="width=device-width, initial-scape=1.0">
+        <link rel="stylesheet" type="text/css" href="view/stylesheet.css">
+        <link href="view/estilos.css" rel="stylesheet" type="text/css" media="all">
+    </head>
+<body>
+<table id="derecha">
         <tr>
             <th class="myTd2">Llamados</th>
         </tr>
@@ -19,5 +23,6 @@
                 <?php } ?>
             <?php }?>
         
-    </table>
-</div>
+</table>
+	</body>
+</html>

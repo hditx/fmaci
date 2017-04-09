@@ -1,4 +1,4 @@
-<h1>BIENVENIDO!</h1>
+<h1 align="center">BIENVENIDO!</h1><br>
 
 <div class="center">
 <?php foreach ($colas as $c){

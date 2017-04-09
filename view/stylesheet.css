@@ -1,70 +1,83 @@
 body {
     background-image: url("images/fondo.png");
-    font-family: "Arial", sans-serif;
+    font-family: Trebuchet MS,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Tahoma,sans-serif; 
+    font-style: normal;
     color: white;
+}
+
+a, table, td, th, tr, p, h1, h2{
+    font-family: Trebuchet MS,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Tahoma,sans-serif; 
+    font-style: normal;
 }
 
 a {
     color: black;
-    font-size:15px;
     text-decoration: none;
 }
 
 table {
-    border-radius: 5px;
     border-color: transparent;
-    font-family: Helvetica;
-    font-size:25px;
-    font-weight: bold;
     text-align: center;
-    
-    min-width: 100px;
-    min-height: 100px;
+    border-spacing:  6px;
 }
+
 td, tr, th{
-    background:#FFFFFF;
     color: black;
     border-color: transparent;
-    opacity: 1;
-    -moz-opacity: 1;
-    -khtml-opacity: 1;
-    filter: "alpha(opacity=90)";
+    text-align: center;
 }
+
 .colorTd{
     align: left;
-    border-radius: 10px;
+    border-radius: 15px;
     background:  #0017fd;
-    border:solid 3px #000000; 
+    /*border:solid 3px #000000; */
     text-align:center;
 }
-.radiuss{
-    border-radius: 20px;
-}
+
 .letra{
     min-width:250px;
-    font: 150% sans-serif;
     font-weight: bolder;
 }
+
 .myTd1 {
-    border-radius: 10px;
+    width:300px;
+    height: 70px;
+    border-radius: 15px;
     background: #FFFFFF;
-    border:solid 3px #ffffff;
+    /*border:solid 3px #ffffff;*/
+    color: black;
+}
+
+.myTd2 {
+    border-radius: 15px;
+    background: #FFFFFF;
+    /*border:solid 3px #ffffff;*/
     color: black;
 }
 
 .estadoLlamando {
+    min-width: 100px;
+    min-height: 100px;
+    border-radius: 10px;
     background: #F3FF02;
-    border:solid 3px #F3FF02; 
+    border:solid 3px #F3FF02;
 }
 
 .estadoAtendiendo {
+    min-width: 100px;
+    min-height: 100px;
+    border-radius: 10px;
     background: #FF7402;
-    border:solid 3px #FF7402; 
+    border:solid 3px #FF7402;
 }
 
 .estadoNoPresento {
+    min-width: 100px;
+    min-height: 100px;
+    border-radius: 10px;
     background: #FF0F02;
-    border:solid 3px #FF0F02; 
+    border:solid 3px #FF0F02;
 }
 
 .siguiente{
@@ -125,12 +138,10 @@ td, tr, th{
 }
 
 .myButton{
-    
-    font-family: time new roman; 
     display:inline-block;
     background: #ff6600;
     border:solid 3px #ffffff;
-    min-width:150px;
+    width:250px;
     font-size: 2em;
     text-align: center;
     -webkit-border-radius: 10px;
@@ -154,9 +165,16 @@ td, tr, th{
     font-size: 1.5em;
     vertical-align: middle;
 }
+
 .fuente{
-    font-family: time new roman; 
     text-indent: 1cm;
+}
+
+#text{
+    position: relative;
+    font-size: 20px;
+    color: orange;
+    top: -10px;
 }
 
 #left{
@@ -166,18 +184,21 @@ td, tr, th{
 #right {
    float: right;
 }
+
 #izquierda {
 	margin: 0px;
 	position:absolute;
 	top: 1%;
 	left: 1%;
 }
+
 #derecha{
 	margin: 0px;
 	position:absolute;
 	top: 1%;
 	right: 1%;
 }
+
 #logo {
     width: 200px;
 }    
@@ -194,4 +215,28 @@ td, tr, th{
 #minutos{
     font-size: 140%;
     font-weight: bold;
+}
+
+#radio{
+    border-radius: 20px;    
+}
+
+#imagenPosicion{
+    width: 0; 
+    height: 0; 
+    border-left: 50px solid #1B8A0A;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent; 
+    position: relative;
+    top: 12px;
+    right: -60px;
+}
+
+#cuadrado{
+    position: relative;
+    width: 50px; 
+    height: 50px; 
+    border: 3px solid #555;
+    border-radius: 5px;
+    background: #428bca;
 }

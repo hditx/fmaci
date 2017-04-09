@@ -8,8 +8,6 @@ html {
 	line-height: 1;
 }
 p{
-	font-size: 15px;
-	font-size: 1.5rem;
 	line-height:1.333333334;
 	margin-bottom: 20px;
 	margin-bottom: 2rem;
@@ -21,25 +19,17 @@ p{
 	column-count: 2;
 }
 .modif {
+        border-radius: 20px;
+        background: #FFFFFF;
         min-width:250px;
 	color: red;
-	font-style: verdana;
-        font-weight: bolder;
-	font-size: 36px;
 	animation-duration: 2s;
         animation-name: parpadeo;
         animation-iteration-count: infinite;
         animation-timing-function: steps(2, start);
-        
-}
-.letra{
-    min-width:250px;
-    font: 150% sans-serif;
-    font-weight: bolder;
 }
 
 .normal{
-    font-style: verdana;
     font-size: 36px;
 }
 @keyframes parpadeo {
@@ -54,10 +44,11 @@ p{
 	left: 1%;
 }
 #derecha{
+        font-size: 80px;
 	margin: 0px;
 	position:absolute;
-	top: 1%;
-	right: 1%;
+	top: 0;
+	right: 0;
 }
 h1{
 	position:absolute;

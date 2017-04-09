@@ -1,4 +1,5 @@
 <?php
+require_once 'config/impresora.php';;
 require_once "model/cola.php";
 require_once 'model/Cliente.php';
 require_once 'model/Turno.php';
@@ -42,10 +43,12 @@ class TurnoController{
         }else{
             echo "Imprimiendo turno";
         }
-        require_once 'view/footer.php';
+        require_once 'view/footerNButton.php';
     }
     
     public function imprimir(){
+        //$impresora = printer_open();
+        //printer_write($impresora, ESCPOS::printTicket("A1", "Prueba"));
         Cola::incrementar($_REQUEST['id']);
         $turn = new Turno(null);
         $turn->setIdCola($_REQUEST['id']);

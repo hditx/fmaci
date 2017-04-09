@@ -118,6 +118,7 @@ class Cola{
     }
     
     public static function getCola($id){
+        
         try {
             $mdb =  DataBase::getDb();
             $temp = $mdb->prepare("SELECT * FROM Cola WHERE idEmpleado =".$id);
