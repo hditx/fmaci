@@ -85,7 +85,7 @@ class EmpleadoController{
                 }else{
                     require_once 'view/header.php';
                     require_once 'view/empleado/llamarTurno.php';
-                    require_once 'view/footer.php';
+                    require_once 'view/footerNButton.php';
                 }
                 break;
             case 3:
@@ -107,7 +107,7 @@ class EmpleadoController{
                 }else{
                     require_once 'view/header.php';
                     require_once 'view/empleado/atendido.php';
-                    require_once 'view/footer.php';
+                    require_once 'view/footerNButton.php';
                 }
                 break;
         }

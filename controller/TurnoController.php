@@ -13,7 +13,7 @@ class TurnoController{
     public function monitor(){
         $turnos = Turno::getMonitor();
         require_once 'view/headerMonitor.php';
-        require_once 'view/turno/monitor.php';
+        require_once 'view/turno/monitorIframe.php';
         require_once 'view/footerNButton.php';
     }
     

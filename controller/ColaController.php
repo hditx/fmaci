@@ -7,7 +7,7 @@ class ColaController{
       $data = Cola::getList();
       require_once "view/header.php";
       require_once "view/cola/cola.php";
-      require_once "view/footer.php";
+      require_once "view/footerNButton.php";
   }
   
   public function crear(){
