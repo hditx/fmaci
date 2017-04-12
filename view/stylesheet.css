@@ -45,14 +45,20 @@ td, tr, th{
     height: 70px;
     border-radius: 15px;
     background: #FFFFFF;
-    /*border:solid 3px #ffffff;*/
     color: black;
 }
 
 .myTd2 {
     border-radius: 15px;
     background: #FFFFFF;
-    /*border:solid 3px #ffffff;*/
+    color: black;
+}
+
+.myTd3 {
+    width:150px;
+    height: 60px;
+    border-radius: 15px;
+    background: #FFFFFF;
     color: black;
 }
 

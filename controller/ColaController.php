@@ -21,17 +21,26 @@ class ColaController{
   public function save(){
       if(isset($_REQUEST['idCola'])){
           $temp = Cola::get($_REQUEST['idCola']);
+          $nuevo = 0;
       }
       else{
          $temp = new Cola(null);
+         $nuevo = 1;
       }
       $temp->setNombreCola($_REQUEST['nombreCola']);
       $temp->setHijoDe($_REQUEST['idPadre']);
-      $temp->setIdEmpleado($_REQUEST['idEmpleado']);
       $temp->setSiguiente($_REQUEST['siguiente']);
       $temp->setLetra($_REQUEST['letra']);
       $temp->save();
-      echo "Estoy guardando la cola " . $temp->getNombreCola();
+      $empleados = $_REQUEST['idEmpleado'];
+      if($nuevo == 0){
+          $id = $_REQUEST['idCola'];
+      }else{
+          $id = Cola::getColaReciente();
+      }
+      foreach ($empleados as $empleado){
+          Empleado::saveUnion($empleado, $id);
+      }
       header("Location: index.php?c=cola");
       
   }

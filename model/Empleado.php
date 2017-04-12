@@ -44,7 +44,7 @@ class Empleado{
             if($this->getIdEmpleado() != null){
                 $sql = "UPDATE Empleado SET nombre = '".$this->getNombre()."', apellido = '".$this->getApellido()."' WHERE idEmpleado =".$this->getIdEmpleado();
             }else{
-                $sql = "INSERT Empleado(nombre, apellido) VALUES ('".$this->getNombre()."', '".$this->getApellido()."')";
+                $sql = "INSERT Empleado(nombre, apellido, fechaDeAlta) VALUES ('".$this->getNombre()."', '".$this->getApellido()."', NOW())";
             }
             $temp = $mdb->prepare($sql);
             $temp->execute();
@@ -141,5 +141,51 @@ class Empleado{
             print "¡Error!: " . $e->getMessage() . "<br/>";
             die();
         }
+    }
+    
+    public static function saveUnion($idEmpleado, $idCola){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "INSERT cola_empleado(idCola, idEmpleado) VALUES (".$idCola.", ".$idEmpleado.")";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $mdb = null;            
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }        
+    }
+    
+    public static function getNuevoEmpleado(){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT idEmpleado FROM Empleado WHERE fechaDeAlta = (SELECT MAX(fechaDeAlta) FROM Empleado)";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            return $resultado[0]['idEmpleado'];
+            $mdb = null;            
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }        
+    }
+    
+    public static function getColasAsignadas($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT nombreCola FROM Cola WHERE idCola IN (SELECT idCola FROM cola_empleado WHERE idEmpleado = ".$id.")";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            foreach ($resultado as $fila){
+                $data[] = $fila['nombreCola'];
+            }
+            return $data;
+            $mdb = null;            
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }        
     }
 }

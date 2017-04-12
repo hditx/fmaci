@@ -16,7 +16,7 @@
                 }?>
             </select>
         <p>Empleado
-            <select name="idEmpleado">
+            <select multiple name="idEmpleado[]">
                 <option value="-1">Ninguno</option>
                 <?php foreach ($empleados as $empleado){
                     echo "<option value=".$empleado->getIdEmpleado().">".$empleado->getNombre()."</option>";

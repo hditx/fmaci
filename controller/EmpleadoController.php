@@ -16,34 +16,31 @@ class EmpleadoController{
     }
     
     public function listTurno(){
-        $colas = Cola::getList();
         $idEmpleado = $_REQUEST['idEmpleado'];
-        $cola = Cola::getCola($idEmpleado);
-        $first = array($cola, Turno::getFirstTurno($cola->getIdCola()));
-        $turnos = Turno::getTurnoPropio($cola->getIdCola());
+        $first = Turno::getFirstTurno($idEmpleado);
+        $turnos = Turno::getTurnoPropio($idEmpleado);
         require_once 'view/header.php';
         require_once 'view/empleado/list.php';
         require_once 'view/footer.php';
     }
     
     public function otrasColas(){
-        $colas = Cola::getList();
         $idEmpleado = $_REQUEST['idEmpleado'];
-        $cola = Cola::getCola($idEmpleado);
-        $first = array($cola, Turno::getFirstTurnoNoE($cola->getIdCola()));
-        $turnos = Turno::getTurnoNoEmpleado($cola->getIdCola());
+        $first = Turno::getFirstTurnoNoE($idEmpleado);
+        $turnos = Turno::getTurnoNoEmpleado($idEmpleado);
         require_once 'view/header.php';
         require_once 'view/empleado/otrasColas.php';
         require_once 'view/footer.php';
     }
     
     public function enEstado(){
-        $colas = Cola::getList();
+        //$colas = Cola::getList();
         $idEmpleado = $_REQUEST['idEmpleado'];
-        $cola = Cola::getColaTodo();
-        foreach($colas as $c){
-            $turnos[] = array($c, Turno::getTurno($c->getIdCola()));
-        }
+        //$cola = Cola::getColaTodo();
+        //foreach($colas as $c){
+        //    $turnos[] = array($c, Turno::getTurno($c->getIdCola()));
+        //}
+        $turnos = Turno::getTurnoEstado();
         require_once 'view/header.php';
         require_once 'view/empleado/enEstado.php';
         require_once 'view/footer.php';

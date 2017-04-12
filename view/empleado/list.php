@@ -2,7 +2,7 @@
 <div style="display: inline-block">
     
 <table  style="float: left;" id="trans">
-    <th class="myTd1" ><a href="?c=empleado&a=estadoTurno&id=<?=$first[1]->getIdTurno()?>&estado=2&idEmpleado=<?=$idEmpleado?>" id="text">
+    <th class="myTd1" ><a href="?c=empleado&a=estadoTurno&id=<?=$first->getIdTurno()?>&estado=2&idEmpleado=<?=$idEmpleado?>" id="text">
             Asignado<img id="imagenPosicion"></a></th>
     <?php foreach ($turnos as $t){?>
             <tr>     

@@ -68,10 +68,10 @@ class Turno{
     public function save(){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "INSERT Turno(idCola, posicion, atendido, hora) VALUES (".$this->getIdCola().",".$this->getPosicion().",".'".$this->getAtendido()."'.", TIME(NOW()))";
+            $sql = "INSERT Turno(idCola, posicion, atendido, hora) VALUES (".$this->getIdCola().",".$this->getPosicion().",".$this->getAtendido().", TIME(NOW()))";
             $temp = $mdb->prepare($sql);
             $temp->execute();
-            $mdb = null;            
+            $mdb = null;  
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
             die();
@@ -113,10 +113,11 @@ class Turno{
         return $data;
     }
     
-    public static function getTurnoPropio($id){
+    public static function getTurnoPropio($idEmp){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idTurno, idCola, posicion, atendido, hora FROM Turno WHERE atendido IN (0) AND idCola = ".$id." ORDER BY hora";
+            $sql = "SELECT idTurno, idCola, posicion, atendido, hora FROM Turno WHERE atendido IN (0) "
+                    . "AND idCola IN ((SELECT idCola FROM cola_empleado WHERE idEmpleado =".$idEmp.")) ORDER BY hora";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
@@ -131,10 +132,11 @@ class Turno{
         return $data;
     }
     
-    public static function getTurnoNoEmpleado($id){
+    public static function getTurnoNoEmpleado($idEmp){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idTurno, idCola, posicion, atendido, hora FROM Turno WHERE atendido IN (0) AND idCola <> ".$id." ORDER BY hora";
+            $sql = "SELECT idTurno, idCola, posicion, atendido, hora FROM Turno WHERE atendido IN (0) AND "
+                    . "idCola NOT IN ((SELECT idCola FROM cola_empleado WHERE idEmpleado =".$idEmp.")) ORDER BY hora";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
@@ -227,10 +229,13 @@ class Turno{
         return $data;
     }
     
-    public static function getFirstTurno($id){
+    public static function getFirstTurno($idEmp){
         try {
             $mdb =  DataBase::getDb();
-            $temp = $mdb->prepare("SELECT * FROM Turno WHERE idCola =".$id." AND posicion = (SELECT MIN(posicion) FROM Turno WHERE atendido = 0 AND idCola=".$id.")");
+            $temp = $mdb->prepare("SELECT * FROM Turno WHERE idCola IN("
+                                                . "(SELECT idCola FROM cola_empleado WHERE idEmpleado =".$idEmp.")) "
+                                                . "AND posicion = (SELECT MIN(posicion) FROM Turno WHERE atendido = 0 AND idCola IN("
+                    . "                                             (SELECT idCola FROM cola_empleado WHERE idEmpleado =".$idEmp.")))");
             $temp->execute();
             $resultado = $temp->fetchAll(); 
             $data = new Turno($resultado[0]['idTurno'],$id, $resultado[0]['posicion'], $resultado[0]['atendido'], $resultado[0]['hora']);
@@ -242,13 +247,32 @@ class Turno{
         return $data;        
     }
             
-    public static function getFirstTurnoNoE($id){
+    public static function getFirstTurnoNoE($idEmp){
         try {
             $mdb =  DataBase::getDb();
-            $temp = $mdb->prepare("SELECT * FROM Turno WHERE idCola <>".$id." AND posicion = (SELECT MIN(posicion) FROM Turno WHERE atendido = 0 AND idCola<>".$id.")");
+            $temp = $mdb->prepare("SELECT * FROM Turno WHERE idCola NOT IN ((SELECT idCola FROM cola_empleado WHERE idEmpleado =".$idEmp.")) "
+                . "AND posicion = (SELECT MIN(posicion) FROM Turno WHERE atendido = 0 AND idCola NOT IN ((SELECT idCola FROM cola_empleado WHERE idEmpleado =".$idEmp.")))");
             $temp->execute();
             $resultado = $temp->fetchAll(); 
             $data = new Turno($resultado[0]['idTurno'],$id, $resultado[0]['posicion'], $resultado[0]['atendido'], $resultado[0]['hora']);
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
+    
+    public static function getTurnoEstado(){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT idTurno, posicion, atendido, hora FROM Turno WHERE atendido IN (2,3,4) ORDER BY hora";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            foreach($resultado as $fila) {
+                $data[] = new Turno($fila['idTurno'],$id, $fila['posicion'], $fila['atendido'], $fila['hora']);
+            }
             $mbd = null;
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";

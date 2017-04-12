@@ -14,6 +14,7 @@ class AdministradorController{
     public function abmEmpleado(){
         $tmp = new Empleado(null);
         $empleados = Empleado::getEmpleado();
+        $colas = Cola::getList();
         require_once 'view/header.php';
         require_once 'view/administrador/listEmpleado.php';
         require_once 'view/footer.php';
@@ -21,6 +22,7 @@ class AdministradorController{
     
     public function crear(){
         $tmp = new Empleado(null);
+        $colas = Cola::getList();
         require_once 'view/header.php';
         require_once 'view/administrador/empleadoEdit.php';
         require_once 'view/footer.php';
@@ -40,16 +42,28 @@ class AdministradorController{
     public function save(){
         if(isset($_REQUEST['idEmpleado'])){
             $tmp = Empleado::get($_REQUEST['idEmpleado']);
+            $nuevo = 0;
         }else{
             $tmp = new Empleado(null);
+            $nuevo = 1;
         }
+        $idCola = $_REQUEST['idCola'];
         $tmp->setNombre($_REQUEST['nombre']);
         $tmp->setApellido($_REQUEST['apellido']);
         $tmp->save();
+        if($nuevo == 1){
+            $id = Empleado::getNuevoEmpleado();
+        }else{
+            $id = $_REQUEST['idEmpleado'];
+        }
+        foreach ($idCola as $union){
+            Empleado::saveUnion($id, $union);
+        }
         header("Location: index.php?c=administrador&a=abmEmpleado");
     }
     public function modificar(){
         $tmp = Empleado::get($_REQUEST['id']);
+        $colas = Cola::getList();
         require_once 'view/header.php';
         require_once 'view/administrador/empleadoEdit.php';
         require_once 'view/footer.php';        

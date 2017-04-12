@@ -1,7 +1,7 @@
 <h1>Turnos en espera</h1>
 <div style="display: inline-block">
     <table border="2">
-        <th class="myTd1"><a href="?c=empleado&a=estadoTurno&id=<?=$first[1]->getIdTurno()?>&estado=2&idEmpleado=<?=$idEmpleado?>" id="text">Otros</a></th>
+        <th class="myTd1"><a href="?c=empleado&a=estadoTurno&id=<?=$first->getIdTurno()?>&estado=2&idEmpleado=<?=$idEmpleado?>" id="text">Otros</a></th>
         <?php foreach ($turnos as $t){?>
             <tr> 
                 <td align="left" class="myTd1">

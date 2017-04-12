@@ -1,5 +1,4 @@
 <?php
-require_once 'config/impresora.php';;
 require_once "model/cola.php";
 require_once 'model/Cliente.php';
 require_once 'model/Turno.php';
@@ -8,9 +7,6 @@ require_once 'config/DataBase.php';
 
 class TurnoController{
     public function index(){
-//        require_once 'view/header.php';
-//        require_once 'view/turno/Turno.php';
-//        require_once 'view/footer.php';
         header("Location: index.php?c=turno&a=sacarTurno");
     }
 
@@ -47,15 +43,11 @@ class TurnoController{
     }
     
     public function imprimir(){
-        //$impresora = printer_open();
-        //printer_write($impresora, ESCPOS::printTicket("A1", "Prueba"));
         Cola::incrementar($_REQUEST['id']);
         $turn = new Turno(null);
         $turn->setIdCola($_REQUEST['id']);
         $turn->setPosicion(Cola::getNumeroSiguiente($_REQUEST['id']));
-        //$turno->setAtendido(1);
-        echo "<br>". $turn->getIdCola() . "<br>";
-        echo $turn->getPosicion();
+        $turn->setAtendido(0);
         $turn->save();
         header("Location: index.php?c=turno&a=index");
     }
