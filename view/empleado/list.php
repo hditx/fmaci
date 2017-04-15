@@ -6,8 +6,8 @@
             Asignado<img id="imagenPosicion"></a></th>
     <?php foreach ($turnos as $t){?>
             <tr>     
-                <td border="0" align="left" class="myTd1">
-                    <a href="?c=empleado&a=estadoTurno&id=<?=$t->getIdTurno()?>&estado=2&idEmpleado=<?=$idEmpleado?>">
+                <td align="left" class="myTd1" >
+                    <a class="myTd1" href="?c=empleado&a=estadoTurno&id=<?=$t->getIdTurno()?>&estado=2&idEmpleado=<?=$idEmpleado?>">
                         <?= Turno::getLetra($t->getIdCola()) . "" . $t->getPosicion()." "?>
                         <?= $t->getHora()?><br>
                         <?= Cola::getNombreColaObjeto($t->getIdCola())?>

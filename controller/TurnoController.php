@@ -43,6 +43,9 @@ class TurnoController{
     }
     
     public function imprimir(){
+        /*$impresora = fopen("/dev/usb/lp0", "a+");
+        fprintf($impresora, "Prueba");*/
+        Impresora::printTicket("Prueba","01 ");
         Cola::incrementar($_REQUEST['id']);
         $turn = new Turno(null);
         $turn->setIdCola($_REQUEST['id']);
