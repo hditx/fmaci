@@ -93,9 +93,8 @@ class EmpleadoController{
                 $listLlamado = Historial::history($_REQUEST['id']);
                 $d = count($listLlamado);
                 $id = $_REQUEST['id'];
+                $turno = Turno::getTurnoUnico($id);
                 $idEmpleado = $_REQUEST['idEmpleado'];
-                $temp =Turno::getLetra(Turno::getIdColaObjeto($_REQUEST['id']));
-                $temp1 = Turno::getPosicionObjeto($_REQUEST['id']); 
                 if(isset($_REQUEST['espera'])){
                     header("Location: index.php?c=empleado&a=index");
                 }else{
@@ -116,8 +115,7 @@ class EmpleadoController{
                 Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
                 $id = $_REQUEST['id'];
                 $idEmpleado = $_REQUEST['idEmpleado'];
-                $temp =Turno::getLetra(Turno::getIdColaObjeto($_REQUEST['id']));
-                $temp1 = Turno::getPosicionObjeto($_REQUEST['id']);
+                $turno = Turno::getTurnoUnico($id);
                 if(isset($_REQUEST['espera'])){
                     header("Location: index.php?c=empleado&a=index");
                 }else{

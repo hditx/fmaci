@@ -1,23 +1,21 @@
-<div class="doscolumnas">
-    <div style="izquierda">
-        <video width="440" height="320" controls>
-        <source src="Botear usb.mp4" type="video/mp4">
-        </video>
-    </div>
-    <table id="derecha">
-        <tr>
-            <th class="myTd2">Llamados</th>
-        </tr>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="refresh" content="1;url=view/Turno/monitor.php"/>
+    </head>
+    <body>
+        <div class="myTd2">Llamados</div>
+        <?php require_once 'model/Turno.php';
+            $turnos = Turno::getMonitor();
+            foreach ($turnos as $t) {
+            if($t->getAtendido() == 2){?>
         
-            <?php foreach ($turnos as $t) {
-                if($t->getAtendido() == 2){?>
-                    <tr><td class="modif"><?=Turno::getLetra($t->getIdCola())."".$t->getPosicion()?></td></tr>
-                <?php }else{?>
-                    <tr>
-                        <td class="myTd2"><?= Turno::getLetra($t->getIdCola())."".$t->getPosicion()?></td>
-                    </tr>
-                <?php } ?>
-            <?php }?>
-        
-    </table>
-</div>
+                <div class="modif"><?=Turno::getLetra($t->getIdCola())."".$t->getPosicion()?>asdas</div>
+            <?php }else{?>
+                
+                <div class="myTd2"><?= Turno::getLetra($t->getIdCola())."".$t->getPosicion()?></div>
+            <?php } ?>
+        <?php }?>        
+                <div>asdas</div>
+    </body>
+</html>

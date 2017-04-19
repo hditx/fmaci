@@ -36,10 +36,7 @@
     <div class="ubiBoton">
         <?php foreach ($links as $key => $value){
             echo "<a class='buttonEmployed' href='index.php?c=empleado&a=" . $value . "&idEmpleado=$idEmpleado'>$key</a><br>";
-        } 
-       
-       // <a class="buttonEmployed" href="index.php?c=empleado&a=otrasColas&idEmpleado=<?=$idEmpleado"><?= $otras </a><br>
-       // <a class="buttonEmployed" href="index.php?c=empleado&a=enEstado&idEmpleado=<?=$idEmpleado">En estado</a>
+        }
        ?>
     </div>
 </div>

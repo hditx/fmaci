@@ -113,6 +113,22 @@ class Turno{
         return $data;
     }
     
+    public static function getTurnoUnico($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT idTurno, idCola, posicion, atendido, hora FROM Turno WHERE idTurno = ".$id;
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $fila = $temp->fetchAll(); 
+            $data = new Turno($fila[0]['idTurno'], $fila[0]['idCola'],  $fila[0]['posicion'], $fila[0]['atendido'], $fila[0]['hora']);
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
+    
     public static function getTurnoPropio($idEmp){
         try {
             $mdb =  DataBase::getDb();
