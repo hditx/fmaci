@@ -1,15 +1,10 @@
-<iframe height="615px" width="900px" src="view/turno/video.php"></iframe>
-<table id="derecha">
-        <tr>
-            <th class="myTd2">Llamados</th>
-        </tr>
-            <?php foreach ($turnos as $t) {
-                if($t->getAtendido() == 2){?>
-                    <tr><td class="modif"><?=Turno::getLetra($t->getIdCola())."".$t->getPosicion()?></td></tr>
-                <?php }else{?>
-                    <tr>
-                        <td class="myTd2"><?= Turno::getLetra($t->getIdCola())."".$t->getPosicion()?></td>
-                    </tr>
-                <?php } ?>
-            <?php }?>
-</
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <frameset framespacing="0" cols="*, 300" frameborder="0" noresize>
+        <frame name="left" src="view/turno/video.php" target="left"></frame>
+        <frame name="right" src="google.com" target="right"></frame>
+    </frameset>
+</html>

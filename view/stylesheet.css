@@ -6,7 +6,7 @@ body {
     color: white;
 }
 
-table, td, th, tr, p, h1, h2, div{
+table, td, th, tr, p, h1, h2{
     font-family: sans-serif; 
     color: white;
 }
@@ -81,27 +81,75 @@ form{
 }
 
 .estadoLlamando {
-    min-width: 100px;
-    min-height: 100px;
-    border-radius: 10px;
-    background: #F3FF02;
-    border:solid 3px #F3FF02;
+    width: 105px; 
+    height: 85px; 
+    background: yellow;
+    color: black;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+.estadoLlamandoRec {
+    width: 275px;
+    height: 85px;
+    background: yellow;
+    position: relative;
+    top: -50px;
+    right: -110px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-bottom: 2px;
+    margin-top: 2px;
 }
 
 .estadoAtendiendo {
-    min-width: 100px;
-    min-height: 100px;
-    border-radius: 10px;
-    background: #FF7402;
-    border:solid 3px #FF7402;
+    width: 105px; 
+    height: 85px; 
+    background: orange;
+    color: black;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+
+.estadoAtendiendoRec {
+    width: 275px;
+    height: 85px;
+    background: orange;
+    position: relative;
+    top: -50px;
+    right: -110px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-bottom: 2px;
+    margin-top: 2px;
 }
 
 .estadoNoPresento {
-    min-width: 100px;
-    min-height: 100px;
-    border-radius: 10px;
-    background: #FF0F02;
-    border:solid 3px #FF0F02;
+    
+    width: 105px; 
+    height: 85px;     
+    background: red;
+    color: black;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+
+.estadoNoPresentoRec {
+    width: 275px;
+    height: 85px;
+    background: red;
+    position: relative;
+    top: -50px;
+    right: -110px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-bottom: 2px;
+    margin-top: 2px;
 }
 
 .siguiente{
@@ -187,6 +235,22 @@ form{
     padding: 5px;
 }
 
+.buttonEmployed{
+    color: orange;   
+    display:inline-block;
+    background: #ffffff;
+    border:solid 3px #ffffff;
+    width:270px;
+    height: 30px;
+    font-size: 2em;
+    text-align: left;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 5px;
+}
+
 .izq {
     width: 50%;
     float: left;
@@ -207,30 +271,42 @@ form{
 }
 
 .cuadrado{
-    position: static;
-    width: 100px; 
-    height: 100px; 
-    border: 3px solid #555;
-    border-radius: 5px;
-    background: black;
-    top: 0;
-    left: 0;
+    border-color: white;
+    width: 105px; 
+    height: 85px; 
+    background: white;
+    color: black;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    margin-bottom: 2px;
+    margin-top: 2px;
+    margin-left: 2px;
 }
 
 .rectangulo {
+    width: 275px;
+    height: 85px;
+    background: white;
     position: relative;
-    width: 200px;
-    height: 100px;
-    background: red;
-    top: -65px;
-    right: -100px;
+    top: -50px;
+    right: -110px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-bottom: 2px;
+    margin-top: 2px;
 }
 
 #text{
-    position: relative;
-    font-size: 20px;
+    text-align: left;
+    font-size: 30px;
     color: orange;
-    top: -10px;
+    padding: 7px;
+}
+
+#text2{
+    text-align: center;
+    font-size: 20px;
+    color: black;
 }
 
 #left{
@@ -284,12 +360,12 @@ form{
 #imagenPosicion{
     width: 0; 
     height: 0; 
-    border-left: 50px solid #1B8A0A;
-    border-top: 25px solid transparent;
-    border-bottom: 25px solid transparent; 
+    border-left: 30px solid #1B8A0A;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent; 
     position: relative;
-    top: 12px;
-    right: -60px;
+    top: 5px;
+    right: -205px;
 }
 
 #llamarNuevamente{
@@ -311,8 +387,7 @@ form{
 
 #espera{
     display:inline-block;
-    background: #ff6600;
-    border:solid 3px #ffffff;
+    background: #ffffff;
     width:250px;
     font-size: 2em;
     text-align: center;
@@ -323,13 +398,17 @@ form{
     padding: 5px;
     position: absolute;
     top: 500px;
-    right: 0;
+    right: 1036px;
+    color: orangered;
 }
 
 #noPresente{
+    position: relative;
+    top: -160px;
+    right: 502px;
     display:inline-block;
     background: #ff0000;
-    border:solid 3px #ffffff;
+    height: 50px;
     width:250px;
     font-size: 2em;
     text-align: center;
@@ -355,4 +434,156 @@ form{
     position: absolute;
     top: 0;
     right: 0;
-}*/
+}
+
+#der {
+    width: 50%;
+    float: left;
+    min-height: 2em;
+    font-size: 1.5em;
+    vertical-align: middle;
+}
+
+.encabezado{
+    font-size: 40px;
+    color:orange;
+    width:400px;
+    height: 40px;
+    border-radius: 10px;
+    background: #FFFFFF;
+    color: black;
+}
+
+.radiuss{
+    border-radius: 15px;
+    position: absolute;
+    top: 50px;  
+    right: 100px;
+}
+.ubiBoton{
+    position: absolute;
+    top: 190px;
+    right: 100px;
+}
+
+#global {
+	height: 500px;
+	width: 410px;
+	border: 1px solid #ddd;
+	background: #f1f1f1;
+	overflow-y: scroll;
+        background-image: url("images/fondo.png");
+        border-radius: 5px;
+}
+#llamados{
+    height: 500px;
+    width: 410px;
+    border: 1px solid #ddd;
+    background: #f1f1f1;
+    overflow-y: scroll;
+    background: white;
+    border-radius: 5px;
+    
+}
+#mensajes {
+	height: auto;
+}
+
+.letraCuadrado{
+    font-family: sans-serif;
+    font-size: 40px;
+    color: black;
+    text-align: center;
+}
+.obraSocial{
+    position: relative;
+    top: 3px;
+    left: 30px;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+.horaNormal{
+    position: relative;
+    top: -18px;
+    left: 190px;
+    font-size: 15px;
+    font-family: sans-serif;
+}
+.horaEspera{
+    position: relative;
+    top: -5px;
+    left: 140px;
+    font-size: 40px;
+    font-family: sans-serif;
+}
+
+.botonLlama{
+    position: relative;
+    top: 30px;
+    right: -450px;
+    height: 50px;
+    width: 393px;
+    background: yellow;
+    color: black;
+    font-size: 30px;
+    font-family: sans-serif;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.fechas {
+    width:387px;
+    text-align: center;
+    height: 90px;
+    background: #FFFFFF;
+    color: black;
+    border-bottom: solid black;
+    margin-bottom: 1px;
+    margin-top: 1px;
+    margin-left: 1px;
+}
+.posicion{
+    position: relative;
+    top: 33px;
+    left: 450px;
+}
+.atender{
+    color: white;   
+    display:inline-block;
+    background: #ff6600;
+    height: 70px;
+    width:230px;
+    font-size: 48px;
+    text-align: center;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 5px;
+    position: absolute;
+    top: 500px;
+    right: 30px;
+}
+.textFecha{
+    font-size: 60px;
+    font-family: sans-serif;
+    position: relative;
+    top: 10px;
+    left: -130px;
+}
+
+.textFechaCentro{
+    font-size: 18px;
+    font-family: sans-serif;
+    position: relative;
+    top: -30px;
+    left: -10px;
+}
+
+.textFechaDer{
+    font-size: 28px;
+    font-family: sans-serif;
+    position: relative;
+    top: -60px;
+    left: 130px;
+}

@@ -4,6 +4,7 @@ require_once 'model/Cliente.php';
 require_once 'model/Turno.php';
 require_once 'model/Empleado.php';
 require_once 'config/DataBase.php';
+require_once 'config/Impresora.php';
 
 class TurnoController{
     public function index(){
@@ -12,9 +13,9 @@ class TurnoController{
 
     public function monitor(){
         $turnos = Turno::getMonitor();
-        require_once 'view/headerMonitor.php';
+//        require_once 'view/headerMonitor.php';
         require_once 'view/turno/monitorIframe.php';
-        require_once 'view/footerNButton.php';
+//        require_once 'view/footerNButton.php';
     }
     
     public function sacarTurno(){
@@ -45,7 +46,7 @@ class TurnoController{
     public function imprimir(){
         /*$impresora = fopen("/dev/usb/lp0", "a+");
         fprintf($impresora, "Prueba");*/
-        Impresora::printTicket("Prueba","01 ");
+        Impresora::printTicket(Turno::getLetra($_REQUEST['id']), Cola::getNumeroSiguiente($_REQUEST['id']));
         Cola::incrementar($_REQUEST['id']);
         $turn = new Turno(null);
         $turn->setIdCola($_REQUEST['id']);

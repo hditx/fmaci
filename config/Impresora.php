@@ -24,8 +24,8 @@ class Impresora {
             fprintf ($impresora, $ESC."d".chr(1)); // Blank line
             fprintf ($impresora, $ESC."E".chr(1)); // Bold
             fprintf ($impresora, $GS."!\x33"); // Set the character size
-            fprintf ($impresora, $number . "\n"); // Número de turno
-            fprintf ($impresora, $GS."!\x11"); // Set the character size
+            fprintf ($impresora, $number . ""); // Número de turno
+            //fprintf ($impresora, $GS."!\x11"); // Set the character size
             fprintf ($impresora, $queue . "\n");
             fprintf ($impresora, $ESC."d".chr(1)); // Blank line
             fprintf ($impresora, $ESC."E".chr(0)); // Not Bold
@@ -73,6 +73,7 @@ class Impresora {
             */
             //echo GS."V\x41".chr(3); // Cut
             //exit(0);
+            fclose($impresora);
 	}
 }
 /*

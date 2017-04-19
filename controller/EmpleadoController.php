@@ -17,8 +17,13 @@ class EmpleadoController{
     
     public function listTurno(){
         $idEmpleado = $_REQUEST['idEmpleado'];
+        $nombre = Empleado::getNombreObjeto($idEmpleado);
         $first = Turno::getFirstTurno($idEmpleado);
         $turnos = Turno::getTurnoPropio($idEmpleado);
+        $title = "Asignado";
+        $showNext = true;
+        $asignado = true;
+        $links = Array("En estado" => "enEstado", "Otras colas" => "otrasColas");
         require_once 'view/header.php';
         require_once 'view/empleado/list.php';
         require_once 'view/footer.php';
@@ -26,23 +31,34 @@ class EmpleadoController{
     
     public function otrasColas(){
         $idEmpleado = $_REQUEST['idEmpleado'];
+        $nombre = "";
         $first = Turno::getFirstTurnoNoE($idEmpleado);
         $turnos = Turno::getTurnoNoEmpleado($idEmpleado);
+        $title = "Otros";
+        $showNext = true;
+        $asignado = false;
+        $links = Array("En estado" => "enEstado", "Asignada" => "listTurno");
         require_once 'view/header.php';
-        require_once 'view/empleado/otrasColas.php';
+        require_once 'view/empleado/list.php';
         require_once 'view/footer.php';
     }
     
     public function enEstado(){
-        //$colas = Cola::getList();
         $idEmpleado = $_REQUEST['idEmpleado'];
-        //$cola = Cola::getColaTodo();
-        //foreach($colas as $c){
-        //    $turnos[] = array($c, Turno::getTurno($c->getIdCola()));
-        //}
+        $asignado = true;
+        $nombre = "";
+        $title = "En estado";
+        $showNext = false;
+        $links = Array("Asignada" => "listTurno", "Otras colas" => "otrasColas");
+        $colorcitos = array(2 => "estadoLlamando", 
+                            3 => "estadoAtendiendo",
+                            4 => "estadoNoPresento");
+        $colorcitosRec = array(2 => "estadoLlamandoRec",
+                               3 => "estadoAtendiendoRec",
+                               4 => "estadoNoPresentoRec");
         $turnos = Turno::getTurnoEstado();
         require_once 'view/header.php';
-        require_once 'view/empleado/enEstado.php';
+        require_once 'view/empleado/list.php';
         require_once 'view/footer.php';
     }
     
@@ -75,7 +91,7 @@ class EmpleadoController{
                 Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
                 Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
                 $listLlamado = Historial::history($_REQUEST['id']);
-                $d = 1;
+                $d = count($listLlamado);
                 $id = $_REQUEST['id'];
                 $idEmpleado = $_REQUEST['idEmpleado'];
                 $temp =Turno::getLetra(Turno::getIdColaObjeto($_REQUEST['id']));

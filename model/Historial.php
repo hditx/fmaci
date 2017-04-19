@@ -59,12 +59,12 @@ class Historial{
     public static function history($id){
       try {
           $mdb =  DataBase::getDb();
-          $sql = "SELECT fechaHora, estado, idEmpleado FROM HistorialEstado WHERE idTurno =".$id." AND estado = 2 ORDER BY fechaHora DESC";
+          $sql = "SELECT idHistorial, fechaHora, estado, idEmpleado FROM HistorialEstado WHERE idTurno =".$id." AND estado = 2 ORDER BY fechaHora DESC";
           $temp = $mdb->prepare($sql);
           $temp->execute();
           $resultado = $temp->fetchAll();
           foreach ($resultado as $fila){
-              $data[] = new Historial(0,0,$fila['fechaHora'], $fila['estado'], $fila['idEmpleado']);
+              $data[] = new Historial($fila['idHistorial'],0,$fila['fechaHora'], $fila['estado'], $fila['idEmpleado']);
           }
           $mdb = null;
       } catch (PDOException $e) {
@@ -72,6 +72,38 @@ class Historial{
           die();
       }
       return $data;
+    }
+    
+    public static function getFecha($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT DATE(fechaHora) AS fechaHora FROM HistorialEstado WHERE idHistorial =".$id;
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            $data = $resultado[0]['fechaHora'];
+            $mdb = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;  
+    }
+    
+    public static function getHora($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT TIME(fechaHora) AS fechaHora FROM HistorialEstado WHERE idHistorial =".$id;
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            $data = $resultado[0]['fechaHora'];
+            $mdb = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;  
     }
 }
 

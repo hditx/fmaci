@@ -261,7 +261,7 @@ class Cola{
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll();
-            return $resultado[0]['siguiente'] - 1;
+            return $resultado[0]['siguiente'];
             
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
