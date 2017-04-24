@@ -17,7 +17,7 @@ class AdministradorController{
         $colas = Cola::getList();
         require_once 'view/header.php';
         require_once 'view/administrador/listEmpleado.php';
-        require_once 'view/footer.php';
+        require_once 'view/footerNButton.php';
     }
     
     public function crear(){

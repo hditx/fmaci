@@ -17,12 +17,10 @@
             </select>
         </p>
         <p class="formulario">Empleado/s 
-            <select multiple name="idEmpleado[]">
-                <option value="-1">Ninguno</option>
-                <?php foreach ($empleados as $empleado){
-                    echo "<option value=".$empleado->getIdEmpleado().">".$empleado->getNombre()."</option>";
-                }?>
-            </select>
+            <br><input type="checkbox" name="idEmpleado[]" value="-1"><label>Ninguno</label><br>
+            <?php foreach ($empleados as $empleado){
+                echo "<input type='checkbox' name='idEmpleado[]' value=".$empleado->getIdEmpleado()."><label>".$empleado->getNombre()."</label><br>";
+            }?>
         </p>
         <p class="formulario">Siguiente <input class="inputText" type="text" name="siguiente" size="20" value="<?= $tmp->getSiguiente() ?>"></p>
         <p class="formulario">Letra <input class="inputText" type="text" name="letra" size="20" value="<?= $tmp->getLetra() ?>"></p>

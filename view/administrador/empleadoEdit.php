@@ -9,13 +9,11 @@
     <?php }?>
     <p class="formulario">Nombre <input class="inputText" type="text" name="nombre" size="20" value="<?= $tmp->getNombre()?>"></p>
     <p class="formulario">Apellido <input  class="inputText" type="text" name="apellido" size="20" value="<?= $tmp->getApellido()?>"></p>
-    <p class="formulario">Cola asignada: 
-        <select multiple name="idCola[]" size="4">
-            <option value="-1">Ninguno</option>
-            <?php foreach ($colas as $cola){
-                echo "<option value=".$cola->getIdCola().">".$cola->getNombreCola()."</option>";
-            }?>
-        </select>
+    <p class="formulario">Cola/s asignada/s: 
+        <br><input type="checkbox" name="idCola[]" value="-1"><label>Ninguno</label><br>
+        <?php foreach ($colas as $cola){
+            echo "<input type='checkbox' name='idCola[]' value=".$cola->getIdCola()."><label>".$cola->getNombreCola()."</label><br>";
+        }?>
     </p>
     <p><input class="myButton" type="submit" value="Guardar datos" name="B1"></p>
 </form>
