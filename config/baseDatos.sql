@@ -1,6 +1,6 @@
 /*
 SQLyog Enterprise - MySQL GUI v8.05 
-MySQL - 5.7.18-1 : Database - Farmacentro
+MySQL - 5.7.17-1 : Database - Farmacentro
 *********************************************************************
 */
 

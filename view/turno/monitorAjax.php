@@ -1,18 +1,15 @@
 <html>
 <head>
-    
+<script type="text/javascript" src="jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="my_script.js">
+    $(document).ready(function(){
+        function loadRefresh(){
+        $("#refresh").load("view/turno/refresh.php");
+        setInterval(loadRefresh,1000);
+    });}
+</script>
 </head>
 <body>
-    <div id="refresh"></div>
-    
-    <script type="text/javascript">
-        dis();
-        function dis(){
-            xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", "view/turno/refresh.php", false);
-            xmlhttp.send(null);
-            document.getElementById("refresh").innerHTML=xmlhttp.responseText;
-        }
-    </script>
+<div id="refresh"></div>
 </body>
 </html>

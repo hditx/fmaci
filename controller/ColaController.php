@@ -16,7 +16,7 @@ class ColaController{
       $empleados = Empleado::getEmpleado();
       require_once "view/header.php";
       require_once "view/cola/colaEdit.php";
-      require_once "view/footer.php";
+      require_once "view/footerNButton.php";
   }
   public function save(){
       if(isset($_REQUEST['idCola'])){
@@ -55,7 +55,7 @@ class ColaController{
       $empleados = Empleado::getEmpleado();
       require_once "view/header.php";
       require_once "view/cola/colaEdit.php";
-      require_once "view/footer.php";
+      require_once "view/footerNButton.php";
   }
 }
 ?>

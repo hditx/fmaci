@@ -245,6 +245,12 @@ form{
 .formulario{
     font-size: large;
     color:black;
+    width: 400px;
+    height: 40px;
+    background: #ffffff;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 .inputText{
     width: 310px;
@@ -270,7 +276,7 @@ form{
 }
 
 .buttonEmployed{
-    color: orange;   
+    color: #ff6600;   
     display:inline-block;
     background: #ffffff;
     border:solid 3px #ffffff;
@@ -365,7 +371,7 @@ form{
 #text{
     text-align: left;
     font-size: 30px;
-    color: orange;
+    color: #ff6600;
     padding: 7px;
 }
 
@@ -463,7 +469,7 @@ form{
     margin: 10px;
     padding: 5px;
 
-    color: orangered;
+    color: #ff6600;
 }
 .posicionEspera{
     position: relative;
@@ -496,7 +502,7 @@ form{
 
 #finAtencion{
     display:inline-block;
-    background: #00ff00;
+    background: #9bc928;
     width:230px;
     height: 70px;
     font-size: 2em;
@@ -666,7 +672,7 @@ form{
 #atendiendo{
     width: 400px;
     height: 60px;
-    background: orangered;
+    background: #ff6600;
     color:white;
     font-size: 50px;
     font-family: sans-serif;
@@ -674,4 +680,22 @@ form{
     border-radius: 10px;
     position: relative;
     top: 30px;
+}
+
+.registrarEmpleado{
+    background: #ff6600;
+    width: 400px;
+    min-height: 60px;
+    padding: 5px;
+    border-radius: 10px;
+}
+.check{
+    background: #FFFFFF;
+    width: 400px;
+    font-size: 20px;
+    min-height: 100px;
+    padding: 5px;
+    color: black;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }

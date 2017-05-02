@@ -1,13 +1,14 @@
+<div align="center">
 <?php if($tmp->getIdCola() == null){ ?>
-<h1>Crear Cola</h1>
+<h1 class="registrarEmpleado">Crear Cola</h1>
 <?php } else{ ?>
-<h1>Modificar Cola</h1>
+<h1 class="registrarEmpleado">Modificar Cola</h1>
 <?php }?>
 <form method="POST" action="index.php?c=cola&a=save">
         <?php if($tmp->getIdCola() != null){ ?>
         <input type="hidden" name="idCola" value="<?= $tmp->getIdCola() ?>">
         <?php }?>
-        <p class="formulario">Nombre cola <input class="inputText" type="text" name="nombreCola" size="20" value="<?= $tmp->getNombreCola() ?>"></p>
+        <p class="formulario">Nombre<input class="inputText" type="text" name="nombreCola" size="20" value="<?= $tmp->getNombreCola() ?>"></p>
         <p class="formulario">Hijo de...
             <select name="idPadre">
                 <option value = "-1">Ninguno</option>
@@ -16,13 +17,15 @@
                 }?>
             </select>
         </p>
-        <p class="formulario">Empleado/s 
-            <br><input type="checkbox" name="idEmpleado[]" value="-1"><label>Ninguno</label><br>
+        <p class="formulario">Empleado/s </p>
+            
+        <p class="check"><input type="checkbox" name="idEmpleado[]" value="-1"><label>Ninguno</label><br>
             <?php foreach ($empleados as $empleado){
                 echo "<input type='checkbox' name='idEmpleado[]' value=".$empleado->getIdEmpleado()."><label>".$empleado->getNombre()."</label><br>";
             }?>
         </p>
         <p class="formulario">Siguiente <input class="inputText" type="text" name="siguiente" size="20" value="<?= $tmp->getSiguiente() ?>"></p>
         <p class="formulario">Letra <input class="inputText" type="text" name="letra" size="20" value="<?= $tmp->getLetra() ?>"></p>
-        <p><input class="myButton" type="submit" value="Guardar datos" name="B1"></p>  
+        <p align="center"><input class="myButton" type="submit" value="Guardar datos" name="B1"></p>  
 </form>
+</div>

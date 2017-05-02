@@ -59,6 +59,8 @@ class Empleado{
         try {
             $mdb =  DataBase::getDb();
             $sql = "DELETE FROM Empleado WHERE idEmpleado = ".$id;
+            $sql2 = "DELETE FROM cola_empleado WHERE idEmpleado = ".$id;
+            $temp2 = $mdb->prepare($sql2);
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $mdb = null;
