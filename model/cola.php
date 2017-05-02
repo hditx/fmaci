@@ -199,6 +199,8 @@ class Cola{
         try {
             $mdb =  DataBase::getDb();
             $temp = $mdb->prepare("DELETE FROM Cola WHERE idCola = $id");
+            $temp2 = $mdb->prepare("DELETE FROM cola_empleado WHERE idCola = ".$id );
+            $temp2->execute();
             $temp->execute();
             $mdb = null;
         } catch (PDOException $e) {

@@ -1,29 +1,23 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Farmacentro</title>
+<div class="doscolumnas">
+    <div style="izquierda">
+        <video width="440" height="320" controls>
+        <source src="Botear usb.mp4" type="video/mp4">
+        </video>
+    </div>
+    <table id="derecha">
+        <tr>
+            <th class="letra">Llamados</th>
+        </tr>
         
-    </head>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <body>
-        <script>
-            $("#refresh").load("view/monitor.php");
-        </script>
-        <div id="refresh">
-            <div class="myTd2">Llamados</div>
-            <?php require_once 'model/Turno.php';
-                $turnos = Turno::getMonitor();
-                foreach ($turnos as $t) {
+            <?php foreach ($turnos as $t) {
                 if($t->getAtendido() == 2){?>
-
-                    <div class="modif"><?=Turno::getLetra($t->getIdCola())."".$t->getPosicion()?>asdas</div>
+                    <tr><td class="modif"><?=Turno::getLetra($t->getIdCola())."".$t->getPosicion()?></td></tr>
                 <?php }else{?>
-
-                    <div class="myTd2"><?= Turno::getLetra($t->getIdCola())."".$t->getPosicion()?></div>
+                    <tr>
+                        <td class="letra"><?= Turno::getLetra($t->getIdCola())."".$t->getPosicion()?></td>
+                    </tr>
                 <?php } ?>
-            <?php }?>        
-              
-        </div>
+            <?php }?>
         
-    </body>
-</html>
+    </table>
+</div>

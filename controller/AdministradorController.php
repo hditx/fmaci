@@ -25,7 +25,7 @@ class AdministradorController{
         $colas = Cola::getList();
         require_once 'view/header.php';
         require_once 'view/administrador/empleadoEdit.php';
-        require_once 'view/footer.php';
+        require_once 'view/footerNButton.php';
     }
 
 
@@ -66,7 +66,7 @@ class AdministradorController{
         $colas = Cola::getList();
         require_once 'view/header.php';
         require_once 'view/administrador/empleadoEdit.php';
-        require_once 'view/footer.php';        
+        require_once 'view/footerNButton.php';        
     }
 }
 ?>
