@@ -2,6 +2,7 @@
     <head>
         <title>Farmacentro</title>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="refresh" content="1;url=index.php?c=turno&a=monitor"/>
         <meta name="viwport" content="width=device-width, initial-scape=1.0">
         <link rel="stylesheet" type="text/css" href="view/stylesheet.css">
