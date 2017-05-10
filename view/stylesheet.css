@@ -40,15 +40,16 @@ form{
     padding: 2px 0 10px 0;
     cursor: pointer;
     display: block;
-    width: 220px;
+    width: 600px;
     margin: 20px;
     text-align: left;
     width: 405px;
-    position: relative;
-    top: 15px;
+    position: absolute;
+    top: 230px;
+    right: 783px;
 }
 .nombre{
-    width: 410px;
+    width: 500px;
     height: 50px;
     padding: 5px;
     background: white;
@@ -205,7 +206,7 @@ form{
     text-align:center;
     padding: .5em 2em .55em;
     display: inline-block;
-    min-width:360px; 
+    min-width:250px;
     font-weight: bold;
 }
 
@@ -213,7 +214,6 @@ form{
     background: #ff6600;
     border:solid 3px #ffffff;
     width: 100%;
-    height: 40px;
     font-size: 2em;
     -webkit-border-top-left-radius: 20px;
     -webkit-border-top-right-radius: 20px;
@@ -227,7 +227,6 @@ form{
     background: #9bc928;
     border:solid 3px #ffffff;
     width: 100%;
-    height: 40px;
     min-height: 2em;
     font-size: 1em;
     -webkit-border-bottom-right-radius: 20px;
@@ -323,9 +322,9 @@ form{
     margin-bottom: 2px;
     margin-top: 2px;
     margin-left: 2px;
-    position: relative;
-    top: 10px;
-    left: 900px;
+    position: absolute;
+    top: 30px;
+    left: 1450px;
 }
 
 .rectanguloMostrar {
@@ -474,21 +473,21 @@ form{
     color: #ff6600;
 }
 .posicionEspera{
-    position: relative;
-    top: -45px;
-    right: 1000px;
+    position: absolute;
+    top: 700px;
+    right: 1500px;
 }
 
 .posicionEsperaLl{
-    position: relative;
-    top: -85px;
-    right: 635px;
+    position: absolute;
+    top: 700px;
+    right: 1500px;
 }
 
 #noPresente{
-    position: relative;
-    top: -200px;
-    right: 352px;
+    position: absolute;
+    top: 600px;
+    right: 1500px;
     display:inline-block;
     background: #ff0000;
     height: 50px;
@@ -514,9 +513,9 @@ form{
     border-radius: 10px;
     margin: 10px;
     padding: 5px;
-    position: relative;
-    top: -50px;
-    right: -250px;
+    position: absolute;
+    top: 700px;
+    right: 120px;
 }
 
 #der {
@@ -601,9 +600,9 @@ form{
 }
 
 .botonLlama{
-    position: relative;
-    top: 30px;
-    right: -450px;
+    position: absolute;
+    top: 170px;
+    right: 680px;
     height: 50px;
     width: 393px;
     background: yellow;
@@ -626,9 +625,9 @@ form{
     margin-left: 1px;
 }
 .posicion{
-    position: relative;
-    top: 33px;
-    left: 450px;
+    position: absolute;
+    top: 250px;
+    right: 680px;
 }
 .atender{
     color: white;   
@@ -644,8 +643,8 @@ form{
     margin: 10px;
     padding: 5px;
     position: absolute;
-    top: 500px;
-    right: 30px;
+    top: 700px;
+    right: 50px;
 }
 .textFecha{
     font-size: 60px;
@@ -672,7 +671,7 @@ form{
 }
 
 #atendiendo{
-    width: 410px;
+    width: 500px;
     height: 60px;
     background: #ff6600;
     color:white;
@@ -680,8 +679,9 @@ form{
     font-family: sans-serif;
     padding: 4px;
     border-radius: 10px;
-    position: relative;
-    top: 30px;
+    position: absolute;
+    top: 180px;
+    right: 700px;
 }
 
 .registrarEmpleado{
@@ -690,6 +690,9 @@ form{
     min-height: 60px;
     padding: 5px;
     border-radius: 10px;
+    position: absolute;
+    top: 160px;
+    right: 800px;
 }
 .check{
     background: #FFFFFF;
