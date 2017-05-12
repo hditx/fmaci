@@ -20,6 +20,12 @@
     </script>
 </head>
 <body>
+    <div style="izquierda">
+        <video width="440" height="320" controls autoplay loop>
+        <source src="simpsons.mp4" type="video/mp4">
+        </video>
+    </div>
+    
     <div id="refresh"></div>
 </body>
 </html>
