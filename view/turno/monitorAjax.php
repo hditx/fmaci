@@ -6,11 +6,11 @@
     <title>
         Farmacentro
     </title>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="config/jquery-1.7.2.min.js"></script>
     <script>
         $(document).on("ready", function(){
             function reloadTurno(){
-                $.get('view/turno/refresh.php', function(data){
+                $.get('index.php?c=turno&a=updateMonitor', function(data){
                     $("#refresh").html(data);
                     
                 });

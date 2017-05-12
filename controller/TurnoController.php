@@ -17,6 +17,11 @@ class TurnoController{
         //require_once 'view/footerNButton.php';
     }
     
+    public function updateMonitor(){
+        $turnos = Turno::getMonitor();
+        require_once 'view/turno/refresh.php';
+    }
+    
     public function sacarTurno(){
 //        if(isset($_REQUEST['dni'])){
 //            $temp = new Cliente(null);
