@@ -1,4 +1,4 @@
-* {
+ *{
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
@@ -19,14 +19,12 @@ p{
 	column-count: 2;
 }
 .modif {
-        border-radius: 20px;
-        background: #FFFFFF;
-        min-width:250px;
-	color: red;
-	animation-duration: 2s;
-        animation-name: parpadeo;
-        animation-iteration-count: infinite;
-        animation-timing-function: steps(2, start);
+    background: #FFFFFF;
+    color: green;
+    animation-duration: 0.5s;
+    animation-name: parpadeo;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(0.5, start);
 }
 
 .normal{
@@ -40,8 +38,8 @@ p{
 #izquierda {
 	margin: 0px;
 	position:absolute;
-	top: 1%;
-	left: 1%;
+	top: 3%;
+	left: 2%;
 }
 #derecha{
         font-size: 80px;

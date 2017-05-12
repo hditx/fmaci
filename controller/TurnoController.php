@@ -19,6 +19,7 @@ class TurnoController{
     
     public function updateMonitor(){
         $turnos = Turno::getMonitor();
+
         require_once 'view/turno/refresh.php';
     }
     
