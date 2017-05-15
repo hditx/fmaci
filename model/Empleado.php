@@ -119,6 +119,26 @@ class Empleado{
         }
         return $data;
     }
+    
+    public static function getAsignadas($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT idCola FROM cola_empleado WHERE idEmpleado =".$id;
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            foreach ($resultado as $fila){
+                $data[] = $fila['idCola'];
+            }
+            $mdb = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
+
+
     public static function actualizar($id, $estado){
         try {
             $mdb =  DataBase::getDb();

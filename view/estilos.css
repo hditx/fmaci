@@ -19,12 +19,11 @@ p{
 	column-count: 2;
 }
 .modif {
-    background: #FFFFFF;
     color: green;
-    animation-duration: 0.5s;
+    animation-duration: 2s;
     animation-name: parpadeo;
     animation-iteration-count: infinite;
-    animation-timing-function: steps(0.5, start);
+    animation-timing-function: steps(2 ,start);
 }
 
 .normal{

@@ -14,9 +14,13 @@
         <p class="formulario">Cola/s asignada/s: </p>
         <p class="check">
         <input type="checkbox" name="idCola[]" value="-1"><label>Ninguno</label><br>
-            <?php foreach ($colas as $cola){
-                echo "<input type='checkbox' name='idCola[]' value=".$cola->getIdCola()."><label>".$cola->getNombreCola()."</label><br>";
-            }?>
+        <?php foreach ($colas as $cola){
+                if($tmp->getIdEmpleado() != null){
+                    echo "<input type='checkbox' name='idCola[]' value=".$cola->getIdCola()." ".(($asig[$cola->getIdCola()] == $cola->getIdCola()) ? 'checked' : '')."><label>".$cola->getNombreCola()."</label><br>";
+                }else {
+                    echo "<input type='checkbox' name='idCola[]' value=".$cola->getIdCola()."><label>".$cola->getNombreCola()."</label><br>";
+                }
+         }?>
         </p>
         <p align="center"><input class="myButton" type="submit" value="Guardar datos" name="B1"></p>
     </form>

@@ -184,6 +184,23 @@ class Turno{
         }
         return $data;
     }
+    
+    public static function getNombreEmpleadoMonitor($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT nombre FROM Empleado WHERE idEmpleado = (SELECT idEmpleado FROM HistorialEstado WHERE idTurno =".$id." )";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            $data = $resultado[0]['nombre'];
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
+
 
     public static function getNombre($id){
         try {

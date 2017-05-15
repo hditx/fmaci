@@ -63,7 +63,12 @@ class AdministradorController{
     }
     public function modificar(){
         $tmp = Empleado::get($_REQUEST['id']);
+        $asignadas = Empleado::getAsignadas($_REQUEST['id']);
         $colas = Cola::getList();
+        $asig = array();
+        for ($i = 0; $i < count($asignadas) ; $i++){
+            $asig += [$asignadas[$i] => $asignadas[$i]];   
+        }
         require_once 'view/header.php';
         require_once 'view/administrador/empleadoEdit.php';
         require_once 'view/footerNButton.php';        
