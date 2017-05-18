@@ -15,7 +15,7 @@
         <div id="mensajes">
             <?php foreach ($turnos as $t){?>
                 <div>    
-                    <a class="myTd1" href="?c=empleado&a=estadoTurno&id=<?=$t->getIdTurno()?>&estado=2&idEmpleado=<?=$idEmpleado?>">
+                    <a class="myTd1" href="?c=empleado&a=estadoTurno&id=<?=$t->getIdTurno()?>&estado=<?= ($showNext)? 2 : $t->getAtendido()?>&idEmpleado=<?=$idEmpleado?>">
                         <div class="<?= ($showNext)? "cuadrado": $colorcitos[$t->getAtendido()] ?>">
                                 <div class="letraCuadrado"><?= Turno::getLetra($t->getIdCola()) . "" . $t->getPosicion()." "?></div>
                             <div class="<?= ($showNext) ? "rectangulo" : $colorcitosRec[$t->getAtendido()]?>">

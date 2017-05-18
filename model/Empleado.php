@@ -57,10 +57,9 @@ class Empleado{
     
     public static function delete($id){
         try {
+            Empleado::deleteUnion($id);
             $mdb =  DataBase::getDb();
             $sql = "DELETE FROM Empleado WHERE idEmpleado = ".$id;
-            $sql2 = "DELETE FROM cola_empleado WHERE idEmpleado = ".$id;
-            $temp2 = $mdb->prepare($sql2);
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $mdb = null;
@@ -167,6 +166,7 @@ class Empleado{
     
     public static function saveUnion($idEmpleado, $idCola){
         try {
+            Empleado::deleteUnion($idEmpleado);
             $mdb =  DataBase::getDb();
             $sql = "INSERT cola_empleado(idCola, idEmpleado) VALUES (".$idCola.", ".$idEmpleado.")";
             $temp = $mdb->prepare($sql);
@@ -178,6 +178,20 @@ class Empleado{
         }        
     }
     
+    public static function deleteUnion($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "DELETE FROM cola_empleado WHERE idEmpleado =".$id;
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $mdb = null;            
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }        
+    }
+
+
     public static function getNuevoEmpleado(){
         try {
             $mdb =  DataBase::getDb();

@@ -8,13 +8,15 @@ class Turno{
     private $posicion;
     private $atendido;
     private $hora;
+    private $enEspera;
     
-    function __construct($idTurno, $idCola = "", $posicion = "", $atendido = "", $hora = "") {
+    function __construct($idTurno, $idCola = "", $posicion = "", $atendido = "", $hora = "", $enEspera = "") {
         $this->setIdTurno($idTurno);
         $this->setIdCola($idCola);
         $this->setPosicion($posicion);
         $this->setAtendido($atendido);
         $this->setHora($hora);
+        $this->setEnEspera($enEspera);
     }
 
     function getIdTurno() {
@@ -41,6 +43,10 @@ class Turno{
         return $this->hora;
     }
     
+    function getEnEspera(){
+        return $this->enEspera;
+    }
+            
     function setAtendido($atendido) {
         $this->atendido = $atendido;
     }
@@ -64,11 +70,15 @@ class Turno{
     function setHora($hora){
         $this->hora = $hora;
     }
+    
+    function setEnEspera($enEspera){
+        $this->enEspera = $enEspera;
+    }
 
     public function save(){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "INSERT Turno(idCola, posicion, atendido, hora) VALUES (".$this->getIdCola().",".$this->getPosicion().",".$this->getAtendido().", TIME(NOW()))";
+            $sql = "INSERT Turno(idCola, posicion, atendido, hora, enEspera) VALUES (".$this->getIdCola().",".$this->getPosicion().",".$this->getAtendido().", TIME(NOW()), 0)";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $mdb = null;  
@@ -170,7 +180,7 @@ class Turno{
     public static function getMonitor(){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT * FROM Turno WHERE atendido NOT IN (0,1,4) ORDER BY atendido, hora ";
+            $sql = "SELECT * FROM Turno WHERE atendido NOT IN (0,1,4) AND enEspera <> 1 ORDER BY atendido, hora ";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
@@ -300,7 +310,7 @@ class Turno{
     public static function getTurnoEstado(){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idTurno, idCola, posicion, atendido, hora FROM Turno WHERE atendido IN (2,3,4) ORDER BY hora";
+            $sql = "SELECT idTurno, idCola, posicion, atendido, hora, enEspera FROM Turno WHERE atendido IN (2,3,4) AND enEspera = 1 ORDER BY hora";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
@@ -313,5 +323,24 @@ class Turno{
             die();
         }
         return $data;
+    }
+    
+    public static function setEnEsperaObjeto($id){
+        echo "hola1";
+        try {
+            echo "hola2";
+            $mdb =  DataBase::getDb();
+            echo "hola3";
+            $sql = "UPDATE Turno SET enEspera = 1 WHERE idTurno = ".$id;
+            echo "hola4";
+            $temp = $mdb->prepare($sql);
+            echo "hola5";
+            $temp->execute();
+            echo "hola6";
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
     }
 }

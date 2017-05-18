@@ -23,5 +23,5 @@
 
 <div align="right">
 <a input id="finAtencion" href="index.php?c=empleado&a=estadoTurno&id=<?= $id ?>&estado=1&idEmpleado=<?=$idEmpleado?>">Fin de Atención</a>
-<a class="posicionEspera" id="espera" href="index.php?c=empleado&a=estadoTurno&id=<?$id?>&estado=3&idEmpleado=<?=$idEmpleado?>&espera=1">Enviar a espera</a>
+<a class="posicionEspera" id="espera" href="index.php?c=empleado&a=estadoTurno&id=<?=$id?>&estado=3&idEmpleado=<?=$idEmpleado?>&espera=1&enEspera=1">Enviar a espera</a>
 </div>

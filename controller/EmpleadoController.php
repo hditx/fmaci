@@ -76,6 +76,9 @@ class EmpleadoController{
             case 1:
             case 4:
                 //ATENDIDO Y ABANDONO
+                if($_REQUEST['estado'] == 4){
+                    Turno::setEnEsperaObjeto($_REQUEST['id']);
+                }
                 if(isset($_REQUEST['dni']) && isset($_REQUEST['name'])){
                     Cliente::saveCliente($_REQUEST['name'], $_REQUEST['apellido'], $_REQUEST['dni'],
                             $_REQUEST['telefono']);
@@ -88,6 +91,9 @@ class EmpleadoController{
                 break;
             case 2:
                 //LLAMADO
+                if(isset($_REQUEST['enEspera'])){
+                    Turno::setEnEsperaObjeto($_REQUEST['id']);
+                }
                 Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
                 Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
                 $listLlamado = Historial::history($_REQUEST['id']);
@@ -110,6 +116,10 @@ class EmpleadoController{
                     $tdni = $_REQUEST['dni'];
                 }else{
                     $tCliente = new Cliente(null);
+                }
+                if(isset($_REQUEST['enEspera'])){
+                    echo "espera";
+                    Turno::setEnEsperaObjeto($_REQUEST['id']);
                 }
                 Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
                 Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
