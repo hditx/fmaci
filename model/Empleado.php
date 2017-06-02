@@ -224,4 +224,17 @@ class Empleado{
             die();
         }        
     }
+    
+    public static function saveSession($idEmpleado, $idTurno, $estado){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "INSERT SesionEmpleado (idUsuario, idTurno, estado, ultimaSesion) VALUES (".$idEmpleado.", ".$idTurno.", ".$estado.", NOW())";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $mdb = null;            
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }        
+    }
 }
