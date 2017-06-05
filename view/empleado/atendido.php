@@ -10,6 +10,7 @@
 </div>
 
 <div id="atendiendo">Atendiendo</div>
+<div class="formUbicacion" >
 <form method="POST" name="seleccion" >
     <input type="hidden" name="id" value="<?= $id?>">
     <input type="hidden" name="estado" value="3">
@@ -20,7 +21,7 @@
     <div class="nombre"><p class="formulario">TEL <input class="inputText" type="text" name="telefono" size="20" value="<?= $tCliente->getTelefono()?>"></p></div>
     <div class="nombre"><p class="formulario">Dirección<input class="inputText" type="text" name="direccion" size="20"></p></div>
 </form>
-
+</div>
 <div align="right">
 <a input id="finAtencion" href="index.php?c=empleado&a=estadoTurno&id=<?= $id ?>&estado=1&idEmpleado=<?=$idEmpleado?>">Fin de Atención</a>
 <a class="posicionEspera" id="espera" href="index.php?c=empleado&a=estadoTurno&id=<?=$id?>&estado=3&idEmpleado=<?=$idEmpleado?>&espera=1&enEspera=1">Enviar a espera</a>

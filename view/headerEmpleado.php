@@ -9,4 +9,7 @@
         </title>
     </head>
     <body>
-        
+        <div align="left">
+            <b>Bienvenido <?= $_SESSION['nombre'] ?>!</b>
+            <a href="index.php?c=empleado&a=cerrarSesion">Cerrar Sesión</a>
+        </div>
