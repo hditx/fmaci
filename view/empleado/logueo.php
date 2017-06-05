@@ -1,14 +1,14 @@
 <br><h1 align="center">Iniciar Sesion</h1>
-<div align="center">
+<div align="center"><br>
     <form method="POST" action="index.php?c=empleado&a=validateSession" align="center" name="login">
     <div>
-        <i class="userbox fa fa-user-circle-o" aria-hidden="true"></i> <input name="usuario" class="user" type="text" placeholder="Usuario">
+        <img class="userbox" src="view/images/user.ico" height="15px" width="15px" > <input class="inputText" name="usuario" class="user" type="text" placeholder="Usuario">
     </div>
     <div>
-        <i class="userbox fa fa-lock" aria-hidden="true"></i> <input name="pass" class="user" type="password" placeholder="Contraseña">
+         <img class="userbox"  src="view/images/lock.ico" height="17px" width="17px" > <input class="inputText" name="pass" class="user" type="password" placeholder="Contraseña">
     </div>
     <div class="userbox">
-        <i class="fa fa-sign-in" aria-hidden="true" onclick="login.submit()">asd</i>
+        <img src="view/images/login.ico" height="25px" width="30px" onclick="login.submit()">
     </div>
 </form>
 </div>

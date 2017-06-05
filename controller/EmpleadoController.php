@@ -5,6 +5,7 @@ require_once 'config/DataBase.php';
 require_once 'model/Empleado.php';
 require_once 'model/Historial.php';
 require_once 'model/Cliente.php';
+require_once 'model/Sesion.php';
 
 class EmpleadoController{
     public function index(){
@@ -28,12 +29,20 @@ class EmpleadoController{
             }catch(PDOException $e){
                 echo "ERROR";
             }
-            if($resultado !== false){
+            if($resultado !== false && $password == $resultado[0]['contrasenia']){
                 $_SESSION['usuario'] = $usuario;
                 $_SESSION['nombre'] = $resultado[0]['nombre'];
-                header('Location: index.php?c=empleado&a=index');
+                $temp = Sesion::getLastSession($_SESSION['usuario']);
+                if($temp->getEstado() != null){
+                    $estado = $temp->getEstado();
+                    $id = $temp->getIdTurno();
+                    $idEmpleado = $temp->getIdUsuario();
+                    header("Location: index.php?c=empleado&a=estadoTurno&estado=$estado&id=$id&idEmpleado=$idEmpleado");
+                }else{
+                    header('Location: index.php?c=empleado&a=index');
+                }
             }else{
-                echo "ERROR";
+                header('Location: index.php?c=empleado&a=index');
             }
     }
     
@@ -47,7 +56,7 @@ class EmpleadoController{
             $showNext = true;
             $asignado = true;
             $links = Array("En estado" => "enEstado", "Otras colas" => "otrasColas");
-            require_once 'view/header.php';
+            require_once 'view/headerEmpleado.php';
             require_once 'view/empleado/list.php';
             require_once 'view/footer.php';
         }else{
@@ -65,7 +74,7 @@ class EmpleadoController{
             $showNext = true;
             $asignado = false;
             $links = Array("En estado" => "enEstado", "Asignada" => "listTurno");
-            require_once 'view/header.php';
+            require_once 'view/headerEmpleado.php';
             require_once 'view/empleado/list.php';
             require_once 'view/footer.php';
         }else{
@@ -88,7 +97,7 @@ class EmpleadoController{
                                    3 => "estadoAtendiendoRec",
                                    4 => "estadoNoPresentoRec");
             $turnos = Turno::getTurnoEstado();
-            require_once 'view/header.php';
+            require_once 'view/headerEmpleado.php';
             require_once 'view/empleado/list.php';
             require_once 'view/footer.php';
         }else{
@@ -122,7 +131,12 @@ class EmpleadoController{
                     Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
                     Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
                     $idEmpleado = $_REQUEST['idEmpleado'];
-                    header("Location: index.php?c=empleado&a=listTurno&idEmpleado=$idEmpleado");
+                    if($_REQUEST['mostrar'] == 1){
+                        $id = $_REQUEST['id'];
+                        header("Location: index.php?c=empleado&a=estadoTurno&estado=3&idEmpleado=$idEmpleado&id=$id");
+                    }else{
+                        header("Location: index.php?c=empleado&a=listTurno&idEmpleado=$idEmpleado");
+                    }                    
                     break;
                 case 2:
                     //LLAMADO
@@ -137,9 +151,11 @@ class EmpleadoController{
                     $turno = Turno::getTurnoUnico($id);
                     $idEmpleado = $_REQUEST['idEmpleado'];
                     if(isset($_REQUEST['espera'])){
-                        header("Location: index.php?c=empleado&a=index");
+                        $atendido = $_REQUEST['estado'];
+                        $idTurno = $_REQUEST['id'];
+                        header("Location: index.php?c=empleado&a=cerrarSesion&idTurno=$idTurno&atendido=$atendido");
                     }else{
-                        require_once 'view/header.php';
+                        require_once 'view/headerEmpleado.php';
                         require_once 'view/empleado/llamarTurno.php';
                         require_once 'view/footerNButton.php';
                     }
@@ -166,7 +182,7 @@ class EmpleadoController{
                         $idTurno = $_REQUEST['id'];
                         header("Location: index.php?c=empleado&a=cerrarSesion&idTurno=$idTurno&atendido=$atendido");
                     }else{
-                        require_once 'view/header.php';
+                        require_once 'view/headerEmpleado.php';
                         require_once 'view/empleado/atendido.php';
                         require_once 'view/footerNButton.php';
                     }

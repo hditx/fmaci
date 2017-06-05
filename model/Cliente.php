@@ -132,7 +132,7 @@ Class Cliente{
             $resultado = $temp->fetchAll(); 
             $mdb = null;
             $data = new Cliente ($resultado[0]['idCliente'], $resultado[0]['nombre'], 
-                    $resultado[0]['apellido'], $resultado[0][dni], $resultado[0]['direccion'], $resultado[0]['telefono']);
+                    $resultado[0]['apellido'], $resultado[0]['dni'], $resultado[0]['direccion'], $resultado[0]['telefono']);
             
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
