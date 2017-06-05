@@ -52,6 +52,22 @@ class Sesion{
     function setUltimaSesion($ultimaSesion) {
         $this->ultimaSesion = $ultimaSesion;
     }
+
+    static function getUser($user, $password){
+        try{
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT * FROM Empleado WHERE idEmpleado = $user AND contrasenia = '$password' LIMIT 1";
+            $sta = $mdb->prepare($sql);
+            $sta->execute();
+            $resultado = $sta->fetchAll();
+            
+            return $resultado;
+            
+        }catch(PDOException $e){
+            echo "ERROR";
+        }
+    }
+
     
     public static function getLastSession($id){
         try {
