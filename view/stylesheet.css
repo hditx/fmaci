@@ -238,6 +238,7 @@ select{
     -moz-border-radius-topright: 20px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;    
+    padding-top: 15px;
 }
 
 .queueInformation{
@@ -253,6 +254,8 @@ select{
     -moz-border-radius-bottomleft: 20px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;    
+    padding-top: 15px;
+    
 }
 
 .center {
