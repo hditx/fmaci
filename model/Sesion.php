@@ -72,7 +72,8 @@ class Sesion{
     public static function getLastSession($id){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT * FROM SesionEmpleado WHERE idUsuario =$id AND ultimaSesion = (SELECT MAX(ultimaSesion) FROM SesionEmpleado WHERE idUsuario = $id)";
+            $sql = "SELECT * FROM SesionEmpleado WHERE idUsuario =$id ORDER BY ultimaSesion DESC LIMIT 1";
+//            $sql = "SELECT * FROM SesionEmpleado WHERE idUsuario =$id AND ultimaSesion = (SELECT MAX(ultimaSesion) FROM SesionEmpleado WHERE idUsuario = $id)";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
