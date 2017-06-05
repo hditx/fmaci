@@ -9,11 +9,9 @@
         </title>
     </head>
     <body>
-<<<<<<< HEAD
-        <div align="right">
+    <?php if (isset($_SESSION['nombre'])) { ?>
+        <div align="left">
             <b>Bienvenido <?= $_SESSION['nombre'] ?>!</b>
             <a href="index.php?c=empleado&a=cerrarSesion">Cerrar Sesión</a>
         </div>
-=======
-        
->>>>>>> 66e1306d05bf7fb69c16b9b2b7b2cc64610278f7
+    <?php } ?>
