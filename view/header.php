@@ -12,6 +12,6 @@
     <?php if (isset($_SESSION['nombre'])) { ?>
         <div align="left">
             <b>Bienvenido <?= $_SESSION['nombre'] ?>!</b>
-            <a href="index.php?c=empleado&a=cerrarSesion">Cerrar Sesión</a>
+            <a href="index.php?c=usuario&a=cerrarSesion">Cerrar Sesión</a>
         </div>
     <?php } ?>

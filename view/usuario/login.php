@@ -1,6 +1,6 @@
 <br><h1 align="center">Iniciar Sesion</h1>
 <div align="center"><br>
-    <form method="POST" action="index.php?c=empleado&a=validateSession" align="center" name="login">
+    <form method="POST" action="index.php?c=usuario&a=validateSession" align="center" name="login">
     <div>
         <img class="userbox" src="view/images/user.ico" height="15px" width="15px" > <input class="inputText" name="usuario" class="user" type="text" placeholder="Usuario">
     </div>
