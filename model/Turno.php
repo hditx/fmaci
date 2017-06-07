@@ -198,7 +198,7 @@ class Turno{
     public static function getNombreEmpleadoMonitor($id){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT nombre FROM Empleado WHERE idEmpleado = (SELECT idEmpleado FROM HistorialEstado WHERE idTurno =".$id." )";
+            $sql = "SELECT nombre FROM Usuario WHERE usuarioId = (SELECT idEmpleado FROM HistorialEstado WHERE idTurno = $id )";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 

@@ -335,7 +335,7 @@ class Cola{
     public static function getEmpleadoAsignado($id){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT nombre FROM Empleado WHERE idEmpleado IN (SELECT idEmpleado FROM cola_empleado WHERE idCola = ".$id.")";
+            $sql = "SELECT nombre FROM Usuario WHERE usuarioId IN (SELECT idEmpleado FROM cola_empleado WHERE idCola = $id)";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll();

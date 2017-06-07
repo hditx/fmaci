@@ -23,7 +23,7 @@ class EmpleadoController{
         $password = $_POST['pass'];
         $resultado = Sesion::getUser($usuario, $password);
         if(count($resultado) == 1){
-            $_SESSION['usuario'] = $resultado[0]['idEmpleado'];
+            $_SESSION['usuario'] = $resultado[0]['usuarioId'];
             $_SESSION['nombre'] = $resultado[0]['nombre'];
             $temp = Sesion::getLastSession($_SESSION['usuario']);
             if($temp->getEstado() != null){
@@ -41,6 +41,9 @@ class EmpleadoController{
     
     public function listTurno(){
         if(isset($_SESSION['usuario'])){
+            Empleado::saveSession($_SESSION['usuario'], "null", "null");
+
+            
             $idEmpleado = $_SESSION['usuario'];
             $nombre = Empleado::getNombreObjeto($idEmpleado);
             $first = Turno::getFirstTurno($idEmpleado);
@@ -59,6 +62,8 @@ class EmpleadoController{
    
     public function otrasColas(){
         if(isset($_SESSION['usuario'])){
+
+
             $idEmpleado = $_SESSION['usuario'];
             $nombre = "";
             $first = Turno::getFirstTurnoNoE($idEmpleado);
@@ -109,6 +114,9 @@ class EmpleadoController{
 
     public function estadoTurno(){
         if(isset($_SESSION['usuario'])){
+            Empleado::saveSession($_SESSION['usuario'], (isset($_REQUEST['id']) ? $_REQUEST['id'] : "null"), 
+                    (isset($_REQUEST['estado']) ? $_REQUEST['estado'] : "null"));
+            
             switch ($_REQUEST['estado']){
                 case 1:
                 case 4:
@@ -187,10 +195,10 @@ class EmpleadoController{
     }
     
     public function cerrarSesion(){
-        if(isset($_SESSION['usuario'])){
-            Empleado::saveSession($_SESSION['usuario'], (isset($_REQUEST['idTurno']) ? $_REQUEST['idTurno'] : "null"), 
-                    (isset($_REQUEST['atendido']) ? $_REQUEST['atendido'] : "null"));
-        }
+        //~ if(isset($_SESSION['usuario'])){
+            //~ Empleado::saveSession($_SESSION['usuario'], (isset($_REQUEST['idTurno']) ? $_REQUEST['idTurno'] : "null"), 
+                    //~ (isset($_REQUEST['atendido']) ? $_REQUEST['atendido'] : "null"));
+        //~ }
         echo $_SESSION['usuario'] . " ". $_REQUEST['idTurno'] . " " .$_REQUEST['atendido'];
         $_SESSION = array();
         session_destroy();
