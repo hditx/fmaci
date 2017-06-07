@@ -50,6 +50,10 @@ select{
         visibility: hidden;
     }
 }
+#nombreMonitor{
+    font-size: 42px;
+}
+
 .nombre{
     width: 500px;
     height: 50px;
@@ -665,8 +669,13 @@ select{
 }
 .posicion{
     position: absolute;
-    top: 205px;
-    right: 480px;
+    top: 31.8%;
+    right: 35.1%;
+}
+.posicionAdmin{
+    position: absolute;
+    top: 3.8%;
+    right: 35.1%;
 }
 .atender{
     color: white;   
@@ -724,14 +733,14 @@ select{
 }
 
 .registrarEmpleado{
+    text-align: center;
     background: #ff6600;
     width: 400px;
     min-height: 60px;
-    padding: 5px;
+    padding-top: 10px;
+    padding-right: 10px;
     border-radius: 10px;
-    position: absolute;
-    top: 160px;
-    right: 800px;
+    top: 10%;
 }
 .check{
     background: #FFFFFF;
