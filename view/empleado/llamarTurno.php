@@ -9,7 +9,7 @@
     </div>
 </div>
 <div class="center">
-    <a href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=2&idEmpleado=<?=$idEmpleado?>"><div class="botonLlama">LLamar nuevamente</div></a>
+    <a href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=2&idEmpleado=<?= $_SESSION['usuario'] ?>"><div class="botonLlama">LLamar nuevamente</div></a>
     <div class="posicion" id="llamados" >
         <div id="mensaje">
             <?php foreach ($listLlamado as $t) {?>
