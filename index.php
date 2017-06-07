@@ -14,7 +14,7 @@ if(isset($_SESSION['usuario'])){
 
 }
 // sólo si el controlador es UsuarioController o existe usuario admito un método distinto a index...
-if(isset($_SESSION['usuario']) || $controller == "UsuarioController"){ 
+if(isset($_SESSION['usuario']) || (isset($_REQUEST['a']) && $_REQUEST['a'] == "validateSession")){ 
     if(isset($_REQUEST['a'])){
         $accion = $_REQUEST['a'];
     }
