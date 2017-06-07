@@ -1,4 +1,4 @@
-<div align="center">
+<div class="posicionAdmin">
 <?php if ($tmp->getIdEmpleado() == null){?>
     <h1 class="registrarEmpleado">Registrar Empleado</h1>
 <?php } else{ ?>

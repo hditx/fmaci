@@ -1,4 +1,4 @@
-<div align="center">
+<div class="posicionAdmin">
 <?php if($tmp->getIdCola() == null){ ?>
 <h1 class="registrarEmpleado">Crear Cola</h1>
 <?php } else{ ?>

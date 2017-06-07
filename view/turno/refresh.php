@@ -5,7 +5,7 @@
 ?>
         <div class="monitorTecla">
             <div class=<?=($t->getAtendido() == 2)? 'blink' : 'letra'?>>
-                <?=Turno::getLetra($t->getIdCola())."".$t->getPosicion()."  ".Turno::getNombreEmpleadoMonitor($t->getIdTurno())?>
+                <?=Turno::getLetra($t->getIdCola())."".$t->getPosicion()."  <span id='nombreMonitor'>".Turno::getNombreEmpleadoMonitor($t->getIdTurno()).'</span>'?>
             </div>
         </div>
 <?php
