@@ -1,3 +1,3 @@
-   </body>
-   <img id="logo" src="view/images/logo.png" />
+    </div>
+    </body>
 </html> 

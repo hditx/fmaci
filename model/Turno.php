@@ -260,7 +260,7 @@ class Turno{
     public static function getPosicionObjeto($id){
         try {
             $mdb =  DataBase::getDb();
-            $temp = $mdb->prepare("SELECT posicion FROM Turno WHERE idTurno =".$id);
+            $temp = $mdb->prepare("SELECT posicion FROM Turno WHERE idTurno = $id");
             $temp->execute();
             $resultado = $temp->fetchAll(); 
             $data = $resultado[0]['posicion'];
@@ -326,18 +326,28 @@ class Turno{
     }
     
     public static function setEnEsperaObjeto($id){
-        echo "hola1";
         try {
-            echo "hola2";
             $mdb =  DataBase::getDb();
-            echo "hola3";
             $sql = "UPDATE Turno SET enEspera = 1 WHERE idTurno = ".$id;
-            echo "hola4";
             $temp = $mdb->prepare($sql);
-            echo "hola5";
             $temp->execute();
-            echo "hola6";
             $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+    
+    public static function turnoEspera($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT MAX(posicion) - MIN(posicion) AS posicion FROM Turno WHERE idCola = $id AND atendido = 0";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            $data = $resultado[0]['posicion'];
+            $mbd = null;
+            return $data;
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
             die();

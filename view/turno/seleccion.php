@@ -1,5 +1,4 @@
-<h1 align="center">BIENVENIDO!</h1><br>
-
+<h1 class="center">BIENVENIDO!</h1><br>
 <div class="center">
 <?php foreach ($colas as $c){
     echo "<a href='index.php?c=turno&a=sacarTurno&id=" . $c->getIdCola() . "'>";?>
