@@ -58,15 +58,16 @@ select{
         text-align:center;
         padding: 1%;
         display: inline-block;
-        width: 50%;
+        width: 60%;
+        height: 20%;
         font-weight: bold;
     }
 
     .queueTitle{
         background: #ff6600;
         border:solid 3px #ffffff;
-        width: 100%;
-        height: 50%;
+        width: 60%;
+        height: 20%;
         font-size: 1em;
         border-top-left-radius: 3%;
         border-top-right-radius: 3%;    
@@ -272,7 +273,7 @@ select{
     background: #ff6600;
     border:solid 3px #ffffff;
     width: 100%;
-    height: 50%;
+    height: 5%;
     font-size: 2em;
     -webkit-border-top-left-radius: 20px;
     -webkit-border-top-right-radius: 20px;
@@ -288,7 +289,7 @@ select{
     background: #9bc928;
     border:solid 3px #ffffff;
     width: 100%;
-    height: 50%;
+    height: 5%;
     min-height: 2em;
     font-size: 1em;
     -webkit-border-bottom-right-radius: 20px;
