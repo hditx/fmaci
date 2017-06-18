@@ -1,7 +1,8 @@
 <?php
 
 class Impresora {
-	public static function printTicket($number, $queue, $espera){
+	
+	public static function printTicket($number, $queue){
             $impresora = fopen("/dev/usb/lp0", "a+");
             /* ASCII constants */
             $ESC = "\x1b";
@@ -30,13 +31,32 @@ class Impresora {
             fprintf ($impresora, $ESC."E".chr(0)); // Not Bold
             //echo ESC."d".chr(1); // Blank line
             fprintf ($impresora, $GS."!\x00"); // Set the character size
-            fprintf ($impresora, "Clientes en espera: $espera\n");
+            fprintf ($impresora, "Clientes en espera: 5\n");
             fprintf ($impresora, "Emisi\xa2n: " . date('d/m/Y h:i:s a', time()) . "\n");
             fprintf ($impresora, $ESC."d".chr(1)); // Blank line
             fprintf ($impresora, $GS."!\x00"); // Set the character size
             fprintf ($impresora, $ESC."E".chr(1)); // Bold
             fprintf ($impresora, "GRACIAS POR ELEGIRNOS!!!");
             fprintf ($impresora, $ESC."d".chr(1)); // Blank line
+
+            /*
+            El comando GS!n 
+            * (donde n es un número hexadecimal)
+            * configura el tamaño de la fuente. El valor máximo
+            * permitido es \x33
+            * 
+            * El digito correspondiente a la unidad indica la altura del caracter
+            * y el dígito correspondiente a la decena indica el ancho del caracter
+            */
+            /*
+            echo GS."!\x30"; // Set the character size
+            echo "B-15\n"; // Número de turno
+
+            echo GS."!\x33"; // Set the character size
+            echo "C-15\n"; // Número de turno
+            */
+
+            //png2pos -a C 
             fprintf ($impresora, $ESC."a".chr(0) ); // Cancel centered printing
             fprintf ($impresora, $ESC."E".chr(0)); // Not Bold
             fprintf ($impresora, $ESC."d".chr(1)); // Blank line
@@ -56,4 +76,10 @@ class Impresora {
             fclose($impresora);
 	}
 }
+/*
+ESCPOS::printTicket("A15", "PAMI");
+
+ESCPOS::printTicket("B33", "OSDE");
+
+ESCPOS::printTicket("C05", "PARTICULAR");*/
 ?>

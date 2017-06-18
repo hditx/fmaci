@@ -46,13 +46,15 @@ class TurnoController{
     }
     
     public function imprimir(){
-        Impresora::printTicket(Turno::getLetra($_REQUEST['id']), Cola::getNumeroSiguiente($_REQUEST['id']), Turno::turnoEspera($_REQUEST['id']));
-        Cola::incrementar($_REQUEST['id']);
+        /*$impresora = fopen("/dev/usb/lp0", "a+");
+        fprintf($impresora, "Prueba");*/
+        Impresora::printTicket(Turno::getLetra($_REQUEST['id']), Cola::getNumeroSiguiente($_REQUEST['id']));
         $turn = new Turno(null);
         $turn->setIdCola($_REQUEST['id']);
         $turn->setPosicion(Cola::getNumeroSiguiente($_REQUEST['id']));
         $turn->setAtendido(0);
         $turn->save();
+        Cola::incrementar($_REQUEST['id']);
         header("Location: index.php?c=turno&a=index");
     }
 }

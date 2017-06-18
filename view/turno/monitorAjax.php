@@ -23,7 +23,7 @@
 </head>
 <body>
     <div id="izquierda">
-        <video width="100%" height="100%" controls autoplay loop>
+        <video width="250%" controls autoplay loop>
         <source src="simpsons.mp4" type="video/mp4">
         </video>
     </div>
