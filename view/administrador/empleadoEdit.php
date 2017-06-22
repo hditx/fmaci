@@ -11,6 +11,14 @@
         <?php }?>
         <p class="formulario">Nombre <input class="inputText" type="text" name="nombre" size="20" value="<?= $tmp->getNombre()?>"></p>
         <p class="formulario">Apellido <input  class="inputText" type="text" name="apellido" size="20" value="<?= $tmp->getApellido()?>"></p>
+        <p class="formulario">Contraseña <input class="inputText" type="text" name="contrasenia" size="20" value="<?= $tmp->getContrasenia() ?>"></p>
+        <p class="formulario">Perfil
+            <select name="perfil">
+                <option value="1" <?= ($tmp->getPerfil() == 1) ? 'selected' : ''?> >Administrador</option>
+                <option value="2" <?= ($tmp->getPerfil() == 2) ? 'selected' : ''?> >Empleado</option>
+                <option value="3" <?= ($tmp->getPerfil() == 3) ? 'selected' : ''?> >Cliente</option>
+                <option value="4" <?= ($tmp->getPerfil() == 4) ? 'selected' : ''?> >Monitor</option>
+            </select>
         <p class="formulario">Cola/s asignada/s: </p>
         <p class="check">
         <input type="checkbox" name="idCola[]" value="-1"><label>Ninguno</label><br>
@@ -22,6 +30,7 @@
                 }
          }?>
         </p>
+        
         <p align="center"><input class="myButton" type="submit" value="Guardar datos" name="B1"></p>
     </form>
 </div>
