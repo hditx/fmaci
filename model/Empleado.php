@@ -7,11 +7,15 @@ class Empleado{
     private $idEmpleado;
     private $nombre;
     private $apellido;
+    private $contrasenia;
+    private $perfil;
     
-    public function __construct($idEmpleado, $nombre = "", $apellido = "") {
+    public function __construct($idEmpleado, $nombre = "", $apellido = "", $contrasenia = "", $perfil = "") {
         $this->setIdEmpleado($idEmpleado);
         $this->setNombre($nombre);
         $this->setApellido($apellido);
+        $this->setContrasenia($contrasenia);
+        $this->setPerfil($perfil);
     }
 
     public function getIdEmpleado() {
@@ -25,7 +29,15 @@ class Empleado{
     function getApellido() {
         return $this->apellido;
     }
-
+    
+    public function getContrasenia(){
+        return $this->contrasenia;
+    }
+    
+    public function getPerfil(){
+        return $this->perfil;
+    }
+            
     function setApellido($apellido) {
         $this->apellido = $apellido;
     }
@@ -38,13 +50,21 @@ class Empleado{
         $this->nombre = $nombre;
     }
     
-    public function save(){
+    public function setContrasenia($contrasenia){
+        $this->contrasenia = $contrasenia;
+    }
+    
+    public function setPerfil($perfil){
+        $this->perfil = $perfil;
+    }
+
+        public function save(){
         try {
             $mdb =  DataBase::getDb();
             if($this->getIdEmpleado() != null){
-                $sql = "UPDATE Usuario SET nombre = '".$this->getNombre()."', apellido = '".$this->getApellido()."' WHERE usuarioId =".$this->getIdEmpleado();
+                $sql = "UPDATE Usuario SET nombre = '".$this->getNombre()."', apellido = '".$this->getApellido()."', contrasenia = '".$this->getContrasenia()."', perfil = '".$this->getPerfil()."'  WHERE usuarioId =".$this->getIdEmpleado();
             }else{
-                $sql = "INSERT Usuario(nombre, apellido, fechaDeAlta, perfil) VALUES ('".$this->getNombre()."', '".$this->getApellido()."', NOW(), 3)";
+                $sql = "INSERT Usuario(nombre, apellido, fechaDeAlta, contrasenia, perfil) VALUES ('".$this->getNombre()."', '".$this->getApellido()."', NOW(),  '".$this->getContrasenia()."', ".$this->getPerfil().")";
             }
             $temp = $mdb->prepare($sql);
             $temp->execute();
@@ -59,7 +79,7 @@ class Empleado{
         try {
             Empleado::deleteUnion($id);
             $mdb =  DataBase::getDb();
-            $sql = "DELETE FROM Usuario WHERE usuarioId = ".$id;
+            $sql = "DELETE FROM Usuario WHERE usuarioId = $id";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $mdb = null;
@@ -72,11 +92,11 @@ class Empleado{
     public static function get($id){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT * FROM Usuario WHERE usuarioId =".$id;
+            $sql = "SELECT * FROM Usuario WHERE usuarioId = $id";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll();
-            $data = new Empleado($resultado[0]['usuarioId'], $resultado[0]['nombre'], $resultado[0]['apellido']);
+            $data = new Empleado($resultado[0]['usuarioId'], $resultado[0]['nombre'], $resultado[0]['apellido'], $resultado[0]['contrasenia'], $resultado[0]['perfil']);
             $mdb = null;
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
@@ -122,7 +142,7 @@ class Empleado{
     public static function getAsignadas($id){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idCola FROM cola_empleado WHERE usuarioId =".$id;
+            $sql = "SELECT idCola FROM cola_empleado WHERE idEmpleado = $id";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll();
@@ -166,12 +186,14 @@ class Empleado{
     
     public static function saveUnion($idEmpleado, $idCola){
         try {
-            Empleado::deleteUnion($idEmpleado);
+            //Empleado::deleteUnion($idEmpleado);
             $mdb =  DataBase::getDb();
-            $sql = "INSERT cola_empleado(idCola, idEmpleado) VALUES ($idCola, $idEmpleado)";
-            $temp = $mdb->prepare($sql);
-            $temp->execute();
-            $mdb = null;            
+            if(Empleado::verificarUnion($idEmpleado, $idCola) == 0){
+                $sql = "INSERT cola_empleado(idCola, idEmpleado) VALUES ($idCola, $idEmpleado)";
+                $temp = $mdb->prepare($sql);
+                $temp->execute();
+                $mdb = null;
+            }
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
             die();
@@ -190,12 +212,26 @@ class Empleado{
             die();
         }        
     }
-
-
-    public static function getNuevoEmpleado(){
+    
+    public static function verificarUnion($idEmpleado, $idCola){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT usuarioId FROM Usuario WHERE perfil = 3 AND fechaDeAlta = (SELECT MAX(fechaDeAlta) FROM Usuario)";
+            $sql = "SELECT * FROM cola_empleado WHERE idEmpleado = $idEmpleado AND idCola = $idCola";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $mdb = null;            
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        
+        return $temp->rowCount();
+    }
+
+        public static function getNuevoEmpleado(){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT usuarioId FROM Usuario WHERE perfil = 2 AND fechaDeAlta = (SELECT MAX(fechaDeAlta) FROM Usuario)";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll();

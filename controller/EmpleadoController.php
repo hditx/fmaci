@@ -20,18 +20,43 @@ class EmpleadoController{
         }
     }
     
+    public function updateTurno(){
+        $idEmpleado = $_SESSION['usuario'];
+        $showNext = $_REQUEST['showNext'];
+        switch ($_REQUEST['tipo']){
+            case 1:
+                $turnos = Turno::getTurnoPropio($idEmpleado);
+                break;
+            case 2:
+                Turno::getTurnoNoEmpleado($idEmpleado);
+                break;
+            case 3:
+                $turnos = Turno::getTurnoEstado();
+                break;
+                
+        }
+        
+        $colorcitos = array(2 => "estadoLlamando", 
+                            3 => "estadoAtendiendo",
+                            4 => "estadoNoPresento");
+        $colorcitosRec = array(2 => "estadoLlamandoRec",
+                               3 => "estadoAtendiendoRec",
+                               4 => "estadoNoPresentoRec");
+        require_once 'config/refreshTurno.php';
+    }
+
     public function listTurno(){
         Empleado::saveSession($_SESSION['usuario'], "null", "null");
-        
+        $tipo = 1;
         $idEmpleado = $_SESSION['usuario'];
         $nombre = Empleado::getNombreObjeto($idEmpleado);
         $first = Turno::getFirstTurno($idEmpleado);
-        $turnos = Turno::getTurnoPropio($idEmpleado);
+//        $turnos = Turno::getTurnoPropio($idEmpleado);
         $title = "Asignado";
         $showNext = true;
         $asignado = true;
         $links = Array("En estado" => "enEstado", "Otras colas" => "otrasColas");
-        require_once 'view/header.php';
+        //require_once 'view/header.php';
         require_once 'view/empleado/list.php';
         require_once 'view/footer.php';
     }
@@ -39,32 +64,34 @@ class EmpleadoController{
     public function otrasColas(){
         $idEmpleado = $_SESSION['usuario'];
         $nombre = "";
+        $tipo = 2;
         $first = Turno::getFirstTurnoNoE($idEmpleado);
-        $turnos = Turno::getTurnoNoEmpleado($idEmpleado);
+//        $turnos = Turno::getTurnoNoEmpleado($idEmpleado);
         $title = "Otros";
         $showNext = true;
         $asignado = false;
         $links = Array("En estado" => "enEstado", "Asignada" => "listTurno");
-        require_once 'view/header.php';
+        //require_once 'view/header.php';
         require_once 'view/empleado/list.php';
         require_once 'view/footer.php';
     }
     
     public function enEstado(){
+        $tipo = 3;
         $idEmpleado = $_SESSION['usuario'];
         $asignado = true;
         $nombre = "";
         $title = "En estado";
         $showNext = false;
         $links = Array("Asignada" => "listTurno", "Otras colas" => "otrasColas");
-        $colorcitos = array(2 => "estadoLlamando", 
-                            3 => "estadoAtendiendo",
-                            4 => "estadoNoPresento");
-        $colorcitosRec = array(2 => "estadoLlamandoRec",
-                               3 => "estadoAtendiendoRec",
-                               4 => "estadoNoPresentoRec");
-        $turnos = Turno::getTurnoEstado();
-        require_once 'view/header.php';
+//        $colorcitos = array(2 => "estadoLlamando", 
+//                            3 => "estadoAtendiendo",
+//                            4 => "estadoNoPresento");
+//        $colorcitosRec = array(2 => "estadoLlamandoRec",
+//                               3 => "estadoAtendiendoRec",
+//                               4 => "estadoNoPresentoRec");
+//        $turnos = Turno::getTurnoEstado();
+        //require_once 'view/header.php';
         require_once 'view/empleado/list.php';
         require_once 'view/footer.php';
  }
@@ -117,9 +144,8 @@ class EmpleadoController{
                 $turno = Turno::getTurnoUnico($id);
                 $idEmpleado = $_REQUEST['idEmpleado'];
                 if(isset($_REQUEST['espera'])){
-                    $atendido = $_REQUEST['estado'];
-                    $idTurno = $_REQUEST['id'];
-                    header("Location: index.php?c=empleado&a=cerrarSesion&idTurno=$idTurno&atendido=$atendido");
+                    Turno::setEnEsperaObjeto($_REQUEST['id']);
+                    header("Location: index.php?c=empleado&a=listTurno");
                 }else{
                     require_once 'view/header.php';
                     require_once 'view/empleado/llamarTurno.php';
@@ -144,9 +170,8 @@ class EmpleadoController{
                 $idEmpleado = $_REQUEST['idEmpleado'];
                 $turno = Turno::getTurnoUnico($id);
                 if(isset($_REQUEST['espera'])){
-                    $atendido = $_REQUEST['estado'];
-                    $idTurno = $_REQUEST['id'];
-                    header("Location: index.php?c=empleado&a=cerrarSesion&idTurno=$idTurno&atendido=$atendido");
+                    Turno::setEnEsperaObjeto($_REQUEST['id']);
+                    header("Location: index.php?c=empleado&a=listTurno");
                 }else{
                     require_once 'view/header.php';
                     require_once 'view/empleado/atendido.php';
