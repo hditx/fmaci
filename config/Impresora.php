@@ -71,7 +71,7 @@ class Impresora {
             echo ESC."d".chr(1); // Blank line
             echo "987654321\n"; // Print number
             */
-            //echo GS."V\x41".chr(3); // Cut
+            echo $GS."V\x30"; // Cut
             //exit(0);
             fclose($impresora);
 	}
