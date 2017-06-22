@@ -29,8 +29,7 @@
         </div>
 <?php } ?>
     
-<br><div style="display: inline-block">
-<div style="float: left" id="trans">
+<div>
     <?php if ($showNext) {?>
         <a href="?c=empleado&a=estadoTurno&id=<?=$first->getIdTurno()?>&estado=2&idEmpleado=<?=$idEmpleado?>">
     <?php } ?>
@@ -48,7 +47,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 <div style="float: right;">
     <img class="radiuss" src="view/images/colores.jpg" width="350" height="80"><br>
