@@ -61,6 +61,7 @@ class AdministradorController{
         }
         header("Location: index.php?c=administrador&a=abmEmpleado");
     }
+    
     public function modificar(){
         $tmp = Empleado::get($_REQUEST['id']);
         $asignadas = Empleado::getAsignadas($_REQUEST['id']);

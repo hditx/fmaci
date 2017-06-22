@@ -13,15 +13,19 @@
             <select name="idPadre">
                 <option value = "-1">Ninguno</option>
                 <?php foreach ($padres as $padre){
-                   echo " <option value=" . $padre->getIdCola() . "> ".$padre->getNombreCola()."</option>"; 
+                   echo " <option value=" . $padre->getIdCola() . " ".(($tmp->getHijoDe() == $padre->getIdCola())? 'selected' : '') ."> ".$padre->getNombreCola()."</option>"; 
                 }?>
             </select>
         </p>
         <p class="formulario">Empleado/s </p>
             
-        <p class="check"><input type="checkbox" name="idEmpleado[]" value="-1"><label>Ninguno</label><br>
+        <p class="check"><input type="checkbox" name="idEmpleado" value="-1"><label>Ninguno</label><br>
             <?php foreach ($empleados as $empleado){
-                echo "<input type='checkbox' name='idEmpleado[]' value=".$empleado->getIdEmpleado()."><label>".$empleado->getNombre()."</label><br>";
+                if($tmp->getIdCola() != null){
+                    echo "<input type='checkbox' name='idEmpleado[]' value=".$empleado->getIdEmpleado()." ".(($asig[$empleado->getIdEmpleado()] == $empleado->getIdEmpleado()) ? 'checked' : '')."><label>".$empleado->getNombre()."</label><br>";
+                }else{
+                    echo "<input type='checkbox' name='idEmpleado[]' value=".$empleado->getIdEmpleado()."><label>".$empleado->getNombre()."</label><br>";
+                }
             }?>
         </p>
         <p class="formulario">Siguiente <input class="inputText" type="text" name="siguiente" size="20" value="<?= $tmp->getSiguiente() ?>"></p>

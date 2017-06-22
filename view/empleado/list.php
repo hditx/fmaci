@@ -1,3 +1,34 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="view/stylesheet.css">
+    <title>
+        Farmacentro
+    </title>
+    <script type="text/javascript" src="config/jquery-1.7.2.min.js"></script>
+    <script>
+        $(document).on("ready", function(){
+            function reloadTurno(){
+                $.get("index.php?c=empleado&a=updateTurno&showNext=<?=$showNext?>&tipo=<?=$tipo?>", function(data){
+                    $("#refresh").html(data);
+                    
+                });
+            }
+            setInterval(reloadTurno,1000);
+        });
+    </script>
+    
+    
+</head>
+<body>
+<?php if (isset($_SESSION['nombre'])) { ?>
+        <div align="left">
+            <b>Bienvenido <?= $_SESSION['nombre'] ?>!</b>
+            <a href="index.php?c=usuario&a=cerrarSesion">Cerrar Sesión</a>
+        </div>
+<?php } ?>
+    
 <br><div style="display: inline-block">
 <div style="float: left" id="trans">
     <?php if ($showNext) {?>
@@ -13,20 +44,8 @@
     <br>
     <div id="global">
         <div id="mensajes">
-            <?php foreach ($turnos as $t){?>
-                <div>    
-                    <a class="myTd1" href="?c=empleado&a=estadoTurno&id=<?=$t->getIdTurno()?>&estado=<?= ($showNext)? 2 : $t->getAtendido()?>&idEmpleado=<?=$idEmpleado?><?= ($t->getAtendido() == 4)? "&mostrar=1" : ""?>">
-                        <div class="<?= ($showNext)? "cuadrado": $colorcitos[$t->getAtendido()] ?>">
-                                <div class="letraCuadrado"><?= Turno::getLetra($t->getIdCola()) . "" . $t->getPosicion()." "?></div>
-                            <div class="<?= ($showNext) ? "rectangulo" : $colorcitosRec[$t->getAtendido()]?>">
-                                <div class="obraSocial"><?= Cola::getNombreColaObjeto($t->getIdCola())?></div>
-                                <div class="horaNormal"><?= $t->getHora()?></div>
-                                <div class="horaEspera"><?= Turno::getHoraObjeto($t->getIdTurno()) ."MIN"?></div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            <?php }?>
+            <div id="refresh">    
+            </div>
         </div>
     </div>
 </div>

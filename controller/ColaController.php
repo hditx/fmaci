@@ -26,33 +26,45 @@ class ColaController{
       else{
          $temp = new Cola(null);
          $nuevo = 1;
+         
       }
+      
       $temp->setNombreCola($_REQUEST['nombreCola']);
-      $temp->setHijoDe($_REQUEST['idPadre']);
-      $temp->setSiguiente($_REQUEST['siguiente']);
-      $temp->setLetra($_REQUEST['letra']);
-      $temp->save();
-      $empleados = $_REQUEST['idEmpleado'];
-      if($nuevo == 0){
-          $id = $_REQUEST['idCola'];
+      if($_REQUEST['idEmpleado'] != -1){          
+        $temp->setHijoDe($_REQUEST['idPadre']);
+        $temp->setSiguiente($_REQUEST['siguiente']);
+        $temp->setLetra($_REQUEST['letra']);
+        $temp->save();
+        $empleados = $_REQUEST['idEmpleado'];
+        if($nuevo == 0){
+            $id = $_REQUEST['idCola'];
+        }else{
+            $id = Cola::getColaReciente();
+        }
+        foreach ($empleados as $empleado){
+            Cola::saveUnion($empleado, $id);
+        }
       }else{
-          $id = Cola::getColaReciente();
+        $temp->saveMother();
       }
-      foreach ($empleados as $empleado){
-          Empleado::saveUnion($empleado, $id);
-      }
+        
       header("Location: index.php?c=cola");
       
   }
   public function eliminar(){
-      echo "Eliminando cola ". $_REQUEST['id'];
       Cola::delete($_REQUEST['id']);
       header("Location: index.php?c=cola");
   }
+  
   public function modificar(){
       $tmp = Cola::get($_REQUEST['id']);
       $padres = Cola::getList();
       $empleados = Empleado::getEmpleado();
+      $asignados = Cola::getAsignados($_REQUEST['id']);
+      $asig = array();
+      for ($i = 0; $i < count($asignados) ; $i++){
+          $asig += [$asignados[$i] => $asignados[$i]];   
+      }
       require_once "view/header.php";
       require_once "view/cola/colaEdit.php";
       require_once "view/footerNButton.php";
