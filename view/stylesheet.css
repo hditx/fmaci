@@ -151,14 +151,14 @@ select{
     padding: 3px;
 }
 .monitorTecla {
-    width: 120%;
+    width: 130%;
     height: 50%;
-    font-size: 60px;
+    font-size: 70px;
     text-align: center;
     border-radius: 15px;
     background: #FFFFFF;
     color: black;
-    padding: 3px;
+    padding: 6%;
     margin-bottom: 5px;
 }
 
@@ -504,7 +504,7 @@ select{
 	margin: 0px;
 	position:absolute;
 	top: 1%;
-	right: 5%;
+	right: 7%;
 }
 
 #logo {
