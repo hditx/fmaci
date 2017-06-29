@@ -5,12 +5,9 @@
         <img class="userbox" src="view/images/user.ico" height="15px" width="15px" > <input class="inputText" name="usuario" class="user" type="text" placeholder="Usuario">
     </div>
     <div>
-         <img class="userbox"  src="view/images/lock.ico" height="17px" width="17px" > <input class="inputText" name="pass" class="user" type="password" placeholder="Contraseña">
+        <img class="userbox"  src="view/images/lock.ico" height="17px" width="17px" > <input class="inputText" name="pass" class="user" type="password" placeholder="Contraseña">
     </div>
-	<input type="submit" value "Entrar">
-    <div class="userbox">
-        <img src="view/images/login.ico" height="25px" width="30px" onclick="login.submit()">
-    </div>
+	<input type="submit" value="Entrar">
 </form>
 </div>
 
