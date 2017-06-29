@@ -41,6 +41,7 @@ class ColaController{
         }else{
             $id = Cola::getColaReciente();
         }
+        Cola::deleteUnion($id);
         foreach ($empleados as $empleado){
             Cola::saveUnion($empleado, $id);
         }

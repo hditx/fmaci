@@ -56,6 +56,7 @@ class AdministradorController{
         }else{
             $id = $_REQUEST['idEmpleado'];
         }
+        Empleado::deleteUnion($id);
         foreach ($idCola as $union){
             Empleado::saveUnion($id, $union);
         }
