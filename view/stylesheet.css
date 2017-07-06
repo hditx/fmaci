@@ -149,7 +149,7 @@ select{
     padding: 3px;
 }
 .monitorTecla {
-    width: 100%;
+    width: 115%;
     height: 50%;
     font-size: 70px;
     text-align: center;
@@ -161,7 +161,7 @@ select{
 }
 
 .monitorTeclaIzq {
-    width: 47%;
+    width: 57%;
     height: 110px;
     font-size: 70px;
     text-align: center;
@@ -179,8 +179,8 @@ select{
 }
 .monitorTeclaDer {
     display:inherit;
-    width: 96%;
-    height: 140px;
+    width: 87.5%;
+    height: 133px;
     font-size: 40px;
     text-align: center;
     border-bottom-right-radius: 15px;
@@ -191,7 +191,7 @@ select{
     margin-bottom: 5px;
     position: relative;
     top: -113px;
-    right: -246px;
+    right: -285px;
     margin-bottom: 2px;
     margin-top: 2px;
 }
@@ -543,8 +543,8 @@ select{
 #derecha{
 	margin: 0px;
 	position:absolute;
-	top: 1%;
-	right: 4%;
+	top: 0.5%;
+	right: 6.6%;
 }
 
 #logo {
