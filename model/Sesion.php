@@ -86,5 +86,17 @@ class Sesion{
         }
         return $data;
     }
+    
+    public static function saveEstado($estado, $id){
+        try{
+            $mdb = DataBase::getDb();
+            $sql = "UPDATE Usuario SET movimiento = $estado WHERE usuarioId = $id";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+        } catch (PDOException $e){
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
 }
 ?>
