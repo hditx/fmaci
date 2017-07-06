@@ -9,7 +9,7 @@
                     <?=Turno::getLetra($t->getIdCola())."".$t->getPosicion()?>
                 </div>
                 <div class="monitorTeclaDer">
-                        <?= Turno::getNombreEmpleadoMonitor($t->getIdTurno())?>
+                    <div class="monitorTeclaPosicion"><?= Turno::getNombreEmpleadoMonitor($t->getIdTurno())?></div>
                 </div>
             </div>
         </div>
