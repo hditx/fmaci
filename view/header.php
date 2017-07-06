@@ -11,7 +11,7 @@
     <body>
     <?php if (isset($_SESSION['nombre'])) { ?>
         <div align="left">
-            <b>Bienvenido <?= $_SESSION['nombre'] ?>!</b>
-            <a href="index.php?c=usuario&a=cerrarSesion">Cerrar Sesión</a>
+            <b>Bienvenido <?= $_SESSION['nombre'] . " ". $_SESSION['estadoEmpleado']?>!</b>
+            <a href="index.php?c=usuario&a=cerrarSesion&empleadoEstado=<?$_SESSION['empleadoEstado']?>">Cerrar Sesión</a>
         </div>
     <?php } ?>
