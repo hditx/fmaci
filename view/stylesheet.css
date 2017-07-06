@@ -194,7 +194,12 @@ select{
     right: -246px;
     margin-bottom: 2px;
     margin-top: 2px;
-    
+}
+
+.monitorTeclaPosicion{
+    position: relative;
+    top: 30%;
+    right: 1%;
 }
 
 .myTd3 {
