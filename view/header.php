@@ -8,7 +8,14 @@
             Farmacentro
         </title>
     </head>
-    <body>
+    <script type="text/javascript">
+        function deshabilitaRetroceso(){
+            window.location.hash="no-back-button";
+            window.location.hash="Again-No-back-button" //chrome
+            window.onhashchange=function(){window.location.hash="no-back-button";}
+        }
+    </script>
+    <body <?= ($bloqueo) ? "onload='deshabilitaRetroceso()'" : '' ?>>
     <?php if (isset($_SESSION['nombre'])) { ?>
         <div align="left">
             <b>Bienvenido <?= $_SESSION['nombre'] . " ". $_SESSION['estadoEmpleado']?>!</b>

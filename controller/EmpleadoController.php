@@ -100,6 +100,7 @@ class EmpleadoController{
         switch ($_REQUEST['estado']){
             case 1:
             case 4:
+                $bloqueo = false;
                 $_SESSION['empleadoEstado'] = 0;
                 //ATENDIDO Y ABANDONO
                 if($_REQUEST['estado'] == 4){
@@ -122,6 +123,7 @@ class EmpleadoController{
                 break;
             case 2:
                 //LLAMADO
+                $bloqueo = true;
                 if(isset($_REQUEST['enEspera'])){
                     Turno::setEnEsperaObjeto($_REQUEST['id']);
                 }
@@ -147,6 +149,7 @@ class EmpleadoController{
                 break;
             case 3:
                 //ATENDIENDO
+                $bloqueo = true;
                 $_SESSION['empleadoEstado'] = 0; 
                 if(isset($_REQUEST['dni'])){
                     $tCliente = Cliente::getCliente($_REQUEST['dni']);
