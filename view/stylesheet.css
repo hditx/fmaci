@@ -492,8 +492,8 @@ select{
 
 .cuadrado{
     border-color: white;
-    width: 105px; 
-    height: 85px; 
+    width: 28%; 
+    height: 17.3%; 
     background: white;
     color: black;
     border-top-left-radius: 15px;
@@ -510,8 +510,8 @@ select{
 }
 
 .rectangulo {
-    width: 275px;
-    height: 85px;
+    width: 245%;
+    height: 100%;
     background: white;
     position: relative;
     top: -59%;
@@ -588,9 +588,9 @@ select{
     border-left: 30px solid #1B8A0A;
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent; 
-    position: relative;
-    top: 5px;
-    right: -205px;
+    position: absolute;
+    top: 6%;
+    left: 27%;
 }
 
 #llamarNuevamente{
@@ -734,7 +734,7 @@ select{
     position: relative;
     top: 3px;
     left: 30px;
-    font-size: 20px;
+    font-size: 1.3em;
     font-family: sans-serif;
 }
 .horaNormal{
