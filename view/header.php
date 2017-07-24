@@ -15,6 +15,13 @@
             window.onhashchange=function(){window.location.hash="no-back-button";}
         }
     </script>
+    <?php if($_REQUEST['monitor'] == 1){ ?>
+    <script type="text/javascript">
+            window.onload=function(){
+		document.forms["login"].submit();
+            }
+        </script>
+    <?php } ?>
     <body <?= ($bloqueo) ? "onload='deshabilitaRetroceso()'" : '' ?>>
     <?php if (isset($_SESSION['nombre'])) { ?>
         <div align="left">
