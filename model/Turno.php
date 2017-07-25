@@ -326,21 +326,32 @@ class Turno{
     }
     
     public static function setEnEsperaObjeto($id){
-        echo "hola1";
         try {
-            echo "hola2";
             $mdb =  DataBase::getDb();
-            echo "hola3";
             $sql = "UPDATE Turno SET enEspera = 1 WHERE idTurno = ".$id;
-            echo "hola4";
             $temp = $mdb->prepare($sql);
-            echo "hola5";
             $temp->execute();
-            echo "hola6";
-            $mbd = null;
+            $mdb = null;
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
             die();
         }
+    }
+    
+    public static function getEspera($id){
+        try{
+            $mdb = DataBase::getDb();
+            $sql = "SELECT (MAX(posicion) - MIN(posicion)) AS espera FROM Turno WHERE atendido = 0 AND idCola = $id";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            $data = $resultado[0]['espera'];
+            $mdb = null;
+        } catch (PDOException $e){
+            print "Error" . $e->getMessage();
+            die();
+        }
+        ($data == 0) ? $data : $data+=1;
+        return $data;
     }
 }
