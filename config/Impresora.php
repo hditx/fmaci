@@ -2,7 +2,7 @@
 
 class Impresora {
 	
-	public static function printTicket($number, $queue){
+	public static function printTicket($number, $queue, $espera){
             $impresora = fopen("/dev/usb/lp0", "a+");
             /* ASCII constants */
             $ESC = "\x1b";
@@ -31,7 +31,7 @@ class Impresora {
             fprintf ($impresora, $ESC."E".chr(0)); // Not Bold
             //echo ESC."d".chr(1); // Blank line
             fprintf ($impresora, $GS."!\x00"); // Set the character size
-            fprintf ($impresora, "Clientes en espera: 5\n");
+            ($espera == 0) ? fprintf ($impresora, "Clientes en espera: 0\n") : fprintf ($impresora, "Clientes en espera: $espera\n");
             fprintf ($impresora, "Emisi\xa2n: " . date('d/m/Y h:i:s a', time()) . "\n");
             fprintf ($impresora, $ESC."d".chr(1)); // Blank line
             fprintf ($impresora, $GS."!\x00"); // Set the character size
