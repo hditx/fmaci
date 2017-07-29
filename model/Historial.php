@@ -59,12 +59,12 @@ class Historial{
     public static function history($id){
       try {
           $mdb =  DataBase::getDb();
-          $sql = "SELECT idHistorial, fechaHora, estado, idEmpleado FROM HistorialEstado WHERE idTurno = $id AND estado = 2 ORDER BY fechaHora DESC";
+          $sql = "SELECT * FROM HistorialEstado WHERE idTurno = $id AND estado = 2 AND DATE(fechaHora) = CURDATE() ORDER BY fechaHora DESC";
           $temp = $mdb->prepare($sql);
           $temp->execute();
           $resultado = $temp->fetchAll();
           foreach ($resultado as $fila){
-              $data[] = new Historial($fila['idHistorial'],0,$fila['fechaHora'], $fila['estado'], $fila['idEmpleado']);
+              $data[] = new Historial($fila['idHistorial'], $fila['idTurno'],$fila['fechaHora'], $fila['estado'], $fila['idEmpleado']);
           }
           $mdb = null;
       } catch (PDOException $e) {
