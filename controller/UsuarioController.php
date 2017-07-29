@@ -27,12 +27,20 @@ class UsuarioController{
     }
     
     public function validateSession(){
-        if($monitor == 1){
-            $usuario = 24;
-            $password = "";
-        }else{
-            $usuario = filter_var(strtolower($_POST['usuario']), FILTER_SANITIZE_STRING);
-            $password = $_POST['pass'];
+        
+        switch ($monitor){
+            case 1:
+                $usuario = 24;
+                $password = "";
+                break;
+            case 2:
+                $usuario = 23;
+                $password = "";
+                break;
+            default :
+                $usuario = filter_var(strtolower($_POST['usuario']), FILTER_SANITIZE_STRING);
+                $password = $_POST['pass'];
+                break;
         }
         $resultado = Sesion::getUser($usuario, $password);
         if(count($resultado) == 1){

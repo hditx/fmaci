@@ -15,7 +15,7 @@
             window.onhashchange=function(){window.location.hash="no-back-button";}
         }
     </script>
-    <?php if($_REQUEST['monitor'] == 1){ ?>
+    <?php if($_REQUEST['monitor'] == 1 || $_REQUEST['monitor'] == 2){ ?>
     <script type="text/javascript">
             window.onload=function(){
 		document.forms["login"].submit();

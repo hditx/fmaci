@@ -19,6 +19,7 @@ if(isset($_SESSION['usuario']) || (isset($_REQUEST['a']) && $_REQUEST['a'] == "v
         $accion = $_REQUEST['a'];
     }
 }
+
 require_once "controller/$controller.php";
 $controller = new $controller();
 $controller->$accion();
