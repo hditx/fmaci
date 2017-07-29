@@ -75,7 +75,7 @@ class Impresora {
             echo "987654321\n"; // Print number
             */
             fprintf ($impresora, $GS."V\x30"); 
-            fprintf ($impresora, $GS."V\x30"); 
+            /*fprintf ($impresora, $GS."V\x30"); */
 //            echo $GS."V\x30"; // Cut
             //exit(0);
             fclose($impresora);
