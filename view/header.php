@@ -3,7 +3,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="view/stylesheet.css">
         <link rel="stylesheet" type="text/css" href="view/font-awesome-4.7.0/css/font-awesome.min.css">
-
         <title>
             Farmacentro
         </title>
@@ -20,7 +19,18 @@
             window.onload=function(){
 		document.forms["login"].submit();
             }
-        </script>
+    </script>
+    <script src="config/jquery-1.7.2.min.js"></script>
+    <script>
+        function operaEvento(evento){
+            $("#loescrito").html($("#loescrito").html() + evento.type + ": " + evento.which + ", ")
+        }
+            $(document).ready(function(){
+            $(document).keypress(operaEvento);
+            $(document).keydown(operaEvento);
+            $(document).keyup(operaEvento);
+        })
+    </script>
     <?php } ?>
     <body <?= ($bloqueo) ? "onload='deshabilitaRetroceso()'" : '' ?>>
     <?php if (isset($_SESSION['nombre'])) { ?>

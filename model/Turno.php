@@ -180,7 +180,7 @@ class Turno{
     public static function getMonitor(){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT * FROM Turno WHERE atendido NOT IN (0,1,4) AND enEspera <> 1 ORDER BY atendido, hora ";
+            $sql = "SELECT * FROM Turno WHERE atendido NOT IN (0,1,4) AND enEspera <> 1 ORDER BY atendido, hora DESC ";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
@@ -198,7 +198,7 @@ class Turno{
     public static function getNombreEmpleadoMonitor($id){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT nombre FROM Usuario WHERE usuarioId = (SELECT idEmpleado FROM HistorialEstado WHERE idTurno = $id LIMIT 1)";
+            $sql = "SELECT nombre FROM Usuario WHERE usuarioId = (SELECT idEmpleado FROM HistorialEstado WHERE idTurno = $id AND DATE(fechaHora) = DATE(NOW()) LIMIT 1)";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
