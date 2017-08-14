@@ -1,6 +1,6 @@
 
 <div align="center"><br>
-    <a class="buttonRegEmp" href="index.php?c=cola&a=crear">Crear cola</a><br>
+    <a class="buttonRegEmp" href="index.php?c=cola&a=crear">Crear cola</a> <a class="buttonRegEmp" href="index.php">Menú principal</a><br>
     <table border="1"><br>
 
         <th class="myTd3">Nombre cola</th>

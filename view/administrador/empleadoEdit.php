@@ -30,8 +30,9 @@
                 }
          }?>
         </p>
-        
-        <p align="center"><input class="myButton" type="submit" value="Guardar datos" name="B1"></p>
+        <div align="center">
+            <input class="myButton" type="submit" value="Guardar datos" name="B1"> <a class="myButton" href="index.php?c=administrador&a=abmEmpleado">Cancelar</a>
+        </div>
     </form>
 </div>
 

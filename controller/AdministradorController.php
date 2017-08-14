@@ -1,8 +1,10 @@
 <?php
+require_once 'config/Impresora.php';
 require_once 'model/cola.php';
 require_once 'model/Turno.php';
 require_once 'config/DataBase.php';
 require_once 'model/Empleado.php';
+
 
 class AdministradorController{
     public function index(){
@@ -26,6 +28,13 @@ class AdministradorController{
         require_once 'view/header.php';
         require_once 'view/administrador/empleadoEdit.php';
         require_once 'view/footerNButton.php';
+    }
+    
+    public function imprimir(){
+        $nombre = $_REQUEST['nombre'];
+        $id = $_REQUEST['id']; 
+        Impresora::printCode($id, $nombre);
+        header('Location: index.php?c=administrador&a=abmEmpleado');
     }
 
 

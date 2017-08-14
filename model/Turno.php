@@ -1,6 +1,7 @@
 <?php
 require_once 'config/DataBase.php';
 require_once 'model/cola.php';
+require_once 'model/Historial.php';
 
 class Turno{
     private $idTurno;
@@ -78,7 +79,7 @@ class Turno{
     public function save(){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "INSERT Turno(idCola, posicion, atendido, hora, enEspera) VALUES (".$this->getIdCola().",".$this->getPosicion().",".$this->getAtendido().", TIME(NOW()), 0)";
+            $sql = "INSERT Turno(idCola, posicion, atendido, hora, enEspera, fecha) VALUES (".$this->getIdCola().",".$this->getPosicion().",".$this->getAtendido().", TIME(NOW()), 0, DATE(NOW()))";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $mdb = null;  
@@ -179,13 +180,14 @@ class Turno{
 
     public static function getMonitor(){
         try {
+            $limit = Turno::limite();
             $mdb =  DataBase::getDb();
-            $sql = "SELECT * FROM Turno WHERE atendido NOT IN (0,1,4) AND enEspera <> 1 ORDER BY atendido, hora DESC ";
+            $sql = "SELECT * FROM HistorialEstado WHERE estado NOT IN (0,1,4) AND DATE(fechaHora) = DATE(NOW()) ORDER BY TIME(fechaHora) DESC LIMIT $limit";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
             foreach($resultado as $fila) {
-                $data[] = new Turno($fila['idTurno'], $fila['idCola'], $fila['posicion'], $fila['atendido'], $fila['hora']);
+                $data[] = new Historial($fila['idHistorial'], $fila['idTurno'], $fila['fechaHora'], $fila['estado'], $fila['idEmpleado']);
             }
             $mbd = null;
         } catch (PDOException $e) {
@@ -195,6 +197,26 @@ class Turno{
         return $data;
     }
     
+    public static function limite(){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT COUNT(DISTINCT idTurno) AS limite
+                    FROM HistorialEstado 
+                    WHERE estado NOT IN (0,1,4) 
+                    AND DATE(fechaHora) = DATE(NOW())";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll(); 
+            $data = $resultado[0]['limite'];
+            $mbd = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
+
+
     public static function getNombreEmpleadoMonitor($id){
         try {
             $mdb =  DataBase::getDb();

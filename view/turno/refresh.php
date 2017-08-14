@@ -5,8 +5,8 @@
 ?>
         <div>
             <div class="monitorTeclaIzq">
-                <div class=<?=($t->getAtendido() == 2)? 'blink' : 'letra'?>>
-                    <?=Turno::getLetra($t->getIdCola())."".$t->getPosicion()?>
+                <div class=<?=($t->getEstado() == 2)? 'blink' : 'letra'?>>
+                    <?=Turno::getLetra(Turno::getIdColaObjeto($t->getIdTurno()))."". Turno::getPosicionObjeto($t->getIdTurno())?>
                 </div>
                 <div class="monitorTeclaDer">
                     <div class="monitorTeclaPosicion"><?= Turno::getNombreEmpleadoMonitor($t->getIdTurno())?></div>

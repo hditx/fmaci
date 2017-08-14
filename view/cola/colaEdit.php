@@ -30,6 +30,6 @@
         </p>
         <p class="formulario">Siguiente <input class="inputText" type="text" name="siguiente" size="20" value="<?= $tmp->getSiguiente() ?>"></p>
         <p class="formulario">Letra <input class="inputText" type="text" name="letra" size="20" value="<?= $tmp->getLetra() ?>"></p>
-        <p align="center"><input class="myButton" type="submit" value="Guardar datos" name="B1"></p>  
+        <div align="center"><input class="myButton" type="submit" value="Guardar datos" name="B1"> <a class="myButton" href="index.php?c=cola&a=index">Canelar</a></div>  
 </form>
 </div>
