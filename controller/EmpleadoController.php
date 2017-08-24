@@ -128,7 +128,9 @@ class EmpleadoController{
                     Turno::setEnEsperaObjeto($_REQUEST['id']);
                 }
                 if($_SESSION['inicio'] != 2){
-                    Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
+                    if(!isset($_REQUEST['enEspera'])){
+                        Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
+                    }
                     Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
                 }
                 $_SESSION['inicio'] = 0;

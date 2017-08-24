@@ -5,11 +5,6 @@ body {
     color: white;
 }
 
-table, td, th, tr, p, h1, h2{
-    font-family: sans-serif; 
-    color: white;
-}
-
 a {
     color: white;
     text-decoration: none;
@@ -67,10 +62,6 @@ select{
         border:solid 3px #ffffff;
         width: 100%;
         height: 5%;
-        /*-webkit-border-top-left-radius: 20px;
-        -webkit-border-top-right-radius: 20px;
-        -moz-border-radius-topleft: 20px;
-        -moz-border-radius-topright: 20px;*/
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;    
         padding-top: 4%;
@@ -111,13 +102,14 @@ select{
 }
 
 .nombre{
-    width: 119%;
+    width: 120%;
     height: 6%;
     padding: 5px;
     background: white;
     border-radius: 3px;
     margin-bottom: 3px;
 }
+
 .colorTd{
     align: left;
     border-radius: 15px;
@@ -372,7 +364,7 @@ select{
     font-size: large;
     color:black;
     width: 98%;
-    height: 15%;
+    height: 20%;
     background: #ffffff;
     padding: 5px;
     margin-top: 5px;
@@ -439,23 +431,21 @@ select{
 
 .userbox{
     border-color: white;
-    width: 35px; 
-    height: 35px; 
+    width: 2.1%; 
+    height: 2.1%; 
     background: white;
     color: black;
     border-radius: 3px;
-   
 }
 
 .user{
     border-color: white;
     width: 20%; 
-    height: 6%; 
+    height: 30%; 
     background: white;
     color: black;
     border-radius: 3px;
-    position: relative;
-    top: -2%;
+    padding: 5px;
 }
 
 .cuadradoMostrar{
@@ -505,8 +495,10 @@ select{
 
 .formUbicacion{
     position: absolute;
-    top: 33%;
-    right: 38.5%;
+    top: 20%;
+    right: 30%;
+    width: 38%;
+    height: 40%;
 }
 
 .rectangulo {
@@ -787,6 +779,7 @@ select{
     top: 3.8%;
     right: 29%;
 }
+
 .atender{
     color: white;   
     display:inline-block;
@@ -828,21 +821,6 @@ select{
     left: 130px;
 }
 
-#atendiendo{
-    width: 36.7%;
-    height: 9%;
-    background: #ff6600;
-    color:white;
-    font-size: 50px;
-    font-family: sans-serif;
-    padding: 4px;
-    border-radius: 10px;
-    position: absolute;
-    top: 22%;
-    right: 32%;
-    text-align: center;
-}
-
 .registrarEmpleado{
     text-align: center;
     background: #ff6600;
@@ -852,6 +830,7 @@ select{
     padding-right: 10px;
     border-radius: 10px;
 }
+
 .check{
     background: #FFFFFF;
     width: 98%;
@@ -861,4 +840,29 @@ select{
     color: black;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.tarjeta{
+    border: solid;
+    background: #FFFFFF;
+    color: black;
+    width: 30%;
+    font-size: 30px;
+}
+
+@font-face {  
+    font-family: codebar ;  
+        src: url( ConnectCode39.ttf ); /*format("truetype")*/
+    }  
+	 
+p.code { font-family: codebar; }
+
+h1.presentacion{
+    text-align: center;
+    background: #ff6600;
+    width: 40%;
+    min-height: 60px;
+    padding-top: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
 }

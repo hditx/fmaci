@@ -33,8 +33,11 @@ class AdministradorController{
     public function imprimir(){
         $nombre = $_REQUEST['nombre'];
         $id = $_REQUEST['id']; 
-        Impresora::printCode($id, $nombre);
-        header('Location: index.php?c=administrador&a=abmEmpleado');
+        require_once 'view/header.php';
+        require_once 'view/administrador/imprimir.php';
+        require_once 'view/footer.php';
+        //Impresora::printCode($id, $nombre);
+        //header('Location: index.php?c=administrador&a=abmEmpleado');
     }
 
 

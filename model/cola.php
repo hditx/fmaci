@@ -159,7 +159,8 @@ class Cola{
     public static function getList2(){
         try {
             $mdb =  DataBase::getDb();
-            $temp = $mdb->prepare('SELECT * FROM Cola WHERE hijoDe IS NULL');
+            $sql = "SELECT idCola, nombreCola, hijoDe, letra, (CASE WHEN siguiente IS NOT NULL THEN LPAD(siguiente, 3, '0') WHEN siguiente IS NULL THEN siguiente END) AS siguiente FROM Cola WHERE hijoDe IS NULL";
+            $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
             foreach($resultado as $fila) {
@@ -227,7 +228,8 @@ class Cola{
     public static function get($id){
         try {
             $mdb =  DataBase::getDb();
-            $temp = $mdb->prepare("SELECT * FROM Cola WHERE idCola = $id");
+            $temp = $mdb->prepare("SELECT idCola, nombreCola, hijoDe, letra, (CASE WHEN siguiente IS NOT NULL THEN LPAD(siguiente, 3, '0')
+	     WHEN siguiente IS NULL THEN siguiente END) AS siguiente  FROM Cola WHERE idCola = $id");
             $temp->execute();
             $resultado = $temp->fetchAll();
             $data = new Cola($resultado[0]['idCola'], $resultado[0]['nombreCola'], $resultado[0]['hijoDe'], $resultado[0]['siguiente'],
