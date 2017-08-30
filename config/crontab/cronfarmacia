@@ -1,0 +1,3 @@
+50 * * * * sh /home/hditx/prueba.sh
+7 * * * * php /home/hditx/base.php
+
