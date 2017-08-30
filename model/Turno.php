@@ -127,7 +127,7 @@ class Turno{
     public static function getTurnoUnico($id){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idTurno, idCola, posicion, atendido, hora FROM Turno WHERE idTurno = ".$id;
+            $sql = "SELECT idTurno, idCola, LPAD(posicion, 3, '0') AS posicion, atendido, hora FROM Turno WHERE idTurno = ".$id;
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $fila = $temp->fetchAll(); 
@@ -143,7 +143,7 @@ class Turno{
     public static function getTurnoPropio($idEmp){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idTurno, idCola, posicion, atendido, hora FROM Turno WHERE atendido IN (0) "
+            $sql = "SELECT idTurno, idCola, atendido, hora, LPAD(posicion, 3, '0') AS posicion FROM Turno WHERE atendido IN (0) "
                     . "AND idCola IN ((SELECT idCola FROM cola_empleado WHERE idEmpleado =".$idEmp.")) ORDER BY hora";
             $temp = $mdb->prepare($sql);
             $temp->execute();
@@ -162,7 +162,7 @@ class Turno{
     public static function getTurnoNoEmpleado($idEmp){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idTurno, idCola, posicion, atendido, hora FROM Turno WHERE atendido IN (0) AND "
+            $sql = "SELECT idTurno, idCola, LPAD(posicion, 3, '0') AS posicion, atendido, hora FROM Turno WHERE atendido IN (0) AND "
                     . "idCola NOT IN ((SELECT idCola FROM cola_empleado WHERE idEmpleado =".$idEmp.")) ORDER BY hora";
             $temp = $mdb->prepare($sql);
             $temp->execute();
@@ -181,7 +181,7 @@ class Turno{
     public static function getMonitor(){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT * FROM Turno WHERE atendido NOT IN (0,1,4) AND enEspera <> 1 ORDER BY atendido, horaModificacion DESC ";
+            $sql = "SELECT idTurno, idCola, atendido, hora, LPAD(posicion, 3, '0') AS posicion FROM Turno WHERE atendido NOT IN (0,1,4) AND enEspera <> 1 ORDER BY atendido, horaModificacion DESC ";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
@@ -311,7 +311,7 @@ class Turno{
     public static function getTurnoEstado(){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idTurno, idCola, posicion, atendido, hora, enEspera FROM Turno WHERE atendido IN (2,3,4) AND enEspera = 1 ORDER BY hora";
+            $sql = "SELECT idTurno, idCola, LPAD(posicion, 3, '0') AS posicion, atendido, hora, enEspera FROM Turno WHERE atendido IN (2,3,4) AND enEspera = 1 ORDER BY hora";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 

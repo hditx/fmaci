@@ -23,8 +23,8 @@
 </head>
 <body>
     <div id="izquierda">
-        <video width="250%" controls autoplay loop>
-        <source src="simpsons.mp4" type="video/mp4">
+        <video width="160%" controls autoplay loop>
+            <source src="view/video/<?=$video?>" type="video/mp4">
         </video>
     </div>
     <div id="refresh"></div>
