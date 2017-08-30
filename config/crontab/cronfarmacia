@@ -1,3 +1,3 @@
-50 * * * * sh /home/hditx/prueba.sh
-7 * * * * php /home/hditx/base.php
+50 * * * * sh /home/firefly/fmaci/config/crontab/backup.sh
+7 * * * * php /home/firefly/fmaci/config/crontab/base.php
 
