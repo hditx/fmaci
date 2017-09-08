@@ -53,10 +53,10 @@ class Sesion{
         $this->ultimaSesion = $ultimaSesion;
     }
 
-    static function getUser($user, $password){
+    static function getUser($user){
         try{
             $mdb =  DataBase::getDb();
-            $sql = "SELECT * FROM Usuario WHERE usuarioId = $user AND contrasenia = '$password' LIMIT 1";
+            $sql = "SELECT * FROM Usuario WHERE usuarioId = $user LIMIT 1";
             $sta = $mdb->prepare($sql);
             $sta->execute();
             $resultado = $sta->fetchAll();

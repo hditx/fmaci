@@ -31,18 +31,15 @@ class UsuarioController{
         switch ($monitor){
             case 1:
                 $usuario = 24;
-                $password = "";
                 break;
             case 2:
                 $usuario = 23;
-                $password = "";
                 break;
             default :
                 $usuario = filter_var(strtolower($_POST['usuario']), FILTER_SANITIZE_STRING);
-                $password = $_POST['pass'];
                 break;
         }
-        $resultado = Sesion::getUser($usuario, $password);
+        $resultado = Sesion::getUser($usuario);
         if(count($resultado) == 1){
             $_SESSION['usuario'] = $resultado[0]['usuarioId'];
             $_SESSION['nombre'] = $resultado[0]['nombre'];
