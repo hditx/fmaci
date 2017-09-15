@@ -104,7 +104,7 @@ class EmpleadoController{
                 $_SESSION['empleadoEstado'] = 0;
                 //ATENDIDO Y ABANDONO
                 if($_REQUEST['estado'] == 4){
-                    Turno::setEnEsperaObjeto($_REQUEST['id']);
+                    Turno::setEnEsperaObjeto($_REQUEST['id'], 0);
                 }
                 if(isset($_REQUEST['dni']) && isset($_REQUEST['name'])){
                     Cliente::saveCliente($_REQUEST['name'], $_REQUEST['apellido'], $_REQUEST['dni'],
@@ -125,7 +125,7 @@ class EmpleadoController{
                 //LLAMADO
                 $bloqueo = true;
                 if(isset($_REQUEST['enEspera'])){
-                    Turno::setEnEsperaObjeto($_REQUEST['id']);
+                    Turno::setEnEsperaObjeto($_REQUEST['id'], 0);
                 }
                 if($_SESSION['inicio'] != 2){
                     if(!isset($_REQUEST['enEspera'])){
@@ -141,7 +141,7 @@ class EmpleadoController{
                 $idEmpleado = $_REQUEST['idEmpleado'];
                 $_SESSION['empleadoEstado'] = 2; 
                 if(isset($_REQUEST['espera'])){
-                    Turno::setEnEsperaObjeto($_REQUEST['id']);
+                    Turno::setEnEsperaObjeto($_REQUEST['id'], 0);
                     header("Location: index.php?c=empleado&a=listTurno");
                 }else{
                     require_once 'view/header.php';
@@ -161,7 +161,10 @@ class EmpleadoController{
                 }
                 if(isset($_REQUEST['enEspera'])){
                     echo "espera";
-                    Turno::setEnEsperaObjeto($_REQUEST['id']);
+                    Turno::setEnEsperaObjeto($_REQUEST['id'], 0);
+                }
+                if($_REQUEST['esperaTurno'] == 1){
+                    Turno::setEnEsperaObjeto($_REQUEST['id'], 1);
                 }
                 Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
                 Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
@@ -169,7 +172,7 @@ class EmpleadoController{
                 $idEmpleado = $_REQUEST['idEmpleado'];
                 $turno = Turno::getTurnoUnico($id);
                 if(isset($_REQUEST['espera'])){
-                    Turno::setEnEsperaObjeto($_REQUEST['id']);
+                    Turno::setEnEsperaObjeto($_REQUEST['id'], 0);
                     header("Location: index.php?c=empleado&a=listTurno");
                 }else{
                     require_once 'view/header.php';

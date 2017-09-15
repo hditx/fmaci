@@ -34,7 +34,7 @@
     </script>
     <?php } ?>
     <body <?= ($bloqueo) ? "onload='deshabilitaRetroceso()'" : '' ?>>
-    <?php if (isset($_SESSION['nombre'])) { ?>
+    <?php if (isset($_SESSION['nombre']) && strnatcasecmp($_SESSION['nombre'],"turnos") != 0) { ?>
         <div align="left">
             <b>Bienvenido <?= $_SESSION['nombre'] . " ". $_SESSION['estadoEmpleado']?>!</b>
             <a href="index.php?c=usuario&a=cerrarSesion&empleadoEstado=<?$_SESSION['empleadoEstado']?>">Cerrar Sesión</a>
