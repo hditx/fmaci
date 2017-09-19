@@ -23,7 +23,7 @@
 </head>
 <body>
     <div id="izquierda">
-        <video width="160%" controls autoplay loop>
+        <video width="1200px" controls autoplay loop>
             <source src="view/video/<?=$video?>" type="video/mp4">
         </video>
     </div>

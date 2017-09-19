@@ -141,40 +141,52 @@ select{
     padding: 3px;
 }
 .monitorTecla {
-    width: 115%;
-    height: 50%;
+    width: 600px;
+    height: 50px;
     font-size: 70px;
     text-align: center;
     border-radius: 15px;
     background: #FFFFFF;
     color: #ff6600;
     padding: 6%;
+    padding-bottom: 7%;
     margin-bottom: 5px;
 }
 
+.monitorTeclaPosicionIzq{
+	position: relative;
+	top: -20%;
+        left: -33%;
+}
+
+.monitorTeclaPosicionDer{
+	position: relative;
+	top: -185%;
+        right: -20%;
+}
 .monitorTeclaIzq {
-    width: 40%;
-    height: 110px;
+    width: 30%;
+    height: 100px;
     font-size: 70px;
     text-align: center;
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
     background: #FFFFFF;
-    padding-left: 6%;
-    padding-right: 6%;
-    padding-bottom: 10%;
-    padding-top: 10%;
-    margin-bottom: 2px;
-    margin-top: 2px;
-    margin-left: 2px;
+    padding-left: 7%;
+    padding-right: 7%;
+    padding-bottom: 11%;
+    padding-top: 11%;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    margin-left: 3px;
     border-color: white;
     
     display: inline-block;
 }
 .monitorTeclaDer {
     display:inherit;
-    width: 170%;
-    height: 172px;
+    width: 210%;
+    height: 204px;
     font-size: 40px;
     text-align: center;
     border-bottom-right-radius: 15px;
@@ -187,8 +199,8 @@ select{
     padding-bottom: 10;
     margin-bottom: 5px;
     position: relative;
-    top: -131px;
-    right: -215px;
+    top: -150px;
+    right: -230px;
     margin-bottom: 2px;
     margin-top: 2px;
 }
@@ -197,6 +209,7 @@ select{
     position: relative;
     top: 30%;
     right: 1%;
+    font-size: 60px;
 }
 
 .myTd3 {
@@ -551,7 +564,7 @@ select{
 	margin: 0px;
 	position:absolute;
 	top: 0.5%;
-	right: 9%;
+	right: 4%;
 }
 
 #logo {
