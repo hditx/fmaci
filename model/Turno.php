@@ -183,12 +183,12 @@ class Turno{
     public static function getMonitor(){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idTurno, idCola, atendido, hora, LPAD(posicion, 3, '0') AS posicion FROM Turno WHERE atendido NOT IN (0,4) AND enEspera = 0 AND fecha = CUARDATE() ORDER BY atendido, horaModificacion DESC LIMIT 4";
+            $sql = "SELECT idTurno, idCola, atendido, hora, LPAD(posicion, 3, '0') AS posicion, enEspera FROM Turno WHERE atendido NOT IN (0,4) AND enEspera = 0 AND fecha = CURDATE() ORDER BY horaModificacion DESC LIMIT 4";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
             foreach($resultado as $fila) {
-                $data[] = new Turno($fila['idTurno'], $fila['idCola'], $fila['posicion'], $fila['atendido'], $fila['hora']);
+                $data[] = new Turno($fila['idTurno'], $fila['idCola'], $fila['posicion'], $fila['atendido'], $fila['hora'], $fila['enEspera']);
             }
             $mbd = null;
         } catch (PDOException $e) {
