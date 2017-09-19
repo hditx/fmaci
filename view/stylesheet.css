@@ -212,6 +212,20 @@ select{
     font-size: 60px;
 }
 
+.monitorVideos{
+    background: #FFFFFF;
+    text-align: left;
+    width: 40%;
+    border-radius: 10px;
+    font-size: 20px;
+    min-height: 15%;
+    padding: 5px;
+    color: black;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+
 .myTd3 {
     width:200px;
     height: 60px;
