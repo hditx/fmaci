@@ -1,7 +1,7 @@
 <div align="center">
-<h1 class="registrarEmpleado">Subir vídeo</h1>
+<h1 class="registrarEmpleadoMo">Subir vídeo</h1>
 <form method="POST" action="index.php?c=administrador&a=saveMonitor" >
-    <div class="check">
+    <div class="checkMo">
         
     <?php 
         $direccion = "/var/www/html/farmacentro/view/video/";

@@ -4,6 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="view/stylesheet.css">
         <link rel="stylesheet" type="text/css" href="view/font-awesome-4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="/home/hditx/Bootstrap/0bootstrap/css/bootstrap.min.css">
         <title>
             Farmacentro
         </title>

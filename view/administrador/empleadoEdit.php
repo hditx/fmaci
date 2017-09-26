@@ -11,7 +11,7 @@
         <?php }?>
         <p class="formulario">Nombre <input class="inputText" type="text" name="nombre" size="20" value="<?= $tmp->getNombre()?>"></p>
         <p class="formulario">Apellido <input  class="inputText" type="text" name="apellido" size="20" value="<?= $tmp->getApellido()?>"></p>
-        <p class="formulario">Contraseña <input class="inputText" type="text" name="contrasenia" size="20" value="<?= $tmp->getContrasenia() ?>"></p>
+        <p class="formulario">DNI <input class="inputText" type="text" name="dni" size="20" value="<?= $tmp->getDni() ?>"></p>
         <p class="formulario">Perfil
             <select name="perfil">
                 <option value="1" <?= ($tmp->getPerfil() == 1) ? 'selected' : ''?> >Administrador</option>

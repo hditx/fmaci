@@ -62,6 +62,7 @@ class AdministradorController{
         $idCola = $_REQUEST['idCola'];
         $tmp->setNombre($_REQUEST['nombre']);
         $tmp->setApellido($_REQUEST['apellido']);
+        $tmp->setDni($_REQUEST['dni']);
         $tmp->save();
         if($nuevo == 1){
             $id = Empleado::getNuevoEmpleado();

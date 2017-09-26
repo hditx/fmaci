@@ -7,14 +7,14 @@ class Empleado{
     private $idEmpleado;
     private $nombre;
     private $apellido;
-    private $contrasenia;
+    private $dni;
     private $perfil;
     
-    public function __construct($idEmpleado, $nombre = "", $apellido = "", $contrasenia = "", $perfil = "") {
+    public function __construct($idEmpleado, $nombre = "", $apellido = "", $dni = "", $perfil = "") {
         $this->setIdEmpleado($idEmpleado);
         $this->setNombre($nombre);
         $this->setApellido($apellido);
-        $this->setContrasenia($contrasenia);
+        $this->setDni($dni);
         $this->setPerfil($perfil);
     }
 
@@ -30,8 +30,8 @@ class Empleado{
         return $this->apellido;
     }
     
-    public function getContrasenia(){
-        return $this->contrasenia;
+    public function getDni(){
+        return $this->dni;
     }
     
     public function getPerfil(){
@@ -50,8 +50,8 @@ class Empleado{
         $this->nombre = $nombre;
     }
     
-    public function setContrasenia($contrasenia){
-        $this->contrasenia = $contrasenia;
+    public function setDni($dni){
+        $this->dni = $dni;
     }
     
     public function setPerfil($perfil){
@@ -62,9 +62,9 @@ class Empleado{
         try {
             $mdb =  DataBase::getDb();
             if($this->getIdEmpleado() != null){
-                $sql = "UPDATE Usuario SET nombre = '".$this->getNombre()."', apellido = '".$this->getApellido()."', contrasenia = '".$this->getContrasenia()."', perfil = '".$this->getPerfil()."'  WHERE usuarioId =".$this->getIdEmpleado();
+                $sql = "UPDATE Usuario SET nombre = '".$this->getNombre()."', apellido = '".$this->getApellido()."', dni = ".$this->getDni().", perfil = '".$this->getPerfil()."'  WHERE usuarioId =".$this->getIdEmpleado();
             }else{
-                $sql = "INSERT Usuario(nombre, apellido, fechaDeAlta, contrasenia, perfil) VALUES ('".$this->getNombre()."', '".$this->getApellido()."', NOW(),  '".$this->getContrasenia()."', ".$this->getPerfil().")";
+                $sql = "INSERT Usuario(nombre, apellido, fechaDeAlta, dni, perfil) VALUES ('".$this->getNombre()."', '".$this->getApellido()."', NOW(),  ".$this->getDni().", ".$this->getPerfil().")";
             }
             $temp = $mdb->prepare($sql);
             $temp->execute();
@@ -96,7 +96,7 @@ class Empleado{
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll();
-            $data = new Empleado($resultado[0]['usuarioId'], $resultado[0]['nombre'], $resultado[0]['apellido'], $resultado[0]['contrasenia'], $resultado[0]['perfil']);
+            $data = new Empleado($resultado[0]['usuarioId'], $resultado[0]['nombre'], $resultado[0]['apellido'], $resultado[0]['dni'], $resultado[0]['perfil']);
             $mdb = null;
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
@@ -129,7 +129,7 @@ class Empleado{
             $temp->execute();
             $resultado = $temp->fetchAll();
             foreach ($resultado as $fila){
-                $data[] = new Empleado($fila['usuarioId'], $fila['nombre'], $fila['apellido']);
+                $data[] = new Empleado($fila['usuarioId'], $fila['nombre'], $fila['apellido'], $fila['dni']);
             }
             $mdb = null;
         } catch (PDOException $e) {
