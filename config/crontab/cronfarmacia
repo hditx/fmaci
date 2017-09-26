@@ -1,3 +1,4 @@
 50 * * * * sh /home/firefly/fmaci/config/crontab/backup.sh
 7 * * * * php /home/firefly/fmaci/config/crontab/base.php
+1 * * * * touch crear.txt
 
