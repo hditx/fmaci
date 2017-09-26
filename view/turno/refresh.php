@@ -5,7 +5,8 @@
 ?>
         <div>
             <div class="monitorTeclaIzq">
-                <div class=<?=($t->getAtendido() == 2)? 'blink' : 'letra'?>>
+                <?php switch ($t->getAtendido()){ case 1: $c="gris";break;case 2: $c="blink";break;case 3: $c="letra";break; }?>
+                <div class=<?=$c?>>
                      <?=Turno::getLetra($t->getIdCola())."".$t->getPosicion()?>
                 </div>
                 <div class="monitorTeclaDer">

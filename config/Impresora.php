@@ -29,7 +29,7 @@ class Impresora {
             fprintf ($impresora, $ESC."E".chr(0)); // Not Bold
             //echo ESC."d".chr(1); // Blank line
             fprintf ($impresora, $GS."!\x00"); // Set the character size
-            ($espera == 0) ? fprintf ($impresora, "Clientes en espera: 0\n") : fprintf ($impresora, "Clientes en espera: $espera\n");
+            ($espera == 0) ? fprintf ($impresora, "Clientes en espera: 0\n") : fprintf ($impresora, "Clientes en espera: ".$espera."\n");
             fprintf ($impresora, "Emisi\xa2n: " . date('d/m/Y h:i:s a', time()) . "\n");
             fprintf ($impresora, $ESC."d".chr(1)); // Blank line
             fprintf ($impresora, $GS."!\x00"); // Set the character size

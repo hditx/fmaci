@@ -119,7 +119,11 @@ select{
 
 .letra{
     color: black;
-    
+    font-weight: bolder;
+}
+
+.gris{
+    color: grey;
     font-weight: bolder;
 }
 
@@ -160,6 +164,7 @@ select{
 }
 
 .monitorTeclaPosicionDer{
+    
 	position: relative;
 	top: -185%;
         right: -20%;
@@ -184,6 +189,7 @@ select{
     display: inline-block;
 }
 .monitorTeclaDer {
+    font-weight: bolder;
     display:inherit;
     width: 210%;
     height: 204px;
