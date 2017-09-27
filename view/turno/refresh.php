@@ -1,5 +1,7 @@
 <div id='derecha'>
-        <div class='monitorTecla'><div class="monitorTeclaPosicionIzq">Nro</div><div class="monitorTeclaPosicionDer"> Vendedor</div></div>
+    <div>
+        <div class='monitorTeclaLeft'>Nro</div><div class="monitorTeclaRight"> Vendedor</div>
+     </div>
 <?php
         foreach ($turnos as $t) {
 ?>
