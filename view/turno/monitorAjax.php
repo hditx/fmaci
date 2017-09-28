@@ -23,7 +23,7 @@
 </head>
 <body>
     <div id="izquierda">
-        <img src="view/video/<?=$video?>" width="1200px">
+        <img src="view/video/<?=$video?>" width="1200px" height="1050px">
     </div>
     <div id="refresh"></div>
 </body>
