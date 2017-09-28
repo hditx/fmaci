@@ -19,12 +19,22 @@
         });
     </script>
     
+    <script>
+        $(document).on("ready", function(){
+            function reloadTurno(){
+                $.get('index.php?c=turno&a=updateMonitorImg', function(data){
+                    $("#refreshImg").html(data);
+                }
+                );
+            }
+            setInterval(reloadTurno,1000);
+        });
+
+    </script>
     
 </head>
 <body>
-    <div id="izquierda">
-        <img src="view/video/<?=$video?>" width="1200px" height="1050px">
-    </div>
+    <div id="refreshImg"></div>
     <div id="refresh"></div>
 </body>
 </html>

@@ -10,8 +10,12 @@ class TurnoController{
     public function index(){
         header("Location: index.php?c=turno&a=sacarTurno");
     }
-
+    
     public function monitor(){
+        require_once 'view/turno/monitorAjax.php';
+    }
+
+    public function updateMonitorImg(){
         try {
             $mdb = DataBase::getDb();
             $sql = 'SELECT nombre FROM Video LIMIT 1';
@@ -22,7 +26,7 @@ class TurnoController{
             print "ERROR". $e->getMessage();
         }
         $video = $resultado[0]['nombre'];
-        require_once 'view/turno/monitorAjax.php';
+        require_once 'view/turno/refreshImg.php';
     }
     
     public function updateMonitor(){
