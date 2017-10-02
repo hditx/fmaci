@@ -925,13 +925,6 @@ select{
 	 
 p.code { font-family: codebar; }
 
-@font-face {  
-    font-family: codebar128 ;  
-        src: url( code128.ttf ); /*format("truetype")*/
-    }  
-	 
-p.codes { font-family: codebar128; }
-
 h1.presentacion{
     text-align: center;
     background: #ff6600;
