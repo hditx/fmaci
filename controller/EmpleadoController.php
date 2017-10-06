@@ -98,7 +98,7 @@ class EmpleadoController{
                 (isset($_REQUEST['estado']) ? $_REQUEST['estado'] : "null"));
         
         switch ($_REQUEST['estado']){
-            case 1:
+            case 3:
             case 4:
                 $bloqueo = false;
                 $_SESSION['empleadoEstado'] = 0;
@@ -121,13 +121,13 @@ class EmpleadoController{
                     header("Location: index.php?c=empleado&a=listTurno&idEmpleado=$idEmpleado");
                 }                    
                 break;
-            case 2:
+            case 1:
                 //LLAMADO
                 $bloqueo = true;
                 if(isset($_REQUEST['enEspera'])){
                     Turno::setEnEsperaObjeto($_REQUEST['id'], 0);
                 }
-                if($_SESSION['inicio'] != 2){
+                if($_SESSION['inicio'] != 1){
                     if(!isset($_REQUEST['enEspera'])){
                         Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
                     }
@@ -139,7 +139,7 @@ class EmpleadoController{
                 $id = $_REQUEST['id'];
                 $turno = Turno::getTurnoUnico($id);
                 $idEmpleado = $_REQUEST['idEmpleado'];
-                $_SESSION['empleadoEstado'] = 2; 
+                $_SESSION['empleadoEstado'] = 1; 
                 if(isset($_REQUEST['espera'])){
                     Turno::setEnEsperaObjeto($_REQUEST['id'], 0);
                     header("Location: index.php?c=empleado&a=listTurno");
@@ -149,7 +149,7 @@ class EmpleadoController{
                     require_once 'view/footerNButton.php';
                 }
                 break;
-            case 3:
+            case 2:
                 //ATENDIENDO
                 $bloqueo = true;
                 $_SESSION['empleadoEstado'] = 0; 

@@ -12,7 +12,7 @@
 <h1 class="registrarEmpleado">Atendiendo</h1>
 <form method="POST" name="seleccion" >
     <input type="hidden" name="id" value="<?= $id?>">
-    <input type="hidden" name="estado" value="3">
+    <input type="hidden" name="estado" value="2">
     <input type="hidden" name="idEmpleado" value="<?= $idEmpleado?>">
     <p class="formulario">Nombre   <input class="inputText" type="text" name="nombre" size="20" value="<?= $tCliente->getNombre()?>"></p>
     <p class="formulario">Apellido <input class="inputText" type="text" name="apellido" size="20" value="<?= $tCliente->getApellido()?>"></p>
@@ -22,6 +22,6 @@
 </form>
 </div>
 <div align="right">
-<a input id="finAtencion" href="index.php?c=empleado&a=estadoTurno&id=<?= $id ?>&estado=1&idEmpleado=<?=$idEmpleado?>">Fin de Atención</a>
-<a class="posicionEspera" id="espera" href="index.php?c=empleado&a=estadoTurno&id=<?=$id?>&estado=3&idEmpleado=<?=$idEmpleado?>&espera=1&enEspera=1">Enviar a espera</a>
+<a input id="finAtencion" href="index.php?c=empleado&a=estadoTurno&id=<?= $id ?>&estado=3&idEmpleado=<?=$idEmpleado?>">Fin de Atención</a>
+<a class="posicionEspera" id="espera" href="index.php?c=empleado&a=estadoTurno&id=<?=$id?>&estado=2&idEmpleado=<?=$idEmpleado?>&espera=1&enEspera=1">Enviar a espera</a>
 </div>

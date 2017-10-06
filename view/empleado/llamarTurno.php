@@ -9,7 +9,7 @@
     </div>
 </div>
 <div class="center">
-    <a href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=2&idEmpleado=<?= $_SESSION['usuario'] ?>"><div class="botonLlama">LLamar nuevamente</div></a>
+    <a href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=1&idEmpleado=<?= $_SESSION['usuario'] ?>"><div class="botonLlama">Llamar nuevamente</div></a>
     <div class="posicion" id="llamados" >
         <div id="mensaje">
             <?php foreach ($listLlamado as $t) {?>
@@ -21,6 +21,6 @@
             <?php }?>
     </div>
 </div>
-<a class="atender" href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=3&idEmpleado=<?=$idEmpleado?>">Atender</a>
+<a class="atender" href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=2&idEmpleado=<?=$idEmpleado?>">Atender</a>
 <a href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=4&idEmpleado=<?=$idEmpleado?>"><div id="noPresente">No se presento</div></a>
 

@@ -56,7 +56,7 @@ class Sesion{
     static function getUser($user){
         try{
             $mdb =  DataBase::getDb();
-            $sql = "SELECT * FROM Usuario WHERE usuarioId = $user LIMIT 1";
+            $sql = "SELECT * FROM Usuario WHERE dni = $user LIMIT 1";
             $sta = $mdb->prepare($sql);
             $sta->execute();
             $resultado = $sta->fetchAll();

@@ -59,7 +59,7 @@ class Historial{
     public static function history($id){
       try {
           $mdb =  DataBase::getDb();
-          $sql = "SELECT * FROM HistorialEstado WHERE idTurno = $id AND estado = 2 AND DATE(fechaHora) = CURDATE() ORDER BY fechaHora DESC";
+          $sql = "SELECT * FROM HistorialEstado WHERE idTurno = $id AND estado = 1 AND DATE(fechaHora) = CURDATE() ORDER BY fechaHora DESC";
           $temp = $mdb->prepare($sql);
           $temp->execute();
           $resultado = $temp->fetchAll();

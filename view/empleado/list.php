@@ -31,7 +31,7 @@
     
 <div>
     <?php if ($showNext) {?>
-        <a href="?c=empleado&a=estadoTurno&id=<?=$first->getIdTurno()?>&estado=2&idEmpleado=<?=$idEmpleado?>">
+        <a href="?c=empleado&a=estadoTurno&id=<?=$first->getIdTurno()?>&estado=1&idEmpleado=<?=$idEmpleado?>">
     <?php } ?>
         <div class="encabezado" id="text">
             <?= $title ?> 

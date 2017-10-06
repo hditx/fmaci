@@ -183,7 +183,7 @@ class Turno{
     public static function getMonitor(){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idTurno, idCola, atendido, hora, LPAD(posicion, 3, '0') AS posicion, enEspera FROM Turno WHERE atendido NOT IN (0,4) AND enEspera = 0 AND fecha = CURDATE() ORDER BY horaModificacion DESC LIMIT 5";
+            $sql = "SELECT idTurno, idCola, atendido, hora, LPAD(posicion, 3, '0') AS posicion, enEspera FROM Turno WHERE atendido NOT IN (0,4) AND enEspera = 0 AND fecha = CURDATE() ORDER BY atendido,horaModificacion DESC LIMIT 5";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
