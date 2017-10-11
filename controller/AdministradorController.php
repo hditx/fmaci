@@ -32,7 +32,7 @@ class AdministradorController{
     
     public function imprimir(){
         $nombre = $_REQUEST['nombre'];
-        $id = $_REQUEST['id']; 
+        $id = Empleado::getDniEmpleado($_REQUEST['id']); 
         require_once 'view/header.php';
         require_once 'view/administrador/imprimir.php';
         require_once 'view/footer.php';

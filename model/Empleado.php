@@ -273,4 +273,19 @@ class Empleado{
             die();
         }        
     }
+    
+    public static function getDniEmpleado($id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT dni FROM Usuario WHERE usuarioId = $id";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            return $resultado[0]['dni'];
+            $mdb = null;            
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }        
+    }
 }
