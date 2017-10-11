@@ -26,14 +26,12 @@ class ColaController{
       else{
          $temp = new Cola(null);
          $nuevo = 1;
-         
       }
-      
       $temp->setNombreCola($_REQUEST['nombreCola']);
+      $temp->setHijoDe($_REQUEST['idPadre']);
+      $temp->setSiguiente($_REQUEST['siguiente']);
+      $temp->setLetra($_REQUEST['letra']);
       if($_REQUEST['idEmpleado'] != -1){          
-        $temp->setHijoDe($_REQUEST['idPadre']);
-        $temp->setSiguiente($_REQUEST['siguiente']);
-        $temp->setLetra($_REQUEST['letra']);
         $temp->save();
         $empleados = $_REQUEST['idEmpleado'];
         if($nuevo == 0){
@@ -46,9 +44,14 @@ class ColaController{
             Cola::saveUnion($empleado, $id);
         }
       }else{
-        $temp->saveMother();
+        if( $temp->getSiguiente() != null){
+            $temp->save();
+        }else{
+            $temp->saveMother();
+        }
       }
-        
+      //var_dump($temp);
+      //exit();
       header("Location: index.php?c=cola");
       
   }
