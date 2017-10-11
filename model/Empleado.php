@@ -58,13 +58,13 @@ class Empleado{
         $this->perfil = $perfil;
     }
 
-        public function save(){
+    public function save(){
         try {
             $mdb =  DataBase::getDb();
             if($this->getIdEmpleado() != null){
-                $sql = "UPDATE Usuario SET nombre = '".$this->getNombre()."', apellido = '".$this->getApellido()."', dni = ".$this->getDni().", perfil = '".$this->getPerfil()."'  WHERE usuarioId =".$this->getIdEmpleado();
+                $sql = "UPDATE Usuario SET nombre = '".$this->getNombre()."', apellido = '".$this->getApellido()."', dni = ".$this->getDni().", perfil = ".$this->getPerfil()."  WHERE usuarioId =".$this->getIdEmpleado();
             }else{
-                $sql = "INSERT Usuario(nombre, apellido, fechaDeAlta, dni, perfil) VALUES ('".$this->getNombre()."', '".$this->getApellido()."', NOW(),  ".$this->getDni().", ".$this->getPerfil().")";
+                $sql = "INSERT INTO Usuario(nombre, apellido, fechaDeAlta, dni, perfil) VALUES ('".$this->getNombre()."', '".$this->getApellido()."', NOW(),  ".$this->getDni().", ".$this->getPerfil().")";
             }
             $temp = $mdb->prepare($sql);
             $temp->execute();

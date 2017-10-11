@@ -59,10 +59,13 @@ class AdministradorController{
             $tmp = new Empleado(null);
             $nuevo = 1;
         }
+
         $idCola = $_REQUEST['idCola'];
+
         $tmp->setNombre($_REQUEST['nombre']);
         $tmp->setApellido($_REQUEST['apellido']);
         $tmp->setDni($_REQUEST['dni']);
+        $tmp->setPerfil($_REQUEST['perfil']);
         $tmp->save();
         if($nuevo == 1){
             $id = Empleado::getNuevoEmpleado();
@@ -73,6 +76,7 @@ class AdministradorController{
         foreach ($idCola as $union){
             Empleado::saveUnion($id, $union);
         }
+        var_dump($tmp);
         header("Location: index.php?c=administrador&a=abmEmpleado");
     }
     
