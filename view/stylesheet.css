@@ -889,7 +889,7 @@ select{
 }
 
 .tarjeta{
-    border: solid;
+    /*border: solid;*/
     background: #FFFFFF;
     color: black;
     width: 30%;
