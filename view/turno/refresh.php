@@ -7,8 +7,8 @@
 ?>
         <div>
             <div class="monitorTeclaIzq">
-                <?php switch ($t->getAtendido()){ case 1: $c="blink";break;case 2: $c="letra";break; case 3: $c="gris";break;}?>
-                <div class=<?=$c?>>
+                <audio id="audio" src="view/empleado/beep-02.wav" <?=(Turno::getBlink($t->getIdTurno()) == 1)? "autoplay" : "" ?> ></audio>
+                <div class=<?= (Turno::getBlink($t->getIdTurno()) == 1)? "blink" : "letra" ?>>
                      <?=Turno::getLetra($t->getIdCola())."".$t->getPosicion()?>
                 </div>
                 <div class="monitorTeclaDer">
@@ -19,6 +19,10 @@
 <?php
         }
 ?>
-
 </div>
-
+<script>
+function playSound() {
+  var sound = document.getElementById("audio");
+  sound.play();
+}
+</script>

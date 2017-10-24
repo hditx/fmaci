@@ -35,7 +35,7 @@ select{
     font-weight: bolder;
     animation-duration: 1s;
     animation-name: blink;
-    animation-iteration-count: infinite;
+    animation-iteration-count: 3;
     animation-timing-function: steps(2 ,start);
 }
 @keyframes blink {
@@ -119,11 +119,6 @@ select{
 
 .letra{
     color: black;
-    font-weight: bolder;
-}
-
-.gris{
-    color: grey;
     font-weight: bolder;
 }
 
@@ -665,7 +660,7 @@ select{
 }
 .posicionEspera{
     position: absolute;
-    top: 77%;
+    top: 65%;
     left: 3%;
 }
 
@@ -826,23 +821,6 @@ select{
     right: 29%;
 }
 
-.atender{
-    color: white;   
-    display:inline-block;
-    background: #ff6600;
-    height: 10%;
-    width: 20%;
-    font-size: 48px;
-    text-align: center;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    margin: 10px;
-    padding: 5px;
-    position: absolute;
-    top: 77%;
-    right: 2%;
-}
 .textFecha{
     font-size: 60px;
     font-family: sans-serif;

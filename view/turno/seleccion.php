@@ -1,3 +1,14 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="view/stylesheet.css">
+    <meta http-equiv="refresh" content="10;url=index.php">
+    <title>
+        Farmacentro
+    </title>
+</head>
+<body>
 <h1 align="center">BIENVENIDO!</h1><br>
 
 <div class="center">

@@ -98,18 +98,17 @@ class EmpleadoController{
                 (isset($_REQUEST['estado']) ? $_REQUEST['estado'] : "null"));
         
         switch ($_REQUEST['estado']){
+            case 2:
             case 3:
-            case 4:
                 $bloqueo = false;
                 $_SESSION['empleadoEstado'] = 0;
                 //ATENDIDO Y ABANDONO
-                if($_REQUEST['estado'] == 4){
-                    Turno::setEnEsperaObjeto($_REQUEST['id'], 0);
+                if($_REQUEST['estado'] == 2){
+                    Turno::setEnEsperaObjeto($_REQUEST['id'], 1);
                 }
                 if(isset($_REQUEST['dni']) && isset($_REQUEST['name'])){
                     Cliente::saveCliente($_REQUEST['name'], $_REQUEST['apellido'], $_REQUEST['dni'],
                             $_REQUEST['telefono']);
-                    echo "save";
                 }
                 Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
                 Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
@@ -124,14 +123,17 @@ class EmpleadoController{
             case 1:
                 //LLAMADO
                 $bloqueo = true;
-                if(isset($_REQUEST['enEspera'])){
-                    Turno::setEnEsperaObjeto($_REQUEST['id'], 0);
-                }
                 if($_SESSION['inicio'] != 1){
-                    if(!isset($_REQUEST['enEspera'])){
+                    if($_REQUEST['enEspera'] != 1){
                         Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
+                        Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
+                    }else{
+                        if($_REQUEST['enEspera'] == 1){
+                            Empleado::saveEstado($_REQUEST['id'], 3, $_REQUEST['idEmpleado']);
+                            Turno::setEnEsperaObjeto($_REQUEST['id'], 2);
+                            Empleado::actualizar($_REQUEST['id'], 3);
+                        }
                     }
-                    Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
                 }
                 $_SESSION['inicio'] = 0;
                 $listLlamado = Historial::history($_REQUEST['id']);
@@ -140,45 +142,9 @@ class EmpleadoController{
                 $turno = Turno::getTurnoUnico($id);
                 $idEmpleado = $_REQUEST['idEmpleado'];
                 $_SESSION['empleadoEstado'] = 1; 
-                if(isset($_REQUEST['espera'])){
-                    Turno::setEnEsperaObjeto($_REQUEST['id'], 0);
-                    header("Location: index.php?c=empleado&a=listTurno");
-                }else{
-                    require_once 'view/header.php';
-                    require_once 'view/empleado/llamarTurno.php';
-                    require_once 'view/footerNButton.php';
-                }
-                break;
-            case 2:
-                //ATENDIENDO
-                $bloqueo = true;
-                $_SESSION['empleadoEstado'] = 0; 
-                if(isset($_REQUEST['dni'])){
-                    $tCliente = Cliente::getCliente($_REQUEST['dni']);
-                    $tdni = $_REQUEST['dni'];
-                }else{
-                    $tCliente = new Cliente(null);
-                }
-                if(isset($_REQUEST['enEspera'])){
-                    echo "espera";
-                    Turno::setEnEsperaObjeto($_REQUEST['id'], 0);
-                }
-                if($_REQUEST['esperaTurno'] == 1){
-                    Turno::setEnEsperaObjeto($_REQUEST['id'], 1);
-                }
-                Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
-                Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
-                $id = $_REQUEST['id'];
-                $idEmpleado = $_REQUEST['idEmpleado'];
-                $turno = Turno::getTurnoUnico($id);
-                if(isset($_REQUEST['espera'])){
-                    Turno::setEnEsperaObjeto($_REQUEST['id'], 0);
-                    header("Location: index.php?c=empleado&a=listTurno");
-                }else{
-                    require_once 'view/header.php';
-                    require_once 'view/empleado/atendido.php';
-                    require_once 'view/footerNButton.php';
-                }
+                require_once 'view/header.php';
+                require_once 'view/empleado/llamarTurno.php';
+                require_once 'view/footerNButton.php';
                 break;
         }
     }

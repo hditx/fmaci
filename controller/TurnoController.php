@@ -35,11 +35,6 @@ class TurnoController{
     }
     
     public function sacarTurno(){
-//        if(isset($_REQUEST['dni'])){
-//            $temp = new Cliente(null);
-//            $temp->setDni($_REQUEST['dni']);
-//            $temp->save();
-//        }
         if(isset($_REQUEST['id'])){
             $t = Cola::get($_REQUEST['id']);
             if ($t->getSiguiente() == null){
@@ -53,8 +48,6 @@ class TurnoController{
         require_once 'view/header.php';
         if($colas != null){
             require_once 'view/turno/seleccion.php';
-        }else{
-            echo "Imprimiendo turno";
         }
         require_once 'view/footerNButton.php';
     }
@@ -65,6 +58,7 @@ class TurnoController{
         $turn->setIdCola($_REQUEST['id']);
         $turn->setPosicion(Cola::getNumeroSiguiente($_REQUEST['id']));
         $turn->setAtendido(0);
+        $turn->setEnEspera(0);
         $turn->save();
         Cola::incrementar($_REQUEST['id']);
         header("Location: index.php?c=turno&a=index");
