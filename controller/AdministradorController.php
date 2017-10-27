@@ -123,5 +123,27 @@ class AdministradorController{
         }
         
     }
+    public function cargarImagenNuevo(){
+        require_once 'view/header.php';
+        require_once 'view/administrador/cargarImagen.php';
+        require_once 'view/footer.php';
+    }
+
+    public function cargarImagen(){
+        $ruta = "/media/firefly/fire1/imagenes/";
+        $directorio = $ruta . basename($_FILES['archivo']['name']);
+        move_uploaded_file($_FILES['archivo']['tmp_name'], $directorio);
+        try{
+            $video = $_FILES['archivo']['name'];
+            $mdb = DataBase::getDb();
+            $sql = "UPDATE Video SET nombre = '$video'";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $mdb = null;
+            header('Location: index.php?c=administrador&a=index');
+        } catch (PDOException $e){
+            print $e->getMessage();
+        }
+    }
 }
 ?>

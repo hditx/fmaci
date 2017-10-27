@@ -4,4 +4,5 @@
     <a class="myButton" href="index.php?c=administrador&a=informe">Informe</a>
     <a class="myButton" href="index.php?c=administrador&a=abmEmpleado">ABM Empleado</a>
     <a class="myButton" href="index.php?c=administrador&a=modificarMonitor">Monitor</a>
+    <a class="myButton" href="index.php?c=administrador&a=cargarImagenNuevo">Cargar Imagen</a>
 </div>

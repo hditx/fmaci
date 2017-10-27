@@ -404,12 +404,31 @@ select{
 .formulario{
     font-size: large;
     color:black;
-    width: 98%;
+    width: 40%;
     height: 20%;
     background: #ffffff;
     padding: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.formularioCliente{
+    position: absolute;
+    background: white;
+    width: 25%;
+    top: 30%;
+    right: 2%;
+}
+.clientePosicion{
+    width: 25%;
+    height: 8%;
+    text-align: center; 
+    background: orange;
+    border-radius: 10px;
+    position: absolute;
+    padding-top: 1%;
+    top: 15%;
+    right: 2%;
 }
 .inputText{
     width: 75%;
@@ -660,7 +679,7 @@ select{
 }
 .posicionEspera{
     position: absolute;
-    top: 65%;
+    top: 70%;
     left: 3%;
 }
 
@@ -684,7 +703,7 @@ select{
     margin: 10px;
     padding: 5px;
     position: absolute;
-    top: 77%;
+    top: 82%;
     left: 3%;
 }
 
@@ -744,8 +763,8 @@ select{
     border-radius: 5px;
 }
 #llamados{
-    height: 65%;
-    width: 30%;
+    height: 40%;
+    width: 25%;
     border: 1px solid #ddd;
     background: #f1f1f1;
     overflow-y: scroll;
@@ -786,8 +805,9 @@ select{
 }
 
 .botonLlama{
+    text-align: center;
     height: 8.5%;
-    width: 28.8%;
+    width: 23.8%;
     background: yellow;
     color: black;
     font-size: 30px;
@@ -795,12 +815,12 @@ select{
     border-radius: 10px;
     padding: 10px;
     position: absolute;
-    top: 20%;
-    right: 35%;
+    top: 15%;
+    left: 3.5%;
 }
 
 .fechas {
-    width:387px;
+    width:330px;
     text-align: center;
     height: 90px;
     background: #FFFFFF;
@@ -812,8 +832,8 @@ select{
 }
 .posicion{
     position: absolute;
-    top: 31.8%;
-    right: 35.1%;
+    top: 27%;
+    left: 3.5%;
 }
 .posicionAdmin{
     position: absolute;
@@ -822,27 +842,27 @@ select{
 }
 
 .textFecha{
-    font-size: 60px;
+    font-size: 35px;
     font-family: sans-serif;
     position: relative;
-    top: 10px;
-    left: -130px;
+    top: 20px;
+    left: -25px;
 }
 
 .textFechaCentro{
     font-size: 18px;
     font-family: sans-serif;
     position: relative;
-    top: -30px;
-    left: -10px;
+    top: 15px;
+    left: -5px;
 }
 
 .textFechaDer{
-    font-size: 28px;
+    font-size: 22px;
     font-family: sans-serif;
     position: relative;
-    top: -60px;
-    left: 130px;
+    top: -80px;
+    right: -10px;
 }
 
 .registrarEmpleado{
@@ -858,6 +878,26 @@ select{
     text-align: center;
     background: #ff6600;
     width: 60%;
+    min-height: 60px;
+    padding-top: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+}
+
+.registrarImg{
+    text-align: center;
+    background: #ff6600;
+    width: 40%;
+    min-height: 60px;
+    padding-top: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+}
+.registrarImgBox{
+    color: black;
+    text-align: center;
+    background: #ffffff;
+    width: 40%;
     min-height: 60px;
     padding-top: 10px;
     padding-right: 10px;
@@ -889,7 +929,7 @@ select{
 }
 
 .tarjeta{
-    /*border: solid;*/
+    border: solid;
     background: #FFFFFF;
     color: black;
     width: 30%;
