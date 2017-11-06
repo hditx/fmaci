@@ -1,34 +1,44 @@
-<div>
-    <div class="cuadradoMostrar">
-        <div class="letraCuadrado"><?= Turno::getLetra($turno->getIdCola())."".$turno->getPosicion()?></div>
-        <div class="rectanguloMostrar">
-            <div class="obraSocial"><?= Cola::getNombreColaObjeto($turno->getIdCola())?></div>
-            <div class="horaNormal"><?= $turno->getHora()?></div>
-            <div class="horaEspera"><?= Turno::getHoraObjeto($turno->getIdTurno())?></div>
-        </div>
-    </div>
-</div>
-
-    
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="view/stylesheet.css">
+    <title>
+        Farmacentro
+    </title>
+    <script type="text/javascript" src="config/jquery-1.7.2.min.js"></script>
+    <script>
+        $(document).on("ready", function(){
+            function reloadTurno(){
+                $.get('index.php?c=empleado&a=refreshEspera&id=<?=$turno->getIdTurno()?>', function(data){
+                    $("#refreshEspera").html(data);
+                    
+                });
+            }
+            setInterval(reloadTurno,1000);
+        });
+    </script>
+</head>
+<div id="refreshEspera"></div>
 <a href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=1&idEmpleado=<?= $_SESSION['usuario'] ?>"><div class="botonLlama">Llamar nuevamente</div></a>
 <div class="posicion" id="llamados" >
         <div id="mensaje">
             <?php foreach ($listLlamado as $t) {?>
             <div class="fechas">
                 <label class="textFecha"><?php echo $d; $d--;?></label>
-                <label class="textFechaCentro"><?= Historial::getFecha($t->getIdHistorial())?></label>
-                <label class="textFechaDer"><?= Historial::getHora($t->getIdHistorial())?></label>
+                <label class="textFechaCentro"><?= $t->getFecha()?></label>
+                <label class="textFechaDer"><?= $t->getHora()?></label>
             </div>
             <?php }?>
     </div>
 </div>
 <h1 class="clientePosicion">Cliente</h1>
 <form method="POST" name="seleccion" class="formularioCliente">
-    <label class="formulario">Nombre   <input type="text" name="nombre" size="20"></label><br/>
-    <label class="formulario">Apellido <input type="text" name="apellido" size="20" ></label><br/>
-    <label class="formulario">DNI      <input type="text" name="dni" size="20"><input type="button" value="..."></label><br/>
-    <label class="formulario">TEL <input type="text" name="telefono" size="20"></label><br/>
-    <label class="formulario">Dirección<input type="text" name="direccion" size="20"></label>
+    <label class="formulario">Nombre   <input class="inputText" type="text" name="nombre" size="20"></label><br/>
+    <label class="formulario">Apellido <input class="inputText" type="text" name="apellido" size="20" ></label><br/>
+    <label class="formulario">DNI      <input class="inputText" type="text" name="dni" size="20"><input type="button" value="..."></label><br/>
+    <label class="formulario">TEL <input class="inputText" type="text" name="telefono" size="20"></label><br/>
+    <label class="formulario">Dirección<input class="inputText" type="text" name="direccion" size="20"></label>
 </form>
 
 <a id="finAtencion" href="index.php?c=empleado&a=estadoTurno&id=<?= $id ?>&estado=3&idEmpleado=<?=$idEmpleado?>">Fin de Atención</a>

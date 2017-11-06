@@ -137,6 +137,10 @@ class EmpleadoController{
                 }
                 $_SESSION['inicio'] = 0;
                 $listLlamado = Historial::history($_REQUEST['id']);
+                /*foreach ($listLlamado as $t){
+                    echo var_dump($t->getHora());
+                    exit();
+                }*/
                 $d = count($listLlamado);
                 $id = $_REQUEST['id'];
                 $turno = Turno::getTurnoUnico($id);
@@ -147,6 +151,11 @@ class EmpleadoController{
                 require_once 'view/footerNButton.php';
                 break;
         }
+    }
+    
+    public function refreshEspera(){
+        $turno = Turno::getTurnoUnico($_REQUEST['id']);
+        require_once 'view/empleado/refreshEspera.php';
     }
 }
 ?>

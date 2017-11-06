@@ -18,14 +18,16 @@ class TurnoController{
     public function updateMonitorImg(){
         try {
             $mdb = DataBase::getDb();
-            $sql = 'SELECT nombre FROM Video LIMIT 1';
+            $sql = 'SELECT nombre FROM Video';
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll();
         } catch (PDOException $e) {
             print "ERROR". $e->getMessage();
         }
-        $video = $resultado[0]['nombre'];
+        for($i = 0; $i < count($resultado); ++$i)
+            $video[] = $resultado[$i]['nombre'];
+        $max = count($resultado);
         require_once 'view/turno/refreshImg.php';
     }
     

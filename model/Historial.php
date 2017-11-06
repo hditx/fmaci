@@ -7,13 +7,17 @@ class Historial{
   private $fechaHora;
   private $estado;
   private $idEmpleado;
+  private $hora;
+  private $fecha;
   
-  function __construct($idHistorial, $idTurno, $fechaHora, $estado, $idEmpleado) {
+  function __construct($idHistorial, $idTurno, $fechaHora, $estado, $idEmpleado, $fecha, $hora) {
       $this->setIdHistorial($idHistorial);
       $this->setIdTurno($idTurno);
       $this->setFechaHora($fechaHora);
       $this->setEstado($estado);
       $this->setIdEmpleado($idEmpleado);
+      $this->setFecha($fecha);
+      $this->setHora($hora);
   }
   
   public function getIdHistorial() {
@@ -34,6 +38,14 @@ class Historial{
 
   public function getIdEmpleado() {
       return $this->idEmpleado;
+  }
+  
+  public function getHora(){
+      return $this->hora;
+  }
+  
+  public function getFecha(){
+      return $this->fecha;
   }
 
   public function setIdHistorial($idHistorial) {
@@ -56,15 +68,23 @@ class Historial{
       $this->idEmpleado = $idEmpleado;
   }
   
+  public function setHora($hora){
+      $this->hora = $hora;
+  }
+  
+  public function setFecha($fecha){
+      $this->fecha = $fecha;
+  }
+
     public static function history($id){
       try {
           $mdb =  DataBase::getDb();
-          $sql = "SELECT * FROM HistorialEstado WHERE idTurno = $id AND estado = 1 AND DATE(fechaHora) = CURDATE() ORDER BY fechaHora DESC";
+          $sql = "SELECT idHistorial, idTurno, fechaHora, estado, idEmpleado, DATE(fechaHora) AS fecha, TIME(fechaHora) AS hora FROM HistorialEstado WHERE idTurno = $id AND DATE(fechaHora) = CURDATE() ORDER BY fechaHora DESC";
           $temp = $mdb->prepare($sql);
           $temp->execute();
           $resultado = $temp->fetchAll();
           foreach ($resultado as $fila){
-              $data[] = new Historial($fila['idHistorial'], $fila['idTurno'],$fila['fechaHora'], $fila['estado'], $fila['idEmpleado']);
+              $data[] = new Historial($fila['idHistorial'], $fila['idTurno'],$fila['fechaHora'], $fila['estado'], $fila['idEmpleado'], $fila['fecha'], $fila['hora']);
           }
           $mdb = null;
       } catch (PDOException $e) {
@@ -73,7 +93,7 @@ class Historial{
       }
       return $data;
     }
-    
+    /*
     public static function getFecha($id){
         try {
             $mdb =  DataBase::getDb();
@@ -90,7 +110,7 @@ class Historial{
         return $data;  
     }
     
-    public static function getHora($id){
+    /*public static function getHora($id){
         try {
             $mdb =  DataBase::getDb();
             $sql = "SELECT TIME(fechaHora) AS fechaHora FROM HistorialEstado WHERE idHistorial =".$id;
@@ -104,7 +124,7 @@ class Historial{
             die();
         }
         return $data;  
-    }
+    }*/
 }
 
 ?>

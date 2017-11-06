@@ -6,6 +6,14 @@
     <title>
         Farmacentro
     </title>
+    <link href="config/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="config/bootstrap/js/jquery.js"></script>
+    <script src="config/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.myCarousel').carousel();
+        });
+    </script>
     <script type="text/javascript" src="config/jquery-1.7.2.min.js"></script>
     <script>
         $(document).on("ready", function(){
@@ -27,7 +35,7 @@
                 }
                 );
             }
-            setInterval(reloadTurno,1000);
+            setInterval(reloadTurno,12000);
         });
 
     </script>
