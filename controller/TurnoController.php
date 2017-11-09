@@ -12,6 +12,19 @@ class TurnoController{
     }
     
     public function monitor(){
+        try {
+            $mdb = DataBase::getDb();
+            $sql = 'SELECT nombre FROM Video';
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+        } catch (PDOException $e) {
+            print "ERROR". $e->getMessage();
+        }
+        for($i = 0; $i < count($resultado); ++$i)
+            $video[] = $resultado[$i]['nombre'];
+        $max = count($resultado);
+        
         require_once 'view/turno/monitorAjax.php';
     }
 
