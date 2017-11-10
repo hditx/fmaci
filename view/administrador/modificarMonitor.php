@@ -7,7 +7,7 @@
         $direccion = "/var/www/html/farmacentro/view/video/";
         if($dh = opendir($direccion)){
             while(($archivo = readdir($dh)) !== false){?>
-                <input type="radio" name="archivo" value="<?=$archivo;?>"<?= (strcmp($video, $archivo) == 0)? "checked" : ''?>>
+                <input type="checkbox" name="archivo[]" value="<?=$archivo;?>" <?= Turno::comprobarArchivo($archivo, $video)?>>
                 <label><?=$archivo;?></label><br>
     <?php } }?>
                 

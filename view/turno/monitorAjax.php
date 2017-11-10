@@ -44,7 +44,6 @@
 <body>
     <div id="refreshImg">
          <div id="izquierda">
-             
           <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             
@@ -55,8 +54,6 @@
                   echo "<li data-target='#myCarousel' data-slide-to='$i'></li>";
               ?>
             </ol>
-
-            <!-- Wrapper for slides -->
             <div class="carousel-inner">
                <div class='item active'>
                     <img src='view/video/<?= $video[0]?>' alt='Imagen 0' width='1200px' height='1100px'>

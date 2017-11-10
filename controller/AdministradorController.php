@@ -94,34 +94,20 @@ class AdministradorController{
     }
     
     public function modificarMonitor(){
-        try{
-            $mdb = DataBase::getDb();
-            $sql = 'SELECT nombre FROM Video LIMIT 1';
-            $temp = $mdb->prepare($sql);
-            $temp->execute();
-            $resultado = $temp->fetchAll();
-        } catch (PDOException $e){
-            print "ERROR". $e->getMessage();
-        }
-        $video = $resultado[0]['nombre'];
+        $video = Turno::monitorImg();
         require_once 'view/header.php';
         require_once 'view/administrador/modificarMonitor.php';
         require_once 'view/footer.php';
     }
     
     public function saveMonitor(){
-        try{
-            $video = $_POST['archivo'];
-            $mdb = DataBase::getDb();
-            $sql = "UPDATE Video SET nombre = '$video'";
-            $temp = $mdb->prepare($sql);
-            $temp->execute();
-            $mdb = null;
-            header('Location: index.php?c=administrador&a=index');
-        } catch(PDOException $e){
-            print "ERROR ". $e->getMessage();
+        $video = $_POST['archivo'];
+        $max = count($video);
+        Turno::deleteVideo();
+        for($i = 0; $i < $max ; ++$i){
+            Turno::saveMonitor($video[$i]);
         }
-        
+        header('Location: index.php?c=administrador&a=index');
     }
     public function cargarImagenNuevo(){
         require_once 'view/header.php';

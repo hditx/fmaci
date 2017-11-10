@@ -371,15 +371,17 @@ class Turno{
     public static function monitorImg(){
         try {
             $mdb = DataBase::getDb();
-            $sql = 'SELECT nombre FROM Video LIMIT 1';
+            $sql = 'SELECT nombre FROM Video';
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll();
         } catch (PDOException $e) {
             print "ERROR". $e->getMessage();
         }
-        
-        return $resultado[0]['nombre'];
+        foreach($resultado as $res){
+            $array[] = $res['nombre'];
+        }
+        return $array;
     }
     
     public static function getBlink($id){
@@ -394,5 +396,43 @@ class Turno{
         }
         
         return $resultado[0]['hora'];
+    }
+    
+    public static function deleteVideo(){
+        try{
+            $mdb = DataBase::getDb();
+            $sql = 'DELETE FROM Video';
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $mdb = null;
+        }catch (PDOException $e){
+            print "Error". $e->getMessage();
+        }
+    }
+    
+    public static function saveMonitor($imagen){
+        try{
+            $mdb = DataBase::getDb();
+            $sql = "INSERT INTO Video (nombre) VALUES('$imagen')";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $mdb = null;
+        }catch (PDOException $e){
+            print "ERROR". $e->getMessage();
+        }
+    }
+    
+    public static function comprobarArchivo($archivo, $video){
+        for($i = 0; $i < count($video); ++$i){
+            if(strcmp($video[$i], $archivo) == 0){
+                $flag = true;
+                break;
+            }
+        }
+        if($flag){
+            $resultado = 'checked';
+            return $resultado;
+        }
+        return '';
     }
 }
