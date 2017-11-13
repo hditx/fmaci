@@ -1,3 +1,3 @@
 #!/bin/bash
-mysqldump --user=farmacentro --password=farmacentro Farmacentro > /home/firefly/fmaci/config/data.sql
+mysqldump --user=farmacentro --password=farmacentro Farmacentro > /media/firefly/fire1/backup/data.sql
 
