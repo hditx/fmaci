@@ -148,11 +148,11 @@ select{
     border-top-left-radius: 15px;
     background: #FFFFFF;
     color: #ff6600;
-    padding-bottom: 10%;
+/*    padding-bottom: 10%;*/
     margin-bottom: 10px;
-    position: absolute;
-    top: -53%;
-    right: 28%;
+    position: fixed;
+    top: 0.5%;
+    right: 22.7%;
 }
 
 .monitorTeclaRight {
@@ -164,15 +164,15 @@ select{
     border-top-right-radius: 15px;
     background: #FFFFFF;
     color: #ff6600;
-    padding-bottom: 7%;
+/*    padding-bottom: 7%;*/
     margin-bottom: 5px;
-    position: relative;
-    top: -210px;
-    right: -310px;
+    position: fixed;
+    top: 0.5%;
+    right: 0.3%;
 }
 
 .monitorTeclaIzq {
-    width: 62.3%;
+    width: 110%;
     height: 140px;
     font-size: 70px;
     text-align: center;
@@ -189,13 +189,13 @@ select{
     border-color: white;
     display: inline-block;
     position: relative;
-    top: -210px;
-    right: -38px;
+    top: -105px;
+    right: 145px;
 }
 .monitorTeclaDer {
     font-weight: bolder;
     display:inherit;
-    width: 206%;
+    width: 184%;
     height: 140px;
     text-align: center;
     border-bottom-right-radius: 15px;
@@ -208,8 +208,8 @@ select{
     padding-bottom: 10;
     margin-bottom: 5px;
     position: relative;
-    top: -135px;
-    right: -240px;
+    top: -121px;
+    right: -254px;
     margin-bottom: 2px;
     margin-top: 2px;
 }
