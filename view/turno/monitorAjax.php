@@ -56,13 +56,13 @@
             </ol>
             <div class="carousel-inner">
                <div class='item active'>
-                    <img src='view/video/<?= $video[0]?>' alt='Imagen 0' width='1200px' height='1100px'>
+                    <img src='view/video/<?= $video[0]?>' alt='Imagen 0' width='1200px' height='1300px'>
                </div>
             <?php 
             for($i = 1; $i < $max ; ++$i){ 
 
                echo "<div class='item'>";
-               echo "<img src='view/video/".$video[$i]."' alt='Imagen $i' width='1200px' height='1100px'>";
+               echo "<img src='view/video/".$video[$i]."' alt='Imagen $i' width='1200px' height='1300px'>";
                echo "</div>";
             }
             ?>

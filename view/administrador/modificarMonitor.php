@@ -5,6 +5,7 @@
         
     <?php 
         $direccion = "/var/www/html/farmacentro/view/video/";
+/*	$direccion = "/media/firefly/fire1/imagenes/";*/
         if($dh = opendir($direccion)){
             while(($archivo = readdir($dh)) !== false){?>
                 <input type="checkbox" name="archivo[]" value="<?=$archivo;?>" <?= Turno::comprobarArchivo($archivo, $video)?>>

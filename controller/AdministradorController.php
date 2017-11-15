@@ -116,7 +116,7 @@ class AdministradorController{
     }
 
     public function cargarImagen(){
-        /*$ruta = "/media/firefly/fire/imagenes/";*/
+/*	$ruta = "/media/firefly/fire1/imagenes/";*/
         $ruta = "/var/www/html/farmacentro/view/video/";
         $directorio = $ruta . basename($_FILES['archivo']['name']);
         move_uploaded_file($_FILES['archivo']['tmp_name'], $directorio);
