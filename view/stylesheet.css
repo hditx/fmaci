@@ -140,8 +140,8 @@ select{
     padding: 3px;
 }
 .monitorTeclaLeft {
-    width: 260px;
-    height: 100px;
+    width: 300px;
+    height: 110px;
     font-size: 70px;
     text-align: center;
     border-bottom-left-radius: 15px;
@@ -151,13 +151,13 @@ select{
 /*    padding-bottom: 10%;*/
     margin-bottom: 10px;
     position: fixed;
-    top: 0.5%;
-    right: 22.7%;
+    top: 0%;
+    right: 24.9%;
 }
 
 .monitorTeclaRight {
-    width: 420px;
-    height: 100px;
+    width: 466px;
+    height: 110px;
     font-size: 70px;
     text-align: center;
     border-bottom-right-radius: 15px;
@@ -167,14 +167,14 @@ select{
 /*    padding-bottom: 7%;*/
     margin-bottom: 5px;
     position: fixed;
-    top: 0.5%;
+    top: 0%;
     right: 0.3%;
 }
 
 .monitorTeclaIzq {
-    width: 133%;
-    height: 140px;
-    font-size: 70px;
+    width: 147.5%;
+    height: 160.5px;
+    font-size: 80px;
     text-align: center;
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
@@ -190,14 +190,14 @@ select{
     display: inline-block;
     position: relative;
     top: -105px;
-    right: 187px;
+    right: 260px;
 }
 .monitorTeclaDer {
     font-weight: bolder;
     display:inherit;
-    width: 183%;
-    height: 140px;
-    text-align: center;
+    width: 171%;
+    height: 160.5px;
+    /*text-align: center;*/
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
     background: #FFFFFF;
@@ -208,8 +208,8 @@ select{
     padding-bottom: 10;
     margin-bottom: 5px;
     position: relative;
-    top: -118px;
-    right: -254px;
+    top: -133px;
+    right: -292px;
     margin-bottom: 2px;
     margin-top: 2px;
 }
@@ -217,8 +217,8 @@ select{
 .monitorTeclaPosicion{
     position: relative;
     top: 30%;
-    right: 1%;
-    font-size: 56.5px;
+    right: 10%;
+    font-size: 60px;
 }
 
 .monitorVideos{
@@ -596,8 +596,8 @@ select{
 
 #izquierda {
 	position:absolute;
-	top: 1%;
-	left: 1%;
+	top: 0%;
+	left: 0%;
 }
 
 #derecha{

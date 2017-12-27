@@ -71,6 +71,6 @@
         </div>
     </div>
     <div id="refresh"></div>
-    <div style="position: absolute; top: 80%; right: 5%;"> <a href="https://www.zeitverschiebung.net/es/timezone/america--argentina--ushuaia"> <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=es&size=large&timezone=America%2FArgentina%2FUshuaia" width="100%" height="140" frameborder="0" seamless></iframe> </div>
+    <div style="position: absolute; top: 86%; right: 5%;"> <a href="https://www.zeitverschiebung.net/es/timezone/america--argentina--ushuaia"> <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=es&size=large&timezone=America%2FArgentina%2FUshuaia" width="100%" height="140" frameborder="0" seamless></iframe> </div>
 </body>
 </html>
