@@ -172,7 +172,7 @@ select{
 }
 
 .monitorTeclaIzq {
-    width: 147.5%;
+    width: 128.5%;
     height: 160.5px;
     font-size: 80px;
     text-align: center;
@@ -190,7 +190,7 @@ select{
     display: inline-block;
     position: relative;
     top: -105px;
-    right: 260px;
+    right: 230px;
 }
 .monitorTeclaDer {
     font-weight: bolder;
@@ -208,17 +208,17 @@ select{
     padding-bottom: 10;
     margin-bottom: 5px;
     position: relative;
-    top: -133px;
-    right: -292px;
+    top: -135px;
+    right: -291px;
     margin-bottom: 2px;
     margin-top: 2px;
 }
 
 .monitorTeclaPosicion{
     position: relative;
-    top: 30%;
-    right: 10%;
-    font-size: 60px;
+    top: 5%;
+    right: 0%;
+    font-size: 70px;
 }
 
 .monitorVideos{
