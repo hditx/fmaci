@@ -1,35 +1,42 @@
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="view/stylesheet.css">
     <title>
         Farmacentro
     </title>
     <script type="text/javascript" src="config/jquery-1.7.2.min.js"></script>
     <script>
-        $(document).on("ready", function(){
-            function reloadTurno(){
-                $.get('index.php?c=empleado&a=refreshEspera&id=<?=$turno->getIdTurno()?>', function(data){
+        $(document).on("ready", function() {
+            function reloadTurno() {
+                $.get('index.php?c=empleado&a=refreshEspera&id=<?=$turno->getIdTurno()?>', function(data) {
                     $("#refreshEspera").html(data);
-                    
+
                 });
             }
-            setInterval(reloadTurno,1000);
+            setInterval(reloadTurno, 1000);
         });
+
     </script>
 </head>
 <div id="refreshEspera"></div>
-<a href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=1&idEmpleado=<?= $_SESSION['usuario'] ?>"><div class="botonLlama">Llamar nuevamente</div></a>
-<div class="posicion" id="llamados" >
-        <div id="mensaje">
-            <?php foreach ($listLlamado as $t) {?>
-            <div class="fechas">
-                <label class="textFecha"><?php echo $d; $d--;?></label>
-                <label class="textFechaCentro"><?= $t->getFecha()?></label>
-                <label class="textFechaDer"><?= $t->getHora()?></label>
-            </div>
-            <?php }?>
+<?php if($turno->getAtendido() == 0) { ?>
+<a href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=1&idEmpleado=<?= $_SESSION['usuario'] ?>">
+    <div class="botonLlama">Llamar nuevamente</div>
+</a>
+<?php } else{?>
+    <div class="botonLlama">Llamar nuevamente</div>
+<?php } ?>
+<div class="posicion" id="llamados">
+    <div id="mensaje">
+        <?php foreach ($listLlamado as $t) {?>
+        <div class="fechas">
+            <label class="textFecha"><?php echo $d; $d--;?></label>
+            <label class="textFechaCentro"><?= $t->getFecha()?></label>
+            <label class="textFechaDer"><?= $t->getHora()?></label>
+        </div>
+        <?php }?>
     </div>
 </div>
 <h1 class="clientePosicion">Cliente</h1>
@@ -42,5 +49,7 @@
 </form>
 
 <a id="finAtencion" href="index.php?c=empleado&a=estadoTurno&id=<?= $id ?>&estado=3&idEmpleado=<?=$idEmpleado?>">Fin de Atención</a>
-<a href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=2&idEmpleado=<?=$idEmpleado?>"><div id="noPresente">No se presento</div></a>
+<a href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=2&idEmpleado=<?=$idEmpleado?>">
+    <div id="noPresente">No se presento</div>
+</a>
 <a class="posicionEspera" id="espera" href="index.php?c=empleado&a=estadoTurno&id=<?=$id?>&estado=2&idEmpleado=<?=$idEmpleado?>&espera=1&enEspera=1">Enviar a espera</a>

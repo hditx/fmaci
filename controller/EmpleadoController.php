@@ -123,6 +123,9 @@ class EmpleadoController{
             case 1:
                 //LLAMADO
                 $bloqueo = true;
+                if($_REQUEST['id'] == null){
+                    header("Location: index.php");
+                }
                 if($_SESSION['inicio'] != 1){
                     if($_REQUEST['enEspera'] != 1){
                         Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);

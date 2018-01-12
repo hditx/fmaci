@@ -263,7 +263,7 @@ class Cola{
         try {
             $mdb =  DataBase::getDb();
             $temp = Cola::get($id);
-            $sql = "UPDATE Cola SET siguiente           = ".($temp->getSiguiente() + 1) 
+            $sql = "UPDATE Cola SET siguiente = ".($temp->getSiguiente() + 1) 
                  . " WHERE idCola = ". $id;
             echo $sql;
             $temp = $mdb->prepare($sql);
@@ -277,7 +277,7 @@ class Cola{
     public static function getNumeroSiguiente($id){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT siguiente FROM Cola WHERE idCola = ". $id;
+            $sql = "SELECT LPAD(siguiente, 3, '0') AS siguiente FROM Cola WHERE idCola = ". $id;
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll();
