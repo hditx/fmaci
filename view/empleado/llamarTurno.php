@@ -21,7 +21,7 @@
     </script>
 </head>
 <div id="refreshEspera"></div>
-<?php if($turno->getAtendido() == 0) { ?>
+<?php if($turno->getEnEspera() == 0) { ?>
 <a href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=1&idEmpleado=<?= $_SESSION['usuario'] ?>">
     <div class="botonLlama">Llamar nuevamente</div>
 </a>

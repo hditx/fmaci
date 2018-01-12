@@ -110,7 +110,11 @@ class EmpleadoController{
                     Cliente::saveCliente($_REQUEST['name'], $_REQUEST['apellido'], $_REQUEST['dni'],
                             $_REQUEST['telefono']);
                 }
-                Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
+                if($_REQUEST['estado'] == 2){
+                    Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
+                }else{
+                    Empleado::actualizarSoloEstado($_REQUEST['id'], $_REQUEST['estado']);
+                }
                 Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
                 $idEmpleado = $_REQUEST['idEmpleado'];
                 if($_REQUEST['mostrar'] == 1){

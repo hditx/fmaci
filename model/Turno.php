@@ -131,7 +131,7 @@ class Turno{
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $fila = $temp->fetchAll(); 
-            $data = new Turno($fila[0]['idTurno'], $fila[0]['idCola'],  $fila[0]['posicion'], $fila[0]['atendido'], $fila[0]['hora'], $fila['enEspera']);
+            $data = new Turno($fila[0]['idTurno'], $fila[0]['idCola'],  $fila[0]['posicion'], $fila[0]['atendido'], $fila[0]['hora'], $fila[0]['enEspera']);
             $mbd = null;
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
