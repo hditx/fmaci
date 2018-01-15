@@ -100,10 +100,11 @@ class EmpleadoController{
         switch ($_REQUEST['estado']){
             case 2:
             case 3:
+            case 4:
                 $bloqueo = false;
                 $_SESSION['empleadoEstado'] = 0;
                 //ATENDIDO Y ABANDONO
-                if($_REQUEST['estado'] == 2){
+                if($_REQUEST['estado'] == 2 || $_REQUEST['estado'] == 4){
                     Turno::setEnEsperaObjeto($_REQUEST['id'], 1);
                 }
                 if(isset($_REQUEST['dni']) && isset($_REQUEST['name'])){
@@ -114,6 +115,7 @@ class EmpleadoController{
                     Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
                 }else{
                     Empleado::actualizarSoloEstado($_REQUEST['id'], $_REQUEST['estado']);
+                    echo "ACA";
                 }
                 Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
                 $idEmpleado = $_REQUEST['idEmpleado'];
