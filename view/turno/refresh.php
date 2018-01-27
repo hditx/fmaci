@@ -7,7 +7,7 @@
 ?>
         <div>
             <div class="monitorTeclaIzq">
-                <audio id="audio" src="view/empleado/beep-02.wav" <?=(Turno::getBlink($t->getIdTurno()) == 1)? "autoplay" : "" ?> ></audio>
+                <audio id="audio" src="view/turno/ding.wav" <?=(Turno::getBlink($t->getIdTurno()) == 1)? "autoplay" : "" ?> ></audio>
                 <div class=<?= (Turno::getBlink($t->getIdTurno()) == 1)? "blink" : "letra" ?>>
                      <?=Turno::getLetra($t->getIdCola())."".$t->getPosicion()?>
                 </div>
