@@ -115,7 +115,6 @@ class EmpleadoController{
                     Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
                 }else{
                     Empleado::actualizarSoloEstado($_REQUEST['id'], $_REQUEST['estado']);
-                    echo "ACA";
                 }
                 Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
                 $idEmpleado = $_REQUEST['idEmpleado'];
@@ -146,10 +145,6 @@ class EmpleadoController{
                 }
                 $_SESSION['inicio'] = 0;
                 $listLlamado = Historial::history($_REQUEST['id']);
-                /*foreach ($listLlamado as $t){
-                    echo var_dump($t->getHora());
-                    exit();
-                }*/
                 $d = count($listLlamado);
                 $id = $_REQUEST['id'];
                 $turno = Turno::getTurnoUnico($id);

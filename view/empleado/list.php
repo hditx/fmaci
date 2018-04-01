@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="view/stylesheet.css">
+    <link href="config/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <title>
         Farmacentro
     </title>
@@ -23,37 +24,40 @@
 </head>
 <body>
 <?php if (isset($_SESSION['nombre'])) { ?>
-        <div align="left">
+        <div align="left" class="text-light">
             <b>Bienvenido <?= $_SESSION['nombre'] ?>!</b>
             <a href="index.php?c=usuario&a=cerrarSesion">Cerrar Sesión</a>
         </div>
 <?php } ?>
     
-<div>
-    <?php if ($showNext) {?>
-        <a href="?c=empleado&a=estadoTurno&id=<?=$first->getIdTurno()?>&estado=1&idEmpleado=<?=$idEmpleado?>">
-    <?php } ?>
-        <div class="encabezado" id="text">
-            <?= $title ?> 
-            <?php if ($showNext) {?>
+<div class="container-fluid">
+    <div class="row">
+       <div class="encabezado col-sm-4 col-md-4">
+        <?php if ($showNext) {?>
+            <a href="?c=empleado&a=estadoTurno&id=<?=$first->getIdTurno()?>&estado=1&idEmpleado=<?=$idEmpleado?>" class="letraNaranja">
+        <?php } ?>       
+                <?= $title ?> 
+                <?php if ($showNext) {?>
                 <img id="imagenPosicion">
-            <?php } ?>
+                <?php } ?>
+            </a>
         </div>
-    </a>
-    <br>
-    <div id="global">
-        <div id="mensajes">
-            <div id="refresh">    
+        <div class="col-sm-4 col-md-4 offset-sm-4 offset-md-4">
+            <img class="rounded img-fluid" src="view/images/colores.jpg">
+        </div>
+    </div>
+    <div class="row justify-content-between myContenedor">
+        <div id="global" class="col-sm-4 col-md-4 col-lg-4 align-items-stretch">
+            <div id="mensajes">
+                <div id="refresh"></div>
             </div>
         </div>
+        
+        <div class="col-sm-4 col-md-4">
+            <?php foreach ($links as $key => $value){
+                echo "<a class='buttonEmployed' href='index.php?c=empleado&a=" . $value . "&idEmpleado=$idEmpleado'>$key</a><br>";
+            }?>
+        </div>
     </div>
-</div>
-<div style="float: right;">
-    <img class="radiuss" src="view/images/colores.jpg" width="350" height="80"><br>
-    <div class="ubiBoton">
-        <?php foreach ($links as $key => $value){
-            echo "<a class='buttonEmployed' href='index.php?c=empleado&a=" . $value . "&idEmpleado=$idEmpleado'>$key</a><br>";
-        }
-       ?>
-    </div>
+
 </div>

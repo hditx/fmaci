@@ -51,7 +51,7 @@ class TurnoController{
         }else{
             $colas = Cola::getList2();
         }
-        require_once 'view/header.php';
+        
         if($colas != null){
             require_once 'view/turno/seleccion.php';
         }
