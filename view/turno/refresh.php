@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="monitorTeclaLeft letraNaranja col-sm-4 col-md-4">Nro</div>
-    <div class="monitorTeclaRight letraNaranja col-sm-8 col-md-8"> Vendedor</div>
+    <div class="monitorTeclaLeftV letraNaranja col-sm-4 col-md-4">Nro</div>
+    <div class="monitorTeclaRightV letraNaranja col-sm-8 col-md-8"> Vendedor</div>
 <?php
 foreach ($turnos as $t) {
 ?>
