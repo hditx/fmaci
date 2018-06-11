@@ -48,7 +48,34 @@ class AdministradorController{
 
 
     public function informe(){
-        echo "en progreso";
+        $colas = Cola::getList();
+        $show = false;
+        if(isset($_POST['colas'])){
+            $nuevoColas = $_POST['colas'];
+            $fechaInicio = $_POST['fechaInicio'];
+            $fechaFin = $_POST['fechaFin'];
+            if(strcmp($nuevoColas[0], "-1") == 0){
+                unset($colas);
+                $show = true;
+                $seleccionadas = Cola::getList();
+                require_once 'view/header.php';
+                require_once 'view/administrador/informes.php';
+                require_once 'view/footer.php';
+            }else{
+                unset($colas);
+                $show = true;
+                foreach($nuevoColas as $cola){
+                    $seleccionadas[] = Cola::get($cola);
+                }
+                require_once 'view/header.php';
+                require_once 'view/administrador/informes.php';
+                require_once 'view/footer.php';
+            }
+        }else{
+            require_once 'view/header.php';
+            require_once 'view/administrador/informes.php';
+            require_once 'view/footer.php';
+        }
     }
     
     public function save(){

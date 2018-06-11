@@ -75,37 +75,25 @@ select{
 }
 
 .monitorTeclaLeft {
-    height: 110px;
-    font-size: 70px;
+    height: 40%;
+    font-size: 5em;
     text-align: center;
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
     background: #FFFFFF;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
 }
 .monitorTeclaRight {
-    height: 110px;
-    font-size: 70px;
+    height: 40%;
+    font-size: 5em;
     text-align: center;
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
     background: #FFFFFF;
+    padding-bottom: 10px;
     margin-bottom: 5px;
 }
-
-.monitorVideos{
-    background: #FFFFFF;
-    text-align: left;
-    width: 40%;
-    border-radius: 10px;
-    font-size: 20px;
-    min-height: 15%;
-    padding: 5px;
-    color: black;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
 
 .myTd3 {
     width:200px;
@@ -452,7 +440,7 @@ select{
 
 .espera{
     background: #ffffff;
-    font-size: 2em;
+    font-size: 2.3vw;
     text-align: center;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -476,7 +464,7 @@ select{
 .noPresente{
     background: #ff0000;
     color: black;
-    font-size: 2em;
+    font-size: 2.3vw;
     text-align: center;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -489,7 +477,7 @@ select{
     background: #9bc928;
     height: 40%;
     color: black;
-    font-size: 3em;
+    font-size: 3vw;
     text-align: center; 
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -546,7 +534,7 @@ select{
 
 .letraCuadrado{
     font-family: sans-serif;
-    font-size: 40px;
+    font-size: 3vw;
     color: black;
     text-align: center;
 }
@@ -565,7 +553,7 @@ select{
     font-family: sans-serif;
 }
 .horaEspera{
-    font-size: 37px;
+    font-size: 2.6vw;
     font-family: sans-serif;
 }
 
@@ -573,7 +561,7 @@ select{
     text-align: center;
     background: yellow;
     color: black;
-    font-size: 29px;
+    font-size: 2vw;
     font-family: sans-serif;
     border-radius: 10px;
     padding: 10px;
@@ -597,17 +585,17 @@ select{
 }
 
 .textFecha{
-    font-size: 35px;
+    font-size: 2vw;
     font-family: sans-serif;
 }
 
 .textFechaCentro{
-    font-size: 15px;
+    font-size: 1vw;
     font-family: sans-serif;
 }
 
 .textFechaDer{
-    font-size: 15px;
+    font-size: 1.2vw;
     font-family: sans-serif;
 }
 

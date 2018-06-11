@@ -414,5 +414,21 @@ class Cola{
         }
         return $data;
     }
+    
+    public static function fechasEstadistica($fechaInicio, $fechaFin, $id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT fecha, 0 AS cantidad FROM Turno WHERE fecha NOT IN (SELECT fecha FROM Turno WHERE idCola = ".$id.") AND fecha BETWEEN '".$fechaInicio."' AND '".$fechaFin."' GROUP BY fecha UNION SELECT fecha, COUNT(*) AS cantidad FROM Turno WHERE idCola = ".$id." AND fecha BETWEEN '".$fechaInicio."' AND '".$fechaFin."' GROUP BY fecha";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            $mdb = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        asort($resultado);
+        return $resultado;
+    }
 }
 ?>   

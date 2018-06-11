@@ -36,14 +36,11 @@
             </div>
             <div class="col-sm-5 col-md-5">
                 <div id="refresh"></div>
-                <div style="position: absolute; top: 86%; right: 5%;"> 
-                    <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=es&size=large&timezone=America%2FArgentina%2FUshuaia" width="100%" height="140" frameborder="0" seamless></iframe> 
-                </div>
             </div>
         </div>
     
-    <script src="config/bootstrap/js/jquery.js"></script>
-    <script src="config/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="config/bootstrap/js/jquery.min.js"></script>
+    <script type="text/javascript" src="config/bootstrap/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function(){
             $('.myCarousel').carousel();            
