@@ -100,17 +100,22 @@ class EmpleadoController{
         switch ($_REQUEST['estado']){
             case 2:
             case 3:
+            case 4:
                 $bloqueo = false;
                 $_SESSION['empleadoEstado'] = 0;
                 //ATENDIDO Y ABANDONO
-                if($_REQUEST['estado'] == 2){
+                if($_REQUEST['estado'] == 2 || $_REQUEST['estado'] == 4){
                     Turno::setEnEsperaObjeto($_REQUEST['id'], 1);
                 }
                 if(isset($_REQUEST['dni']) && isset($_REQUEST['name'])){
                     Cliente::saveCliente($_REQUEST['name'], $_REQUEST['apellido'], $_REQUEST['dni'],
                             $_REQUEST['telefono']);
                 }
-                Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
+                if($_REQUEST['estado'] == 2){
+                    Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
+                }else{
+                    Empleado::actualizarSoloEstado($_REQUEST['id'], $_REQUEST['estado']);
+                }
                 Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
                 $idEmpleado = $_REQUEST['idEmpleado'];
                 if($_REQUEST['mostrar'] == 1){
@@ -123,6 +128,9 @@ class EmpleadoController{
             case 1:
                 //LLAMADO
                 $bloqueo = true;
+                if($_REQUEST['id'] == null){
+                    header("Location: index.php");
+                }
                 if($_SESSION['inicio'] != 1){
                     if($_REQUEST['enEspera'] != 1){
                         Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
@@ -137,10 +145,6 @@ class EmpleadoController{
                 }
                 $_SESSION['inicio'] = 0;
                 $listLlamado = Historial::history($_REQUEST['id']);
-                /*foreach ($listLlamado as $t){
-                    echo var_dump($t->getHora());
-                    exit();
-                }*/
                 $d = count($listLlamado);
                 $id = $_REQUEST['id'];
                 $turno = Turno::getTurnoUnico($id);

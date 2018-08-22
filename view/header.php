@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="view/stylesheet.css">
         <link rel="stylesheet" type="text/css" href="view/font-awesome-4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="/home/hditx/Bootstrap/0bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="config/bootstrap/css/bootstrap.min.css">
         <title>
             Farmacentro
         </title>
@@ -36,7 +36,7 @@
     <?php } ?>
     <body <?= ($bloqueo) ? "onload='deshabilitaRetroceso()'" : '' ?>>
     <?php if (isset($_SESSION['nombre']) && strnatcasecmp($_SESSION['nombre'],"turnos") != 0) { ?>
-        <div align="left">
+        <div align="left" class="text-light">
             <b>Bienvenido <?= $_SESSION['nombre'] . " ". $_SESSION['estadoEmpleado']?>!</b>
             <a href="index.php?c=usuario&a=cerrarSesion&empleadoEstado=<?$_SESSION['empleadoEstado']?>">Cerrar Sesión</a>
         </div>

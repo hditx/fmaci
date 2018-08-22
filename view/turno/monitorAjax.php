@@ -6,9 +6,41 @@
     <title>
         Farmacentro
     </title>
-    <link href="config/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <script src="config/bootstrap/js/jquery.js"></script>
-    <script src="config/bootstrap/js/bootstrap.min.js"></script>
+    <link href="config/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+        <div class="row">
+            <div class="col-sm-7 col-md-7">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                      <li data-target="#myCarousel" data-slide-to="0" class='active'></li>
+                      <?php 
+                      for($i = 1; $i < $max ; ++$i)
+                          echo "<li data-target='#myCarousel' data-slide-to='$i'></li>";
+                      ?>
+                    </ol>
+                    <div class="carousel-inner">
+                       <div class="carousel-item active">
+                            <img class="d-block w-100"src="view/video/<?= $video[0]?>" alt="Imagen 0">
+                       </div>
+                        <?php 
+                        for($i = 1; $i < $max ; ++$i){ 
+                           echo "<div class='carousel-item'>
+                           <img class='d-block w-100' src='view/video/".$video[$i]."' alt='Imagen $i'>
+                           </div>";
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5 col-md-5">
+                <div id="refresh"></div>
+            </div>
+        </div>
+    
+    <script type="text/javascript" src="config/bootstrap/js/jquery.min.js"></script>
+    <script type="text/javascript" src="config/bootstrap/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function(){
             $('.myCarousel').carousel();            
@@ -26,50 +58,5 @@
             setInterval(reloadTurno,1000);
         });
     </script>
-<!--    
-    <script>
-        $(document).on("ready", function(){
-            function reloadImagenes(){
-                $.get('index.php?c=turno&a=updateMonitorImg', function(data){
-                    $("#refreshImg").html(data);
-                }
-                );
-            }
-            setInterval(reloadImagenes,30000);
-        });
-
-    </script>
--->    
-</head>
-<body>
-    <div id="refreshImg">
-         <div id="izquierda">
-          <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            
-            <ol class="carousel-indicators">
-              <li data-target="#myCarousel" data-slide-to="0" class='active'></li>
-              <?php 
-              for($i = 1; $i < $max ; ++$i)
-                  echo "<li data-target='#myCarousel' data-slide-to='$i'></li>";
-              ?>
-            </ol>
-            <div class="carousel-inner">
-               <div class='item active'>
-                    <img src='view/video/<?= $video[0]?>' alt='Imagen 0' width='1200px' height='1300px'>
-               </div>
-            <?php 
-            for($i = 1; $i < $max ; ++$i){ 
-
-               echo "<div class='item'>";
-               echo "<img src='view/video/".$video[$i]."' alt='Imagen $i' width='1200px' height='1300px'>";
-               echo "</div>";
-            }
-            ?>
-          </div>
-        </div>
-        </div>
-    </div>
-    <div id="refresh"></div>
-</body>
+    </body>
 </html>

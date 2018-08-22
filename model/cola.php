@@ -263,7 +263,7 @@ class Cola{
         try {
             $mdb =  DataBase::getDb();
             $temp = Cola::get($id);
-            $sql = "UPDATE Cola SET siguiente           = ".($temp->getSiguiente() + 1) 
+            $sql = "UPDATE Cola SET siguiente = ".($temp->getSiguiente() + 1) 
                  . " WHERE idCola = ". $id;
             echo $sql;
             $temp = $mdb->prepare($sql);
@@ -277,7 +277,7 @@ class Cola{
     public static function getNumeroSiguiente($id){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT siguiente FROM Cola WHERE idCola = ". $id;
+            $sql = "SELECT LPAD(siguiente, 3, '0') AS siguiente FROM Cola WHERE idCola = ". $id;
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll();
@@ -413,6 +413,22 @@ class Cola{
             die();
         }
         return $data;
+    }
+    
+    public static function fechasEstadistica($fechaInicio, $fechaFin, $id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT fecha, 0 AS cantidad FROM Turno WHERE fecha NOT IN (SELECT fecha FROM Turno WHERE idCola = ".$id.") AND fecha BETWEEN '".$fechaInicio."' AND '".$fechaFin."' GROUP BY fecha UNION SELECT fecha, COUNT(*) AS cantidad FROM Turno WHERE idCola = ".$id." AND fecha BETWEEN '".$fechaInicio."' AND '".$fechaFin."' GROUP BY fecha";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            $mdb = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        asort($resultado);
+        return $resultado;
     }
 }
 ?>   

@@ -16,12 +16,6 @@ table {
     border-spacing:  6px;
 }
 
-td, tr, th{
-    color: black;
-    border-color: transparent;
-    text-align: center;
-}
-
 select{
     border-radius: 5px;
     font-size: 14px;
@@ -41,59 +35,6 @@ select{
 @keyframes blink {
     80% {
         visibility: hidden;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    img{
-        display: none;
-    }
-    .queueSelection{
-        color: white;
-        text-align:center;
-        padding: 40%;
-        display: inline-block;
-        width: 80%;
-        font-weight: bold;
-    }
-
-    .queueTitle{
-        background: #ff6600;
-        border:solid 3px #ffffff;
-        width: 100%;
-        height: 5%;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;    
-        padding-top: 4%;
-        padding-bottom: 4%;
-    }
-
-    .queueInformation{
-        background: #9bc928;
-        border:solid 3px #ffffff;
-        width: 100%;
-        height: 5%;
-        border-bottom-right-radius: 3%;
-        border-bottom-left-radius: 3%;    
-        padding-top: 4%;
-        padding-bottom: 4%;
-        
-    }
-    
-    .izq {
-        width: 20%;
-        height: 5%;
-        float: left;
-        min-height: 2em;
-        font-size: 1.1em;
-    }
-
-    .der {
-        width: 20%;
-        height: 5%;
-        float: left;
-        min-height: 2em;
-        font-size: 1.6em;
     }
 }
 
@@ -122,118 +63,58 @@ select{
     font-weight: bolder;
 }
 
+.letraNaranja{
+    color: #ff6600;
+}
+
 .myTd1 {
-    width:300px;
     height: 70px;
     border-radius: 15px;
     background: #FFFFFF;
     color: black;
 }
 
-.myTd2 {
-    color: black;
-    width: 400px;
-    text-align: center;
-    border-radius: 15px;
-    background: #FFFFFF;
-    color: black;
-    padding: 3px;
-}
 .monitorTeclaLeft {
-    width: 260px;
-    height: 100px;
-    font-size: 70px;
+    height: 20%;
+    font-size: 7em;
     text-align: center;
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
     background: #FFFFFF;
-    color: #ff6600;
-/*    padding-bottom: 10%;*/
-    margin-bottom: 10px;
-    position: fixed;
-    top: 0.5%;
-    right: 22.7%;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+}
+.monitorTeclaLeftV {
+    height: 15%;
+    font-size: 7em;
+    text-align: center;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    background: #FFFFFF;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .monitorTeclaRight {
-    width: 420px;
-    height: 100px;
-    font-size: 70px;
+    height: 20%;
+    font-size: 7em;
     text-align: center;
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
     background: #FFFFFF;
-    color: #ff6600;
-/*    padding-bottom: 7%;*/
+    padding-bottom: 10px;
     margin-bottom: 5px;
-    position: fixed;
-    top: 0.5%;
-    right: 0.3%;
 }
-
-.monitorTeclaIzq {
-    width: 115%;
-    height: 140px;
-    font-size: 70px;
-    text-align: center;
-    border-bottom-left-radius: 15px;
-    border-top-left-radius: 15px;
-    background: #FFFFFF;
-    padding-left: 7%;
-    padding-right: 7%;
-    padding-bottom: 13%;
-    padding-top: 8%;
-    margin-bottom: 3px;
-    margin-top: 3px;
-    margin-left: 3px;
-    border-color: white;
-    display: inline-block;
-    position: relative;
-    top: -105px;
-    right: 155px;
-}
-.monitorTeclaDer {
-    font-weight: bolder;
-    display:inherit;
-    width: 184%;
-    height: 140px;
+.monitorTeclaRightV {
+    height: 15%;
+    font-size: 7em;
     text-align: center;
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
     background: #FFFFFF;
-    color: black;
-    padding-left:  6%;
-    padding-right:   6%;
-    padding-top: 10%;
-    padding-bottom: 10;
-    margin-bottom: 5px;
-    position: relative;
-    top: -121px;
-    right: -254px;
-    margin-bottom: 2px;
-    margin-top: 2px;
-}
-
-.monitorTeclaPosicion{
-    position: relative;
-    top: 30%;
-    right: 1%;
-    font-size: 60px;
-}
-
-.monitorVideos{
-    background: #FFFFFF;
-    text-align: left;
-    width: 40%;
-    border-radius: 10px;
-    font-size: 20px;
-    min-height: 15%;
-    padding: 5px;
-    color: black;
-    margin-top: 5px;
+    padding-bottom: 10px;
     margin-bottom: 5px;
 }
-
 
 .myTd3 {
     width:200px;
@@ -266,8 +147,7 @@ select{
 }
 
 .estadoLlamando {
-    width: 105px; 
-    height: 85px; 
+    width: 32%;
     background: yellow;
     color: black;
     border-top-left-radius: 15px;
@@ -276,12 +156,7 @@ select{
     margin-top: 2px;
 }
 .estadoLlamandoRec {
-    width: 275px;
-    height: 85px;
     background: yellow;
-    position: relative;
-    top: -50px;
-    right: -110px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     margin-bottom: 2px;
@@ -289,8 +164,7 @@ select{
 }
 
 .estadoAtendiendo {
-    width: 105px; 
-    height: 85px; 
+    width: 32%;
     background: orange;
     color: black;
     border-top-left-radius: 15px;
@@ -300,12 +174,7 @@ select{
 }
 
 .estadoAtendiendoRec {
-    width: 275px;
-    height: 85px;
     background: orange;
-    position: relative;
-    top: -50px;
-    right: -110px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     margin-bottom: 2px;
@@ -313,9 +182,7 @@ select{
 }
 
 .estadoNoPresento {
-    
-    width: 105px; 
-    height: 85px;     
+    width: 32%;   
     background: red;
     color: black;
     border-top-left-radius: 15px;
@@ -325,12 +192,8 @@ select{
 }
 
 .estadoNoPresentoRec {
-    width: 275px;
-    height: 85px;
     background: red;
-    position: relative;
-    top: -50px;
-    right: -110px;
+    color: black;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     margin-bottom: 2px;
@@ -414,28 +277,14 @@ select{
 }
 
 .formularioCliente{
-    position: absolute;
     background: white;
-    width: 40%;
-    top: 30%;
-    right: 30%;
+    padding: 1%;
 }
 .clientePosicion{
-    width: 40%;
-    height: 8%;
+    height: 15%;
     text-align: center; 
     background: orange;
     border-radius: 10px;
-    position: absolute;
-    padding-top: 1%;
-    top: 15%;
-    right: 30%;
-}
-.inputText{
-    width: 75%;
-    color: gray;
-    padding: 3px;
-    margin-top: 2px;
 }
 
 .myButton{
@@ -449,7 +298,6 @@ select{
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    margin: 10px;
     padding: 5px;
 }
 
@@ -459,7 +307,7 @@ select{
     background: #ffffff;
     border:solid 3px #ffffff;
     width: 100%;
-    height: 10%;
+    height: 14%;
     font-size: 2em;
     text-align: left;
     -webkit-border-radius: 10px;
@@ -507,42 +355,9 @@ select{
     padding: 5px;
 }
 
-.cuadradoMostrar{
-    border-color: white;
-    width: 7.8%; 
-    height: 13.3%; 
-    background: white;
-    color: black;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    margin-bottom: 2px;
-    margin-top: 2px;
-    margin-left: 2px;
-    position: absolute;
-    top: 3%;
-    right: 23%;
-}
-
-.rectanguloMostrar {
-    width: 250%;
-    height: 100%;
-    background: white;
-    position: relative;
-    top: -50px;
-    right: -110px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    margin-bottom: 2px;
-    margin-top: 2px;
-    position: relative;
-    top: -50px;
-    left: 110px;
-}
-
 .cuadrado{
     border-color: white;
-    width: 28%; 
-    height: 17.3%; 
+    width: 32%;
     background: white;
     color: black;
     border-top-left-radius: 15px;
@@ -550,35 +365,18 @@ select{
     margin-bottom: 2px;
     margin-top: 2px;
     margin-left: 2px;
-}
-
-.formUbicacion{
-    position: absolute;
-    top: 20%;
-    right: 30%;
-    width: 38%;
-    height: 40%;
 }
 
 .rectangulo {
-    width: 245%;
-    height: 100%;
+    /* height: 17.3%;*/
+    color: black;
     background: white;
-    position: relative;
-    top: -56%;
-    right: -107%;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     margin-bottom: 2px;
     margin-top: 2px;
 }
 
-#text{
-    text-align: left;
-    font-size: 30px;
-    color: #ff6600;
-    padding: 7px;
-}
 
 #text2{
     text-align: center;
@@ -596,8 +394,8 @@ select{
 
 #izquierda {
 	position:absolute;
-	top: 1%;
-	left: 1%;
+	top: 0%;
+	left: 0%;
 }
 
 #derecha{
@@ -636,12 +434,12 @@ select{
 #imagenPosicion{
     width: 0; 
     height: 0; 
-    border-left: 30px solid #1B8A0A;
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent; 
+    border-left: 35px solid #1B8A0A;
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent; 
     position: absolute;
-    top: 6%;
-    left: 27%;
+    top: 20%;
+    left: 89%;
 }
 
 #llamarNuevamente{
@@ -661,19 +459,15 @@ select{
     right: 0;
 }
 
-#espera{
-    display:inline-block;
+.espera{
     background: #ffffff;
-    width: 20%;
-    height: 10%;
-    font-size: 2em;
+    font-size: 2.3vw;
     text-align: center;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
     margin: 10px;
     padding: 5px;
-
     color: #ff6600;
 }
 .posicionEspera{
@@ -688,39 +482,29 @@ select{
     left: 3%;
 }
 
-#noPresente{
-    
-    display:inline-block;
+.noPresente{
     background: #ff0000;
-    height: 8%;
-    width:20%;
-    font-size: 2em;
+    color: black;
+    font-size: 2.3vw;
     text-align: center;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
     margin: 10px;
     padding: 5px;
-    position: absolute;
-    top: 82%;
-    left: 3%;
 }
 
-#finAtencion{
-    display:inline-block;
+.finAtencion{
     background: #9bc928;
-    width: 18%;
-    height: 12%;
-    font-size: 2em;
+    height: 40%;
+    color: black;
+    font-size: 3vw;
     text-align: center; 
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
     margin: 10px;
     padding: 5px;
-    position: absolute;
-    top: 77%;
-    right: 3%;
 }
 
 #der {
@@ -733,12 +517,10 @@ select{
 
 .encabezado{
     font-size: 40px;
-    color:orange;
-    width: 29%;
-    height: 7%;
+    color: #ff6600;
+    height: 12%;
     border-radius: 10px;
     background: #FFFFFF;
-    color: black;
 }
 
 .radiuss{
@@ -755,29 +537,25 @@ select{
 
 #global {
     height: 80%;
-    width: 30.5%;
     border: 1px solid #ddd;
     overflow-y: scroll;
     background-image: url("images/fondo.png");
     border-radius: 5px;
 }
-#llamados{
-    height: 44%;
-    width: 21.2%;
-    border: 1px solid #ddd;
-    background: #f1f1f1;
+.myContenedor{
+    height: 80%;
+}
+.llamados{
+    margin-top: 5px;
+    height: 200px;
+    width: 110%;
     overflow-y: scroll;
     background: white;
-    border-radius: 5px;
-    
-}
-#mensajes {
-	height: auto;
 }
 
 .letraCuadrado{
     font-family: sans-serif;
-    font-size: 40px;
+    font-size: 3vw;
     color: black;
     text-align: center;
 }
@@ -796,32 +574,23 @@ select{
     font-family: sans-serif;
 }
 .horaEspera{
-    position: relative;
-    top: -5px;
-    left: 90px;
-    font-size: 40px;
+    font-size: 2.6vw;
     font-family: sans-serif;
 }
 
 .botonLlama{
     text-align: center;
-    height: 8.5%;
-    width: 20%;
     background: yellow;
     color: black;
-    font-size: 30px;
+    font-size: 2vw;
     font-family: sans-serif;
     border-radius: 10px;
     padding: 10px;
-    position: absolute;
-    top: 9%;
-    left: 3.5%;
 }
 
 .fechas {
-    width:270px;
     text-align: center;
-    height: 90px;
+    height: 60px;
     background: #FFFFFF;
     color: black;
     border-bottom: solid black;
@@ -829,11 +598,7 @@ select{
     margin-top: 1px;
     margin-left: 1px;
 }
-.posicion{
-    position: absolute;
-    top: 21%;
-    left: 3.5%;
-}
+
 .posicionAdmin{
     position: absolute;
     top: 3.8%;
@@ -841,43 +606,31 @@ select{
 }
 
 .textFecha{
-    font-size: 35px;
+    font-size: 2vw;
     font-family: sans-serif;
-    position: relative;
-    top: 20px;
-    left: -25px;
 }
 
 .textFechaCentro{
-    font-size: 10px;
+    font-size: 1vw;
     font-family: sans-serif;
-    position: relative;
-    top: 15px;
-    left: 0px;
 }
 
 .textFechaDer{
-    font-size: 22px;
+    font-size: 1.2vw;
     font-family: sans-serif;
-    position: relative;
-    top: -80px;
-    right: -27px;
 }
 
 .registrarEmpleado{
     text-align: center;
     background: #ff6600;
-    width: 97.5%;
-    min-height: 60px;
     padding-top: 10px;
+    padding-bottom: 10px;
     padding-right: 10px;
     border-radius: 10px;
 }
 .registrarEmpleadoMo{
     text-align: center;
     background: #ff6600;
-    width: 60%;
-    min-height: 60px;
     padding-top: 10px;
     padding-right: 10px;
     border-radius: 10px;
@@ -928,11 +681,12 @@ select{
 }
 
 .tarjeta{
+    margin-bottom: 40px;
     border: solid;
     background: #FFFFFF;
     color: black;
-    width: 30%;
-    font-size: 30px;
+    font-size: 40px;
+    text-align: center
 }
 
 @font-face {  
@@ -945,9 +699,10 @@ p.code { font-family: codebar; }
 h1.presentacion{
     text-align: center;
     background: #ff6600;
-    width: 40%;
+    color: white;
     min-height: 60px;
     padding-top: 10px;
     padding-right: 10px;
     border-radius: 10px;
 }
+

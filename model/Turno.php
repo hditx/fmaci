@@ -131,7 +131,7 @@ class Turno{
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $fila = $temp->fetchAll(); 
-            $data = new Turno($fila[0]['idTurno'], $fila[0]['idCola'],  $fila[0]['posicion'], $fila[0]['atendido'], $fila[0]['hora'], $fila['enEspera']);
+            $data = new Turno($fila[0]['idTurno'], $fila[0]['idCola'],  $fila[0]['posicion'], $fila[0]['atendido'], $fila[0]['hora'], $fila[0]['enEspera']);
             $mbd = null;
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
@@ -183,7 +183,7 @@ class Turno{
     public static function getMonitor(){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idTurno, idCola, atendido, hora, LPAD(posicion, 3, '0') AS posicion, enEspera FROM Turno WHERE atendido NOT IN (0) AND fecha = CURDATE() ORDER BY atendido,  horaModificacion DESC LIMIT 5";
+            $sql = "SELECT idTurno, idCola, atendido, hora, LPAD(posicion, 3, '0') AS posicion, enEspera FROM Turno WHERE atendido NOT IN (0) AND fecha = CURDATE() ORDER BY horaModificacion DESC LIMIT 5";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 

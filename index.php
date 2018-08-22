@@ -11,7 +11,6 @@ if(isset($_SESSION['usuario'])){
     if(isset($_REQUEST['c'])){
         $controller = ucwords($_REQUEST['c']) . "Controller";
     }
-
 }
 // sólo si el controlador es UsuarioController o existe usuario admito un método distinto a index...
 if(isset($_SESSION['usuario']) || (isset($_REQUEST['a']) && $_REQUEST['a'] == "validateSession")){ 

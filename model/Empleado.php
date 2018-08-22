@@ -171,6 +171,19 @@ class Empleado{
         }
     }
     
+    public static function actualizarSoloEstado($id, $estado){
+        try{
+            $mdb = DataBase::getDb();
+            $sql = "UPDATE Turno SET atendido = $estado WHERE idTurno = $id";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $mdb = null;
+        } catch(PDOException $e){
+            print "Erro!". $e->getMessage();
+            die();
+        }
+    }
+    
     public static function saveEstado($id, $estado, $idEmpleado){
         try {
             $mdb =  DataBase::getDb();

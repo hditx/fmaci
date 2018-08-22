@@ -36,39 +36,13 @@ class Impresora {
             fprintf ($impresora, $ESC."E".chr(1)); // Bold
             fprintf ($impresora, "GRACIAS POR ELEGIRNOS!!!");
             fprintf ($impresora, $ESC."d".chr(1)); // Blank line
-            /*
-            El comando GS!n 
-            * (donde n es un número hexadecimal)
-            * configura el tamaño de la fuente. El valor máximo
-            * permitido es \x33
-            * 
-            * El digito correspondiente a la unidad indica la altura del caracter
-            * y el dígito correspondiente a la decena indica el ancho del caracter
-            */
-            /*
-            echo GS."!\x30"; // Set the character size
-            echo "B-15\n"; // Número de turno
-            echo GS."!\x33"; // Set the character size
-            echo "C-15\n"; // Número de turno
-            */
-            //png2pos -a C 
             fprintf ($impresora, $ESC."a".chr(0) ); // Cancel centered printing
             fprintf ($impresora, $ESC."E".chr(0)); // Not Bold
             fprintf ($impresora, $ESC."d".chr(1)); // Blank line
             fprintf ($impresora, $ESC."d".chr(1)); // Blank line
             fprintf ($impresora, $ESC."d".chr(1)); // Blank line
             fprintf ($impresora, $ESC."d".chr(1)); // Blank line
-            //echo "Receipt for whatever\n"; // Print text
-            //echo ESC."d".chr(4); // 4 Blank lines
-            /* Bar-code at the end */
-            /*
-            echo ESC."a".chr(1); // Centered printing
-            echo GS."k".chr(4)."987654321".NUL; // Print barcode
-            echo ESC."d".chr(1); // Blank line
-            echo "987654321\n"; // Print number
-            */
             fprintf ($impresora, $GS."V\x30"); 
-            //fclose($impresora);
 	}
         
         public static function printCode($id, $nombre){

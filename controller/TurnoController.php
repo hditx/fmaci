@@ -51,7 +51,7 @@ class TurnoController{
         }else{
             $colas = Cola::getList2();
         }
-        require_once 'view/header.php';
+        
         if($colas != null){
             require_once 'view/turno/seleccion.php';
         }
@@ -59,6 +59,7 @@ class TurnoController{
     }
     
     public function imprimir(){
+        date_default_timezone_set('America/Argentina/La_Rioja');
         Impresora::printTicket(Turno::getLetra($_REQUEST['id']), Cola::getNumeroSiguiente($_REQUEST['id']), Turno::getEspera($_REQUEST['id']));
         $turn = new Turno(null);
         $turn->setIdCola($_REQUEST['id']);
