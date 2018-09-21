@@ -20,6 +20,12 @@
                 </div>
             </div>
             <div class="form-group row">
+				<label class="col-sm-5 col-md-5 col-form-label offset-md-2 offset-sm-2 col-form-label-lg">Cola madre
+					<input type="radio" name="madre" value="1">Si
+					<input type="radio" name="madre" value="0">No
+				</label>
+            </div>
+            <div class="form-group row">
                 <label class="col-form-label-lg col-sm-1 col-md-1 col-form-label offset-md-2 offset-sm-2 my-1">Hijo de:</label>
                 <div class="col-md-7 col-sm-7 col-form-label-lg">
                     <select name="idPadre" class="custom-select my-1 mr-sm-2">

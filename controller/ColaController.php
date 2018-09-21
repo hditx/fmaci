@@ -31,7 +31,7 @@ class ColaController{
       $temp->setHijoDe($_REQUEST['idPadre']);
       $temp->setSiguiente($_REQUEST['siguiente']);
       $temp->setLetra($_REQUEST['letra']);
-      if($_REQUEST['idEmpleado'] != -1){          
+      if($_POST['madre'] == 0){          
         $temp->save();
         $empleados = $_REQUEST['idEmpleado'];
         if($nuevo == 0){
