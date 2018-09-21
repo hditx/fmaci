@@ -160,7 +160,7 @@ class Cola{
     public static function getList2(){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idCola, nombreCola, hijoDe, letra, (CASE WHEN siguiente IS NOT NULL THEN LPAD(siguiente, 3, '0') WHEN siguiente IS NULL THEN siguiente END) AS siguiente FROM Cola WHERE hijoDe IS NULL ORDER BY letra";
+            $sql = "SELECT idCola, nombreCola, hijoDe, letra, (CASE WHEN siguiente IS NOT NULL THEN LPAD(siguiente, 3, '0') WHEN siguiente IS NULL THEN siguiente END) AS siguiente FROM Cola WHERE hijoDe IS NULL ORDER BY nombreCola";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
