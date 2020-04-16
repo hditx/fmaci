@@ -32,9 +32,9 @@
     
 <div class="container-fluid">
     <div class="row">
-       <div class="encabezado col-sm-4 col-md-4">
+       <div class="encabezado col-md-4">
         <?php if ($showNext) {?>
-            <a href="?c=empleado&a=estadoTurno&id=<?=$first->getIdTurno()?>&estado=1&idEmpleado=<?=$idEmpleado?>" class="letraNaranja">
+            <a href="?c=empleado&a=estadoTurno&id=<?=$first->getIdTurno()?>&estado=1&idEmpleado=<?=$idEmpleado?>" class=" letraNaranja">
         <?php } ?>       
                 <?= $title ?> 
                 <?php if ($showNext) {?>
@@ -43,7 +43,7 @@
             </a>
         </div>
         <div class="col-sm-4 col-md-4 offset-sm-4 offset-md-4">
-            <img class="rounded img-fluid" src="view/images/colores.jpg">
+            <img style="border-radius: 1rem" src="view/images/colores.jpg">
         </div>
     </div>
     <div class="row justify-content-between myContenedor">
@@ -55,7 +55,7 @@
         
         <div class="col-sm-4 col-md-4">
             <?php foreach ($links as $key => $value){
-                echo "<a class='buttonEmployed' href='index.php?c=empleado&a=" . $value . "&idEmpleado=$idEmpleado'>$key</a><br>";
+                echo "<a class='buttonEmployed text-center' href='index.php?c=empleado&a=" . $value . "&idEmpleado=$idEmpleado'>$key</a><br>";
             }?>
         </div>
     </div>

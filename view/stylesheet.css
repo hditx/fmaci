@@ -306,9 +306,9 @@ select{
     display:inline-block;
     background: #ffffff;
     border:solid 3px #ffffff;
-    width: 100%;
+    width: 95%;
     height: 14%;
-    font-size: 2em;
+    font-size: 3rem;
     text-align: left;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -434,9 +434,9 @@ select{
 #imagenPosicion{
     width: 0; 
     height: 0; 
-    border-left: 35px solid #1B8A0A;
-    border-top: 17px solid transparent;
-    border-bottom: 17px solid transparent; 
+    border-left: 45px solid #1B8A0A;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
     position: absolute;
     top: 20%;
     left: 89%;
@@ -516,7 +516,7 @@ select{
 }
 
 .encabezado{
-    font-size: 40px;
+    font-size: 4rem;
     color: #ff6600;
     height: 12%;
     border-radius: 10px;
@@ -547,8 +547,7 @@ select{
 }
 .llamados{
     margin-top: 5px;
-    height: 200px;
-    width: 110%;
+    height: 40%;
     overflow-y: scroll;
     background: white;
 }
@@ -579,24 +578,24 @@ select{
 }
 
 .botonLlama{
+    width: 100%;
     text-align: center;
     background: yellow;
     color: black;
     font-size: 2vw;
     font-family: sans-serif;
-    border-radius: 10px;
+    border-radius: 0.1em;
     padding: 10px;
 }
 
 .fechas {
     text-align: center;
-    height: 60px;
+    height: 5.5em;
     background: #FFFFFF;
     color: black;
     border-bottom: solid black;
-    margin-bottom: 1px;
-    margin-top: 1px;
-    margin-left: 1px;
+    margin: 0.1em;
+    font-family: sans-serif;
 }
 
 .posicionAdmin{
@@ -607,17 +606,14 @@ select{
 
 .textFecha{
     font-size: 2vw;
-    font-family: sans-serif;
 }
 
 .textFechaCentro{
     font-size: 1vw;
-    font-family: sans-serif;
 }
 
 .textFechaDer{
     font-size: 1.2vw;
-    font-family: sans-serif;
 }
 
 .registrarEmpleado{

@@ -1,15 +1,24 @@
-<br>
-<div class="container-fluid d-flex flex-row justify-content-between">
-    <div class="d-flex flex-column ">
-        <div class="container-fluid">
-            <?php if($turno->getEnEspera() == 0) { ?>
-            <a href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=1&idEmpleado=<?= $_SESSION['usuario'] ?>" class="botonLlama col-sm-3 col-md-3">
-                Llamar nuevamente
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <a href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=4&idEmpleado=<?=$idEmpleado?>" class="btn btn-danger btn-lg">
+                No se presento
             </a>
+            <a class="btn btn-primary btn-lg" href="index.php?c=empleado&a=estadoTurno&id=<?=$id?>&estado=2&idEmpleado=<?=$idEmpleado?>&espera=1&enEspera=1">
+                Enviar a espera
+            </a>
+        </div>
+
+        <div class="col-md-5">
+            <?php if($turno->getEnEspera() == 0) { ?>
+                <a href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=1&idEmpleado=<?= $_SESSION['usuario'] ?>" class="botonLlama">
+                    Llamar nuevamente
+                </a>
             <?php } else{?>
-                <div class="botonLlama col-sm-3 col-md-3">Llamar nuevamente</div>
+                <div class="botonLlama">Llamar nuevamente</div>
             <?php } ?>
-            <div class="col-sm-12 col-md-12 llamados" >
+            <div class="llamados" >
                     <?php foreach ($listLlamado as $t) {?>
                     <div class="fechas row">
                         <label class="col-sm-2 col-md-2 textFecha"><?php echo $d; $d--;?></label>
@@ -19,14 +28,14 @@
                     <?php }?>
             </div>
         </div>
-        <a href="index.php?c=empleado&a=estadoTurno&id=<?= $id?>&estado=4&idEmpleado=<?=$idEmpleado?>" class="col-sm-11 col-md-11 noPresente">
-            No se presento
-        </a>
-        <a class="col-sm-11 col-md-11 espera" href="index.php?c=empleado&a=estadoTurno&id=<?=$id?>&estado=2&idEmpleado=<?=$idEmpleado?>&espera=1&enEspera=1">
-            Enviar a espera
-        </a>
+        <div class="col-sm-4 col-md-4">
+            <div id="refreshEspera"></div>
+            <a class="btn btn-success btn-lg" href="index.php?c=empleado&a=estadoTurno&id=<?=$id?>&estado=3&idEmpleado=<?=$idEmpleado?>">
+                Fin de Atención
+            </a>
+        </div>
     </div>
-    
+    <!--
     <div class="col-sm-4 col-md-4">    
         <h1 class="clientePosicion">Cliente</h1>
         <form method="POST" name="seleccion" class="formularioCliente">
@@ -72,14 +81,9 @@
                 </div>
             </div>
         </form>
-    </div>
+    </div> -->
     
-    <div class="col-sm-4 col-md-4">
-            <div id="refreshEspera"></div>
-            <a class="finAtencion" href="index.php?c=empleado&a=estadoTurno&id=<?=$id?>&estado=3&idEmpleado=<?=$idEmpleado?>">
-                Fin de Atención
-            </a>
-    </div>
+
 </div>
 
 <script type="text/javascript" src="config/jquery-1.7.2.min.js"></script>

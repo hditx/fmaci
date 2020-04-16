@@ -50,8 +50,6 @@ class ColaController{
             $temp->saveMother();
         }
       }
-      //var_dump($temp);
-      //exit();
       header("Location: index.php?c=cola");
       
   }

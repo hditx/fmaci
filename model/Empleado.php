@@ -121,6 +121,19 @@ class Empleado{
         return $data;        
     }
 
+    public static function getPerfilUsuario($perfil) {
+        try{
+            $mdb = DataBase::getDb();
+            $sql = 'SELECT perfilDescripcion FROM perfil WHERE perfilId = '. $perfil;
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            return $resultado[0]['perfilDescripcion'];
+        } catch (PDOException $e) {
+            print "ERROR". $e->getMessage();
+        }
+    }
+
     public static function getEmpleado(){
         try {
             $mdb =  DataBase::getDb();
@@ -129,7 +142,8 @@ class Empleado{
             $temp->execute();
             $resultado = $temp->fetchAll();
             foreach ($resultado as $fila){
-                $data[] = new Empleado($fila['usuarioId'], $fila['nombre'], $fila['apellido'], $fila['dni']);
+                $perfil = Empleado::getPerfilUsuario($fila['perfil']);
+                $data[] = new Empleado($fila['usuarioId'], $fila['nombre'], $fila['apellido'], $fila['dni'], $perfil);
             }
             $mdb = null;
         } catch (PDOException $e) {

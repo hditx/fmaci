@@ -15,7 +15,6 @@ class UsuarioController{
                     header('Location: index.php?c=turno&a=index');
                     break;
                 case 4: // monitor
-                default:
                     header('Location: index.php?c=turno&a=monitor');
                     break;
             }
