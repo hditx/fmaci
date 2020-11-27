@@ -94,33 +94,29 @@ class EmpleadoController{
     }
 
     public function estadoTurno(){
-        Empleado::saveSession($_SESSION['usuario'], (isset($_REQUEST['id']) ? $_REQUEST['id'] : "null"), 
-                (isset($_REQUEST['estado']) ? $_REQUEST['estado'] : "null"));
-        
-        switch ($_REQUEST['estado']){
+        $estadoTurno = $_REQUEST['estado'];
+        $idTurno = $_REQUEST['id'];
+        Empleado::saveSession($_SESSION['usuario'], (isset($idTurno) ? $idTurno : "null"),
+                (isset($estadoTurno) ? $estadoTurno : "null"));
+        switch ($estadoTurno){
             case 2:
             case 3:
             case 4:
                 $bloqueo = false;
                 $_SESSION['empleadoEstado'] = 0;
                 //ATENDIDO Y ABANDONO
-                if($_REQUEST['estado'] == 2 || $_REQUEST['estado'] == 4){
-                    Turno::setEnEsperaObjeto($_REQUEST['id'], 1);
+                if($estadoTurno == 2 || $estadoTurno == 4){
+                    Turno::setEnEsperaObjeto($idTurno, 1);
                 }
                 if(isset($_REQUEST['dni']) && isset($_REQUEST['name'])){
                     Cliente::saveCliente($_REQUEST['name'], $_REQUEST['apellido'], $_REQUEST['dni'],
                             $_REQUEST['telefono']);
                 }
-                if($_REQUEST['estado'] == 2){
-                    Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
-                }else{
-                    Empleado::actualizarSoloEstado($_REQUEST['id'], $_REQUEST['estado']);
-                }
-                Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
+                Empleado::actualizar($idTurno, $estadoTurno);
+                Empleado::saveEstado($idTurno, $estadoTurno, $_REQUEST['idEmpleado']);
                 $idEmpleado = $_REQUEST['idEmpleado'];
                 if($_REQUEST['mostrar'] == 1){
-                    $id = $_REQUEST['id'];
-                    header("Location: index.php?c=empleado&a=estadoTurno&estado=3&idEmpleado=$idEmpleado&id=$id");
+                    header("Location: index.php?c=empleado&a=estadoTurno&estado=3&idEmpleado=$idEmpleado&id=$idTurno");
                 }else{
                     header("Location: index.php?c=empleado&a=listTurno&idEmpleado=$idEmpleado");
                 }                    
@@ -128,23 +124,23 @@ class EmpleadoController{
             case 1:
                 //LLAMADO
                 $bloqueo = true;
-                if($_REQUEST['id'] == null){
+                if($idTurno == null){
                     header("Location: index.php");
                 }
                 if($_SESSION['inicio'] != 1){
                     if($_REQUEST['enEspera'] != 1){
-                        Empleado::saveEstado($_REQUEST['id'], $_REQUEST['estado'], $_REQUEST['idEmpleado']);
-                        Empleado::actualizar($_REQUEST['id'], $_REQUEST['estado']);
+                        Empleado::saveEstado($idTurno, $estadoTurno, $_REQUEST['idEmpleado']);
+                        Empleado::actualizar($idTurno, $estadoTurno);
                     }else{
                         if($_REQUEST['enEspera'] == 1){
-                            Empleado::saveEstado($_REQUEST['id'], 3, $_REQUEST['idEmpleado']);
-                            Turno::setEnEsperaObjeto($_REQUEST['id'], 2);
-                            Empleado::actualizar($_REQUEST['id'], 3);
+                            Empleado::saveEstado($idTurno, 3, $_REQUEST['idEmpleado']);
+                            Turno::setEnEsperaObjeto($idTurno, 2);
+                            Empleado::actualizar($idTurno, 3);
                         }
                     }
                 }
                 $_SESSION['inicio'] = 0;
-                $listLlamado = Historial::history($_REQUEST['id']);
+                $listLlamado = Historial::history($idTurno);
                 $d = count($listLlamado);
                 $id = $_REQUEST['id'];
                 $turno = Turno::getTurnoUnico($id);

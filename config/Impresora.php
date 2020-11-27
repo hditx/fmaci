@@ -3,7 +3,7 @@
 class Impresora {
 
 	public static function printTicket($number, $queue, $espera){
-            $impresora = fopen("/dev/usb/lp0", "a+");
+            $impresora = fopen("/dev/usb/lp1", "a+");
             /* ASCII constants */
             $ESC = "\x1b";
             $GS = "\x1d";
