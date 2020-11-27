@@ -1,30 +1,35 @@
-<div class="container">
-    <div class="row">
-        <div class="col-sm-10 col-md-10 offset-sm-1 offset-md-1">
-            <h1 class="registrarEmpleadoMo text-light">Subir vídeo</h1>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header text-center">
+            <h1>Multimedia</h1>
+            <a href="index.php?c=administrador&a=cargarImagenNuevo" class="btn btn-lg btn-success text-light pull-right"><i class="fa fa-plus"></i> Nueva</a>
         </div>
-    </div>
-    
-    <div class="row">
-        <form method="POST" action="index.php?c=administrador&a=saveMonitor" class="bg-light col-sm-10 col-md-10 offset-sm-1 offset-md-1">
-           <div class="form-group row">
-                <?php 
-                    $direccion = "/var/www/html/farmacentro/view/video/";
-            /*	$direccion = "/media/firefly/fire1/imagenes/";*/
-                    if($dh = opendir($direccion)){
-                        while(($archivo = readdir($dh)) !== false){?>
-                                <div class="form-check col-md-5 col-sm-5 offset-sm-1 offset-md-1">
-                                    <label class="col-form-label-lg">
-                                        <input type="checkbox" name="archivo[]" value="<?=$archivo;?>" <?= Turno::comprobarArchivo($archivo, $video)?>>
-                                        <b><?=$archivo;?></b>
-                                    </label>
-                                </div>
-                <?php } }?>
-            </div>
-            <input type="submit" class="btn btn-lg btn-block btn-success" name="submit" value="Cargar">
-            <a href="index.php?c=administrador&a=cargarImagenNuevo" class="btn btn-lg btn-block btn-warning text-light">Cargar nueva imagen</a>
-            <a href="index.php?c=administrador&a=index" class="btn btn-lg btn-block btn-danger">Cancelar</a>
-            <br>
-        </form>    
+        <div class="card-body">
+            <form method="POST" action="index.php?c=administrador&a=saveMonitor">
+                <a href="index.php?c=administrador&a=index" class="btn btn-lg btn-primary"><i class="fa fa-arrow-left"></i> Volver</a>
+                <button type="submit" class="btn btn-lg btn-success pull-right"><i class="fa fa-floppy-o"></i> Guardar</button>
+                <br/>
+                <div class="form-group row">
+                    <?php
+                        $direccion = "/var/www/html/farmacia/view/video/";
+                /*	$direccion = "/media/firefly/fire1/imagenes/";*/
+                        if($dh = opendir($direccion)){
+                            while(($archivo = readdir($dh)) !== false){
+                                if($archivo != '..' && $archivo != '.') {?>
+                                    <div class="col-md-2">
+                                        <div class="card bg-light mb-3" style="max-width: 18rem;">
+                                            <div class="card-header">
+                                                <img src="<?="view/video/$archivo"?>" alt="" style="width: 15rem; height: 15rem;"><br/>
+                                            </div>
+                                            <div class="card-body">
+                                                <input type="checkbox" name="archivo[]" value="<?=$archivo;?>" <?= Turno::comprobarArchivo($archivo, $video)?>>
+                                                <b><?=$archivo;?></b>
+                                            </div>
+                                        </div>
+                                    </div>
+                    <?php } } }?>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

@@ -10,6 +10,8 @@ class Turno{
     private $atendido;
     private $hora;
     private $enEspera;
+    private $horaAtencion;
+    private $horaFin;
     
     function __construct($idTurno, $idCola = "", $posicion = "", $atendido = "", $hora = "", $enEspera = "") {
         $this->setIdTurno($idTurno);
@@ -74,6 +76,21 @@ class Turno{
     
     function setEnEspera($enEspera){
         $this->enEspera = $enEspera;
+    }
+
+    public function getHoraAtencion() {
+        return $this->horaAtencion;
+    }
+    public function setHoraAtencion($horaAtencion) {
+        $this->horaAtencion = $horaAtencion;
+    }
+
+    public function getHoraFin() {
+        return $this->horaFin;
+    }
+
+    public function setHoraFin($horaFin) {
+        $this->horaFin = $horaFin;
     }
 
     public function save(){

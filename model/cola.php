@@ -160,7 +160,7 @@ class Cola{
     public static function getList2(){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT idCola, nombreCola, hijoDe, letra, (CASE WHEN siguiente IS NOT NULL THEN LPAD(siguiente, 3, '0') WHEN siguiente IS NULL THEN siguiente END) AS siguiente FROM Cola WHERE hijoDe IS NULL";
+            $sql = "SELECT idCola, nombreCola, hijoDe, letra, (CASE WHEN siguiente IS NOT NULL THEN LPAD(siguiente, 3, '0') WHEN siguiente IS NULL THEN siguiente END) AS siguiente FROM Cola WHERE hijoDe IS NULL ORDER BY nombreCola";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
@@ -178,7 +178,7 @@ class Cola{
     public static function getList3($id){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT * FROM Cola WHERE hijoDe = ".$id;
+            $sql = "SELECT idCola, nombreCola, hijoDe, letra, (CASE WHEN siguiente IS NOT NULL THEN LPAD(siguiente, 3, '0') WHEN siguiente IS NULL THEN siguiente END) AS siguiente FROM Cola WHERE hijoDe = ".$id;
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 
@@ -418,7 +418,14 @@ class Cola{
     public static function fechasEstadistica($fechaInicio, $fechaFin, $id){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "SELECT fecha, 0 AS cantidad FROM Turno WHERE fecha NOT IN (SELECT fecha FROM Turno WHERE idCola = ".$id.") AND fecha BETWEEN '".$fechaInicio."' AND '".$fechaFin."' GROUP BY fecha UNION SELECT fecha, COUNT(*) AS cantidad FROM Turno WHERE idCola = ".$id." AND fecha BETWEEN '".$fechaInicio."' AND '".$fechaFin."' GROUP BY fecha";
+            $sql = "SELECT fecha, 0 AS cantidad FROM Turno 
+                    WHERE fecha NOT IN (SELECT fecha FROM Turno WHERE idCola = ".$id.") 
+                    AND fecha BETWEEN '".$fechaInicio."' AND '".$fechaFin."' 
+                    AND atendido = 0
+                    GROUP BY fecha 
+                    UNION 
+                    SELECT fecha, COUNT(*) AS cantidad FROM Turno 
+                    WHERE idCola = ".$id." AND fecha BETWEEN '".$fechaInicio."' AND '".$fechaFin."' AND atendido = 0 GROUP BY fecha";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll();
@@ -428,6 +435,66 @@ class Cola{
             die();
         }
         asort($resultado);
+        return $resultado;
+    }
+
+    public static function getTurnosEmitidosDia($fechaInicio, $id){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT  LPAD(RPAD(CONCAT(CONVERT(DATE_FORMAT(hora, '%k'), CHAR), ':'), 5, '0'), 5, '0') as horas, COUNT(*) AS cantidad 
+                    FROM Farmacentro.Turno 
+                    WHERE idCola = ".$id." AND fecha = '". $fechaInicio ."'
+                    AND atendido = 0  
+                    GROUP BY horas";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            $mdb = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        asort($resultado);
+        return $resultado;
+    }
+
+    public static function  getInformeTiempoEstimadoAtencion($idCola) {
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT  c.idCola AS idCola, MIN(TIMEDIFF(t.horaAtencion, t.hora)) AS menorTiempo, 
+	                    CAST(AVG(TIMEDIFF(t.horaAtencion, t.hora)) AS TIME) AS medioTiempo,
+	                    MAX(TIMEDIFF(t.horaAtencion, t.hora)) AS maximoTiempo
+                    FROM Farmacentro.Turno t
+                    JOIN Farmacentro.Cola c ON c.idCola = t.idCola
+                    GROUP BY c.nombreCola
+                    HAVING c.idCola IN ($idCola)";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            $mdb = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $resultado;
+    }
+
+    public static function getInformeTiempoEstimadoGeneral() {
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT MIN(TIMEDIFF(t.horaAtencion, t.hora)) AS menorTiempo, 
+	                    CAST(AVG(TIMEDIFF(t.horaAtencion, t.hora)) AS TIME) AS medioTiempo,
+	                    MAX(TIMEDIFF(t.horaAtencion, t.hora)) AS maximoTiempo
+                    FROM Farmacentro.Turno t
+                    JOIN Farmacentro.Cola c ON c.idCola = t.idCola";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            $mdb = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
         return $resultado;
     }
 }

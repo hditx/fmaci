@@ -121,6 +121,19 @@ class Empleado{
         return $data;        
     }
 
+    public static function getPerfilUsuario($perfil) {
+        try{
+            $mdb = DataBase::getDb();
+            $sql = 'SELECT perfilDescripcion FROM perfil WHERE perfilId = '. $perfil;
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            return $resultado[0]['perfilDescripcion'];
+        } catch (PDOException $e) {
+            print "ERROR". $e->getMessage();
+        }
+    }
+
     public static function getEmpleado(){
         try {
             $mdb =  DataBase::getDb();
@@ -129,7 +142,27 @@ class Empleado{
             $temp->execute();
             $resultado = $temp->fetchAll();
             foreach ($resultado as $fila){
-                $data[] = new Empleado($fila['usuarioId'], $fila['nombre'], $fila['apellido'], $fila['dni']);
+                $perfil = Empleado::getPerfilUsuario($fila['perfil']);
+                $data[] = new Empleado($fila['usuarioId'], $fila['nombre'], $fila['apellido'], $fila['dni'], $perfil);
+            }
+            $mdb = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $data;
+    }
+
+    public static function getEmpleadoList(){
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = 'SELECT * FROM Usuario WHERE perfil = 2  ORDER BY apellido';
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            foreach ($resultado as $fila){
+                $perfil = Empleado::getPerfilUsuario($fila['perfil']);
+                $data[] = new Empleado($fila['usuarioId'], $fila['nombre'], $fila['apellido'], $fila['dni'], $perfil);
             }
             $mdb = null;
         } catch (PDOException $e) {
@@ -161,25 +194,18 @@ class Empleado{
     public static function actualizar($id, $estado){
         try {
             $mdb =  DataBase::getDb();
-            $sql = "UPDATE Turno SET atendido = ".$estado.", horaModificacion = TIME(NOW()) WHERE idTurno = ". $id;
+            if ($estado == 3) {
+                $sql = "UPDATE Turno SET atendido = ".$estado.", horaModificacion = TIME(NOW()), horaFin = TIME(NOW()) WHERE idTurno = ". $id;
+            } else if ($estado == 1) {
+                $sql = "UPDATE Turno SET atendido = ".$estado.", horaModificacion = TIME(NOW()), horaAtencion = TIME(NOW()) WHERE idTurno = ". $id;
+            } else {
+                $sql = "UPDATE Turno SET atendido = ".$estado.", horaModificacion = TIME(NOW()) WHERE idTurno = ". $id;
+            }
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $mdb = null;
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
-            die();
-        }
-    }
-    
-    public static function actualizarSoloEstado($id, $estado){
-        try{
-            $mdb = DataBase::getDb();
-            $sql = "UPDATE Turno SET atendido = $estado WHERE idTurno = $id";
-            $temp = $mdb->prepare($sql);
-            $temp->execute();
-            $mdb = null;
-        } catch(PDOException $e){
-            print "Erro!". $e->getMessage();
             die();
         }
     }
@@ -300,5 +326,27 @@ class Empleado{
             print "¡Error!: " . $e->getMessage() . "<br/>";
             die();
         }        
+    }
+
+    public static function getInformeProductividad($idEmpleado) {
+        try {
+            $mdb =  DataBase::getDb();
+            $sql = "SELECT u.usuarioId as idEmpleado, MIN(TIMEDIFF(t.horaFin, t.horaAtencion)) AS menorTiempo, 
+                        CAST(AVG(TIMEDIFF(t.horaFin, t.horaAtencion)) AS TIME) AS medioTiempo,
+                        MAX(TIMEDIFF(t.horaFin, t.horaAtencion)) AS maximoTiempo
+                    FROM Farmacentro.Turno t
+                    JOIN Farmacentro.HistorialEstado h ON t.idTurno = h.idTurno 
+                    JOIN Farmacentro.Usuario u ON u.usuarioId = h.idEmpleado
+                    GROUP BY u.usuarioId
+                    HAVING u.usuarioId IN($idEmpleado)";
+            $temp = $mdb->prepare($sql);
+            $temp->execute();
+            $resultado = $temp->fetchAll();
+            $mdb = null;
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        return $resultado;
     }
 }

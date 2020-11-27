@@ -51,31 +51,101 @@ class AdministradorController{
         $colas = Cola::getList();
         $show = false;
         if(isset($_POST['colas'])){
+            $show = true;
             $nuevoColas = $_POST['colas'];
-            $fechaInicio = $_POST['fechaInicio'];
-            $fechaFin = $_POST['fechaFin'];
+            if (isset($_POST['fechaInicio'])) $fechaInicio = $_POST['fechaInicio'];
+            if (isset($_POST['fechaFin'])) $fechaFin = $_POST['fechaFin'];
+            if (isset($_POST['fechaDia'])) $fechaInicio = $_POST['fechaDia'];
+            if ($fechaFin == "") $canvasLine = true;
+            else $canvasLine = false;
             if(strcmp($nuevoColas[0], "-1") == 0){
                 unset($colas);
-                $show = true;
                 $seleccionadas = Cola::getList();
-                require_once 'view/header.php';
-                require_once 'view/administrador/informes.php';
-                require_once 'view/footer.php';
             }else{
                 unset($colas);
-                $show = true;
                 foreach($nuevoColas as $cola){
                     $seleccionadas[] = Cola::get($cola);
                 }
-                require_once 'view/header.php';
-                require_once 'view/administrador/informes.php';
-                require_once 'view/footer.php';
             }
-        }else{
-            require_once 'view/header.php';
-            require_once 'view/administrador/informes.php';
-            require_once 'view/footer.php';
         }
+        require_once 'view/header.php';
+        require_once 'view/administrador/informes.php';
+        require_once 'view/footer.php';
+    }
+
+    public function informeAtendido(){
+        $colas = Cola::getList();
+        $show = false;
+        if(isset($_POST['colas'])){
+            $show = true;
+            $nuevoColas = $_POST['colas'];
+            if(isset($_POST['fechaInicio'])) $fechaInicio = $_POST['fechaInicio'];
+            if (isset($_POST['fechaFin'])) $fechaFin = $_POST['fechaFin'];
+            if (isset($_POST['fechaDia'])) $fechaInicio = $_POST['fechaDia'];
+            if ($fechaFin == "") $canvasLine = true;
+            else $canvasLine = false;
+            if(strcmp($nuevoColas[0], "-1") == 0){
+                unset($colas);
+                $seleccionadas = Cola::getList();
+            }else{
+                unset($colas);
+                foreach($nuevoColas as $cola){
+                    $seleccionadas[] = Cola::get($cola);
+                }
+            }
+        }
+        require_once 'view/header.php';
+        require_once 'view/administrador/informeAtendidos.php';
+        require_once 'view/footer.php';
+    }
+
+    public function informeTiempoEspera(){
+        $colas = Cola::getList();
+        $show = false;
+        if(isset($_POST['colas'])){
+            $show = true;
+            $nuevoColas = $_POST['colas'];
+            if(strcmp($nuevoColas[0], "-1") == 0){
+                unset($colas);
+                $seleccionadas = Cola::getList();
+            }else{
+                unset($colas);
+                foreach($nuevoColas as $cola){
+                    $seleccionadas[] = Cola::get($cola);
+                }
+            }
+            foreach ($seleccionadas as $itemCola) {
+                $informeTiempoEspera[] = Cola::getInformeTiempoEstimadoAtencion($itemCola->getIdCola());
+            }
+            $informeTiempoGeneral = Cola::getInformeTiempoEstimadoGeneral();
+        }
+        require_once 'view/header.php';
+        require_once 'view/administrador/informeTiempoEspera.php';
+        require_once 'view/footer.php';
+    }
+
+    public function informeProductividad(){
+        $empleados = Empleado::getEmpleadoList();
+        $show = false;
+        $empleadosSeleccionados = $_POST['empleados'];
+        if(isset($empleadosSeleccionados)){
+            $show = true;
+            if(strcmp($empleadosSeleccionados[0], "-1") == 0){
+                unset($empleados);
+                $seleccionados = Empleado::getEmpleadoList();
+            }else{
+                unset($empleados);
+                foreach($empleadosSeleccionados as $empleado){
+                    $seleccionados[] = Empleado::get($empleado);
+                }
+            }
+            foreach ($seleccionados as $itemEmpleado) {
+                $informeProductividad[] = Empleado::getInformeProductividad($itemEmpleado->getIdEmpleado());
+            }
+        }
+        require_once 'view/header.php';
+        require_once 'view/administrador/informeEmpleado.php';
+        require_once 'view/footer.php';
     }
     
     public function save(){
