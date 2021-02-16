@@ -56,13 +56,13 @@ class Sesion{
     static function getUser($user){
         try{
             $mdb =  DataBase::getDb();
-            $sql = "SELECT * FROM Usuario WHERE dni = $user LIMIT 1";
+            $sql = "SELECT usuarioId, nombre, apellido, fechaDeAlta, dni, 
+                        (SELECT acceso FROM  perfil WHERE perfilId = (SELECT perfil FROM Usuario WHERE dni = ".$user." LIMIT 1)) as perfil, movimiento 
+                        FROM Usuario WHERE dni = $user LIMIT 1";
             $sta = $mdb->prepare($sql);
             $sta->execute();
             $resultado = $sta->fetchAll();
-            
             return $resultado;
-            
         }catch(PDOException $e){
             echo "ERROR";
         }
@@ -73,7 +73,6 @@ class Sesion{
         try {
             $mdb =  DataBase::getDb();
             $sql = "SELECT * FROM SesionEmpleado WHERE idUsuario =$id ORDER BY ultimaSesion DESC LIMIT 1";
-//            $sql = "SELECT * FROM SesionEmpleado WHERE idUsuario =$id AND ultimaSesion = (SELECT MAX(ultimaSesion) FROM SesionEmpleado WHERE idUsuario = $id)";
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll(); 

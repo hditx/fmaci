@@ -33,10 +33,11 @@
                     <div class="form-group col-md-6">
                         <label>Perfil *</label>
                         <select name="perfil" class="custom-select my-1 mr-sm-2">
-                            <option value="1" <?= ($tmp->getPerfil() == 1) ? 'selected' : ''?> >Administrador</option>
-                            <option value="2" <?= ($tmp->getPerfil() == 2) ? 'selected' : ''?> >Empleado</option>
-                            <option value="3" <?= ($tmp->getPerfil() == 3) ? 'selected' : ''?> >Cliente</option>
-                            <option value="4" <?= ($tmp->getPerfil() == 4) ? 'selected' : ''?> >Monitor</option>
+                            <?php foreach ($perfiles as $perfil) {
+                                $select =  $tmp->getPerfil() == $perfil->getPerfilId() ?  'selected' : '';
+                                echo "<option value='".$perfil->getPerfilId()."'
+                                            ". $select ." >".$perfil->getNombre()."</option>";
+                            } ?>
                         </select>
                     </div>
                 </div>

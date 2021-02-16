@@ -19,3 +19,8 @@
         </div>
     </div>
 </div>
+<?php if ($showError) { ?>
+<script type="text/javascript">
+    alert('Extension de archivo no valido.');
+</script>
+<?php } ?>

@@ -124,11 +124,11 @@ class Empleado{
     public static function getPerfilUsuario($perfil) {
         try{
             $mdb = DataBase::getDb();
-            $sql = 'SELECT perfilDescripcion FROM perfil WHERE perfilId = '. $perfil;
+            $sql = 'SELECT nombre FROM perfil WHERE perfilId = '. $perfil;
             $temp = $mdb->prepare($sql);
             $temp->execute();
             $resultado = $temp->fetchAll();
-            return $resultado[0]['perfilDescripcion'];
+            return $resultado[0]['nombre'];
         } catch (PDOException $e) {
             print "ERROR". $e->getMessage();
         }

@@ -93,38 +93,6 @@ class Historial{
       }
       return $data;
     }
-    /*
-    public static function getFecha($id){
-        try {
-            $mdb =  DataBase::getDb();
-            $sql = "SELECT DATE(fechaHora) AS fechaHora FROM HistorialEstado WHERE idHistorial =".$id;
-            $temp = $mdb->prepare($sql);
-            $temp->execute();
-            $resultado = $temp->fetchAll();
-            $data = $resultado[0]['fechaHora'];
-            $mdb = null;
-        } catch (PDOException $e) {
-            print "¡Error!: " . $e->getMessage() . "<br/>";
-            die();
-        }
-        return $data;  
-    }
-    
-    /*public static function getHora($id){
-        try {
-            $mdb =  DataBase::getDb();
-            $sql = "SELECT TIME(fechaHora) AS fechaHora FROM HistorialEstado WHERE idHistorial =".$id;
-            $temp = $mdb->prepare($sql);
-            $temp->execute();
-            $resultado = $temp->fetchAll();
-            $data = $resultado[0]['fechaHora'];
-            $mdb = null;
-        } catch (PDOException $e) {
-            print "¡Error!: " . $e->getMessage() . "<br/>";
-            die();
-        }
-        return $data;  
-    }*/
 }
 
 ?>

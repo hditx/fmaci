@@ -4,6 +4,7 @@ require_once 'model/cola.php';
 require_once 'model/Turno.php';
 require_once 'config/DataBase.php';
 require_once 'model/Empleado.php';
+require_once 'model/Perfil.php';
 
 
 class AdministradorController{
@@ -21,10 +22,25 @@ class AdministradorController{
         require_once 'view/administrador/listEmpleado.php';
         require_once 'view/footerNButton.php';
     }
-    
+
+    public function abmPerfil () {
+        $perfiles = Perfil::getPerfiles();
+        require_once 'view/header.php';
+        require_once 'view/administrador/listPerfiles.php';
+        require_once 'view/footerNButton.php';
+    }
+
+    public function crearPerfil () {
+        $perfil = new Perfil(null);
+        require_once 'view/header.php';
+        require_once 'view/administrador/perfilEdit.php';
+        require_once 'view/footerNButton.php';
+    }
+
     public function crear(){
         $tmp = new Empleado(null);
         $colas = Cola::getList();
+        $perfiles = Perfil::getPerfiles();
         require_once 'view/header.php';
         require_once 'view/administrador/empleadoEdit.php';
         require_once 'view/footerNButton.php';
@@ -44,6 +60,11 @@ class AdministradorController{
     public function eliminar(){
         Empleado::delete($_REQUEST['id']);
         header("Location:index.php?c=administrador&a=abmEmpleado");
+    }
+
+    public function eliminarPerfil(){
+        Perfil::delete($_REQUEST['id']);
+        header("Location:index.php?c=administrador&a=abmPerfil");
     }
 
 
@@ -156,9 +177,7 @@ class AdministradorController{
             $tmp = new Empleado(null);
             $nuevo = 1;
         }
-
         $idCola = $_REQUEST['idCola'];
-
         $tmp->setNombre($_REQUEST['nombre']);
         $tmp->setApellido($_REQUEST['apellido']);
         $tmp->setDni($_REQUEST['dni']);
@@ -173,8 +192,27 @@ class AdministradorController{
         foreach ($idCola as $union){
             Empleado::saveUnion($id, $union);
         }
-        var_dump($tmp);
         header("Location: index.php?c=administrador&a=abmEmpleado");
+    }
+
+    public function savePerfil(){
+        if(isset($_POST['perfilId'])){
+            $perfil = Perfil::get($_POST['perfilId']);
+        } else {
+            $perfil = new Perfil(null);
+        }
+        $perfil->setNombre($_POST['nombre']);
+        $perfil->setDescripcion($_POST['descripcion']);
+        $perfil->setAcceso($_POST['acceso']);
+        $perfil->save();
+        header("Location: index.php?c=administrador&a=abmPerfil");
+    }
+
+    public function modificarPerfil(){
+        $perfil = Perfil::get($_GET['id']);
+        require_once 'view/header.php';
+        require_once 'view/administrador/perfilEdit.php';
+        require_once 'view/footerNButton.php';
     }
     
     public function modificar(){
@@ -214,19 +252,26 @@ class AdministradorController{
 
     public function cargarImagen(){
 /*	$ruta = "/media/firefly/fire1/imagenes/";*/
-        $ruta = "/var/www/html/farmacentro/view/video/";
-        $directorio = $ruta . basename($_FILES['archivo']['name']);
-        move_uploaded_file($_FILES['archivo']['tmp_name'], $directorio);
-        try{
-            $video = $_FILES['archivo']['name'];
-            $mdb = DataBase::getDb();
-            $sql = "UPDATE Video SET nombre = '$video'";
-            $temp = $mdb->prepare($sql);
-            $temp->execute();
-            $mdb = null;
-            header('Location: index.php?c=administrador&a=index');
-        } catch (PDOException $e){
-            print $e->getMessage();
+        if (strlen(stristr($_FILES['archivo']['type'], 'image/jpeg') > 0)) {
+            $ruta = "/var/www/html/farmacentro/view/video/";
+            $directorio = $ruta . basename($_FILES['archivo']['name']);
+            move_uploaded_file($_FILES['archivo']['tmp_name'], $directorio);
+            try {
+                $video = $_FILES['archivo']['name'];
+                $mdb = DataBase::getDb();
+                $sql = "UPDATE Video SET nombre = '$video'";
+                $temp = $mdb->prepare($sql);
+                $temp->execute();
+                $mdb = null;
+                header('Location: index.php?c=administrador&a=index');
+            } catch (PDOException $e) {
+                print $e->getMessage();
+            }
+        } else {
+            $showError = true;
+            require_once 'view/header.php';
+            require_once 'view/administrador/cargarImagen.php';
+            require_once 'view/footer.php';
         }
     }
 }
