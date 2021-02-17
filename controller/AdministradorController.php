@@ -74,9 +74,9 @@ class AdministradorController{
         if(isset($_POST['colas'])){
             $show = true;
             $nuevoColas = $_POST['colas'];
-            if (isset($_POST['fechaInicio'])) $fechaInicio = $_POST['fechaInicio'];
+            $fechaInicio = $_POST['fechaInicio'];
             if (isset($_POST['fechaFin'])) $fechaFin = $_POST['fechaFin'];
-            if (isset($_POST['fechaDia'])) $fechaInicio = $_POST['fechaDia'];
+            if (isset($_POST['fechaDia'])) $fechaDia = $_POST['fechaDia'];
             if ($fechaFin == "") $canvasLine = true;
             else $canvasLine = false;
             if(strcmp($nuevoColas[0], "-1") == 0){
@@ -102,7 +102,7 @@ class AdministradorController{
             $nuevoColas = $_POST['colas'];
             if(isset($_POST['fechaInicio'])) $fechaInicio = $_POST['fechaInicio'];
             if (isset($_POST['fechaFin'])) $fechaFin = $_POST['fechaFin'];
-            if (isset($_POST['fechaDia'])) $fechaInicio = $_POST['fechaDia'];
+            if (isset($_POST['fechaDia'])) $fechaDia = $_POST['fechaDia'];
             if ($fechaFin == "") $canvasLine = true;
             else $canvasLine = false;
             if(strcmp($nuevoColas[0], "-1") == 0){

@@ -76,6 +76,13 @@
 <script type="text/javascript" src="view/administrador/prueba.js"></script>
 <?php } else{?>
 <div class="container-fluid">
+    <div class="float-right bg-light" style="border-radius: 3px">
+        <h3>
+            <?= "Fecha ". date("d-m-Y") ?>
+        </h3>
+    </div>
+    <br/>
+    <br/>
     <div id="chartContainer" style="height: 600px; width: 100%;"></div>
     <a class="btn btn-lg btn-primary" href="index.php?c=administrador&a=informe"><i class="fa fa-arrow-left"></i> Volver</a>
     <button id="printChart" class="btn btn-success btn-lg pull-right"><i class="fa fa-print"></i> Imprimir</button>
@@ -87,9 +94,13 @@
 	    const fecha = new Date()
         const chart = new CanvasJS.Chart("chartContainer", {
             <?php
-            echo "title: {
-              text: 'Turnos Emitidos ". date("d-m-Y") ." entre ".$fechaInicio." y ".$fechaFin."',
-              padding: 10
+            echo "title: {";
+            if ($fechaFin != null) {
+                echo "text: 'Turnos emitidos del ".$fechaInicio." / ".$fechaFin."',";
+            } else {
+                echo "text: 'Turnos emitidos el ".$fechaDia."',";
+            }
+            echo "padding: 10
             },";
             if (!$canvasLine) {
                 echo "axisX: {
@@ -122,14 +133,14 @@
                     }
                 } else {
                     foreach ($seleccionadas as $fila) {
-                        $turnos = Cola::getTurnosEmitidosDia($fechaInicio, $fila->getIdCola());
+                        $turnos = Cola::getTurnosEmitidosDia($fechaDia, $fila->getIdCola());
                         echo "{
-                            type: 'line',
+                            type: 'bubble',
                             showInLegend: true,
                             legendText: '". Cola::getNombreColaObjeto($fila->getIdCola()) ."',
                             dataPoints: [ ";
                         foreach ($turnos as $turno) {
-                            echo "{ label: '". $turno['horas'] ."', y: ". $turno['cantidad'] ." },";
+                            echo "{ label: '". $turno['horas'] ."', y: ". $turno['cantidad'] .", z: ".$turno['cantidad']."},";
                         }
                         echo " ] 
                         },";

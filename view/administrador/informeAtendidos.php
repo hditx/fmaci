@@ -21,7 +21,7 @@
                 </nav>
             </div>
             <div class="card-body">
-                <form action="index.php?c=administrador&a=informe" method="post">
+                <form action="index.php?c=administrador&a=informeAtendido" method="post">
                     <a class="btn btn-lg btn-primary" href="index.php"><i class="fa fa-arrow-left"></i> Volver</a>
                     <button type="submit" class="btn btn-lg btn-success pull-right" name="guardar"><i class="fa fa-plus"></i> Aceptar</button>
                     <div class="container center">
@@ -75,6 +75,13 @@
     <script type="text/javascript" src="view/administrador/prueba.js"></script>
 <?php } else{?>
     <div class="container-fluid">
+        <div class="float-right bg-light" style="border-radius: 3px">
+            <h3>
+                <?= "Fecha ". date("d-m-Y") ?>
+            </h3>
+        </div>
+        <br/>
+        <br/>
         <div id="chartContainer" style="height: 600px; width: 100%;"></div>
         <a class="btn btn-lg btn-primary" href="index.php?c=administrador&a=informe"><i class="fa fa-arrow-left"></i> Volver</a>
         <button id="printChart" class="btn btn-success btn-lg pull-right"><i class="fa fa-print"></i> Imprimir</button>
@@ -84,10 +91,16 @@
     <script type="text/javascript">
         window.onload = function () {
             const chart = new CanvasJS.Chart("chartContainer", {
-                title: {
-                    text: "Turnos Atendidos"
-                },
-                <?php if (!$canvasLine) {
+                <?php
+                echo "title: {";
+                if ($fechaFin != null) {
+                    echo "text: 'Turnos atendidos desde ".$fechaInicio." hasta ".$fechaFin."',";
+                } else {
+                    echo "text: 'Turnos atendidos el ".$fechaDia."',";
+                }
+                echo "padding: 10
+                },";
+                if (!$canvasLine) {
                     echo "axisX: {
                     valueFormatString: 'DD-MM-YY',
                     labelAngle: -50
@@ -118,14 +131,14 @@
                         }
                     } else {
                         foreach ($seleccionadas as $fila) {
-                            $turnos = Cola::getTurnosEmitidosDia($fechaInicio, $fila->getIdCola());
+                            $turnos = Cola::getTurnosEmitidosDia($fechaDia, $fila->getIdCola());
                             echo "{
-                            type: 'line',
+                            type: 'bubble',
                             showInLegend: true,
                             legendText: '". Cola::getNombreColaObjeto($fila->getIdCola()) ."',
                             dataPoints: [ ";
                             foreach ($turnos as $turno) {
-                                echo "{ label: '". $turno['horas'] ."', y: ". $turno['cantidad'] ." },";
+                                echo "{ label: '". $turno['horas'] ."', y: ". $turno['cantidad'] .", z: ". $turno['cantidad'] ." },";
                             }
                             echo " ] 
                         },";
